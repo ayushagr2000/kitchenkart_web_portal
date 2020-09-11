@@ -31,6 +31,7 @@
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  <script src="./apiconnection/home.js"></script>
 
 </head>
 
@@ -160,15 +161,7 @@
                 <li class="language dropdown px-2"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#">English</a></li>
-                    <li><a href="#">French</a></li>
-                    <li><a href="#">German</a></li>
-                  </ul>
-                </li>
-                <li class="currency dropdown pr-2"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
-                    <li><a href="#">€ Euro</a></li>
-                    <li><a href="#">£ Pound Sterling</a></li>
-                    <li><a href="#">$ US Dollar</a></li>
+                    <li><a href="#">Hindi</a></li>
                   </ul>
                 </li>
               </ul> 
@@ -176,7 +169,7 @@
             <div class="col-md-6">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 98938 54119</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login</a>
@@ -460,7 +453,7 @@
 
     <!-- =====  BANNER STRAT  ===== -->
     <div class="banner section">
-      <div class="main-banner owl-carousel">
+      <div class="main-banner owl-carousel" id="bannersection">
         <div class="item"><a href="#"><img src="images/main_banner1.jpg" alt="Main Banner" class="img-responsive" /></a></div>
         <div class="item"><a href="#"><img src="images/main_banner2.jpg" alt="Main Banner" class="img-responsive" /></a></div>
       </div>
@@ -884,18 +877,9 @@
           <div class="col-12">
             <div class="section_title">Our Popular Brands</div>
           </div>
-          <div class="col-sm-12">
-            <div class="brand owl-carousel">
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand1.png" alt="Disney" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand2.png" alt="Dell" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand3.png" alt="Harley" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand4.png" alt="Canon" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand5.png" alt="Canon" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand6.png" alt="Canon" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand7.png" alt="Canon" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand8.png" alt="Canon" class="img-responsive" /></a> </div></div>
-              <div class="product-thumb"><div class="item text-center"> <a href="#"><img src="images/brand/brand9.png" alt="Canon" class="img-responsive" /></a> </div></div>
-            </div>
+          <div class="col-sm-12" id ="Popular_brand_div">
+            <!-- <div class="brand owl-carousel">
+            </div> -->
           </div>
         </div>
       </div>
