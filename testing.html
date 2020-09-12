@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>
+            GET DATA
+        </title>
+    </head>
+    <body>
+        Hello
+        <a id="here"></a>
+    </body>
+    <script>
+        window.onload = function () {
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+         tmp = params[i].split('=');
+         data[tmp[0]] = tmp[1];
+    }
+    document.getElementById('here').innerHTML = data.name;
+}
+    </script>
+</html>
+
+<!-- 
+    Sending Page
+    <a id="name1"><h1>click</h1></a>
+
+
+    =================Js===============
+    url = 'http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/testing.html?name=' + encodeURIComponent("Avinash");
+    document.getElementById('name1').href = url;
+
+ -->
