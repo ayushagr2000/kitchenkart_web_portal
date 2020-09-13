@@ -31,7 +31,9 @@
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  <!-- My Oun Api Calling Function -->
   <script src="./apiconnection/home.js"></script>
+  <script src="./apiconnection/AllApi.js"></script>
 
 </head>
 
@@ -79,7 +81,7 @@
                 <ul class="nav navbar-nav">
                   <li class="collapsed" data-toggle="collapse" data-target="#GroceryampStaples"><a href="">Grocery  Staples</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="GroceryampStaples">
-                      <li class="dropdown"><a href="category_page.html">Daal  Pulses</a>
+                      <li class="dropdown"><a href="category_page.html?name=staples">Daal  Pulses</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Arhar</a></li>
                           <li><a href="category_page.html">Masoor</a></li>
@@ -88,7 +90,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits  Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -96,7 +98,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="6">Edible Oils</a>
+                      <li class="dropdown"><a href="category_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -105,7 +107,7 @@
                           <li><a href="category_page.html">Sunflower Oils</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="2">Riced cauliflower</a>
+                      <li class="dropdown"><a href="category_page.html?name=rice">Riced cauliflower</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Basmati</a></li>
                           <li><a href="category_page.html">Millet  Others</a></li>
@@ -124,19 +126,19 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
-                      <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
+                      <li class="main_cat"> <a href="category_page.html?namesnaks">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="">Household Needs</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="category_page.html?name=cleaning">Household Needs</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="HouseholdNeeds">
                       <li class="main_cat"> <a href="category_page.html">Cleaning Tools  Brushes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Home  Car Fresheners</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="">Breakfast  Dairy</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="category_page.html?name=sweets">Sweets</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="BreakfastampDairy">
                       <li class="main_cat"> <a href="category_page.html">Breakfast Cereal  Mixes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Paneer  Curd</a> </li>
@@ -170,7 +172,7 @@
             <div class="col-md-6">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 98938 54119</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login</a>
@@ -196,13 +198,13 @@
                 <nav id="menu" class="navbar">
                   <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav main-navigation">
-                      <li class="main_cat dropdown active"> <a href="category_page.html">Grocery & Staples</a>
+                      <li class="main_cat dropdown active"> <a style="cursor: context-menu;">Grocery & Staples</a>
                         <div class="dropdown-menu megamenu column4">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Daal & Pulses</a>
+                              <li class="dropdown active"><a href="category_page.html?name=staples">Daal & Pulses</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -221,7 +223,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Dry Fruits & Nuts</a>
+                              <li class="dropdown active"><a href="category_page.html?name=dryfruits">Dry Fruits & Nuts</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -239,11 +241,11 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="">Edible Oils</a>
+                              <li class="dropdown active"><a href="category_page.html?name=oils">Edible Oils</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
-                                      <li class="active"><a href="category_page.html">Groundnut & Coconut Oil</a></li>
+                                      <li class="active"><a href="category_page.html?name=oils">Groundnut & Coconut Oil</a></li>
                                       <li><a href="category_page.html">Health Oils</a></li>
                                       <li><a href="category_page.html">Mustard Oils</a></li>
                                       <li><a href="category_page.html">Soyabean Oils</a></li>
@@ -258,7 +260,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Riced cauliflower</a>
+                              <li class="dropdown active"><a href="category_page.html?name=rice">Riced cauliflower</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -277,7 +279,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Personal Care</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=beverages">Beverages</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -291,7 +293,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Biscuits, Snacks & Chocolates</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=snacks">Biscuits, Snacks & Chocolates</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -305,7 +307,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Household Needs</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=cleaning">Household Needs</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -319,13 +321,13 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Breakfast & Dairy</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=sweets">Sweets</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="main_cat active"> <a href="category_page.html">Breakfast Cereal & Mixes</a> </li>
+                              <li class="main_cat active"> <a href="category_page.html?name=break">Breakfast Cereal & Mixes</a> </li>
                               <li class="main_cat"> <a href="category_page.html">Paneer & Curd</a> </li>
                               
                               <!-- 2 Level Sub Categories END -->
@@ -333,7 +335,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat thumb"> <a href="category_page.html">Fruits store </a>
+                      <li class="main_cat thumb"> <a style="cursor: context-menu;">Health Care </a>
                         <div class="dropdown-menu">
                           <div class="dropdown-inner"> <img src="#" alt="" title="" class="img-thumbnail"> </div>
                         </div>
@@ -860,7 +862,7 @@
               <div class="section_title">download app</div>
               <div class="app-download text-center">
                 <ul class="app-icon">
-                  <li><a href="#" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
+                  <li><a href="https://play.google.com/store/apps/details?id=com.kart.kitchen" target="_blank" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
                   <li><a href="#" title="appstore"><img src="images/app-store.png" alt="appstore" class="img-responsive"></a></li>
                 </ul>
               </div>

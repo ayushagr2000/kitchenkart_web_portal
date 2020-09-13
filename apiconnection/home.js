@@ -1,15 +1,15 @@
 window.onload = function() {
-    // popular_brand()
-    brand('Avinash');
-    // Banner_ApiCall();
-    Banner('Avinash');
-    // Featured_ProductsApi();
-    Featured('Avinash');
+    popular_brand()
+    //brand('Avinash');
+    Banner_ApiCall();
+    //Banner('Avinash');
+    Featured_ProductsApi();
+    // Featured('Avinash');
 }
 async function popular_brand() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
-    fetch(url)
+    fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => brand(contents))
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
