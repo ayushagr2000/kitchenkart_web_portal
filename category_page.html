@@ -37,6 +37,7 @@
   <!-- Site Api Connectio -->
   <script src="./apiconnection/category_page.js"></script>
   <script src="./apiconnection/AllApi.js"></script>
+  
 
 </head>
 
@@ -64,7 +65,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
+                      <li class="dropdown"><a href="5">Dry Fruits Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -430,10 +431,10 @@
     <!-- =====  BREADCRUMB STRAT  ===== -->
     <div class="breadcrumb section pt-60 pb-60">
       <div class="container">
-        <h1 class="uppercase">Grocery & Staples</h1>
+        <h1 class="uppercase" id="Pagetype">Grocery & Staples2</h1>
         <ul>
           <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-          <li class="active">Grocery & Staples</li>
+          <li class="active" id="PagetypeHome">Grocery & Staples3</li>
         </ul>
       </div>
     </div>
@@ -449,11 +450,11 @@
                 <h3 class="section_title">Top category</h3>
               </div>
               <ul>
-                <li><a href="#">Grocery & Staples</a></li>
-                <li><a href="#">Beverages</a></li>
-                <li><a href="#">Biscuits, Snacks & Chocolates</a></li>
-                <li><a href="#">Household Needs</a></li>
-                <li><a href="#">Sweets</a></li>
+                <li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=staples">Grocery & Staples</a></li>
+                <li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=beverages">Beverages</a></li>
+                <li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=snacks">Biscuits, Snacks & Chocolates</a></li>
+                <li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=cleaning">Household Needs</a></li>
+                <li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=sweets">Sweets</a></li>
                 <li><a href="#">Health Care</a></li>
               </ul>
             </div>
@@ -511,9 +512,9 @@
               <label class="control-label" for="input-limit">Show :</label>
               <div class="limit">
                 <select id="input-limit" class="form-control" onclick="GetSorted()">
-                  <option value="8" selected="selected">08</option>
+                  <option value="8">08</option>
                   <option value="25">25</option>
-                  <option value="50">50</option>
+                  <option value="50" selected="selected">50</option>
                   <option value="75">75</option>
                   <option value="100">100</option>
                 </select>

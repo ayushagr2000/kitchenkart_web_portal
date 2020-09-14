@@ -8,12 +8,44 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    if(data.name === 'brand-name')
+    if(data.name === 'brand-name') {
         BrandProductCall(data.id);
+        document.getElementById('Pagetype').innerHTML = data.id;
+        document.getElementById('PagetypeHome').innerHTML = data.id;
+    }
     else {
         var getdata = data.name;
         console.log(getdata);
         GetApiCall(getdata);
+        if(getdata === 'snacks' ){
+            document.getElementById('Pagetype').innerHTML = "Biscuits, Snacks & Chocolates";
+            document.getElementById('PagetypeHome').innerHTML = "Biscuits, Snacks & Chocolates";
+        }
+
+        if(getdata === 'beverages'){
+            document.getElementById('Pagetype').innerHTML = "Beverages";
+            document.getElementById('PagetypeHome').innerHTML = "Beverages";
+        }
+        if(getdata === 'cleaning'){
+            document.getElementById('Pagetype').innerHTML = "Household Needs";
+            document.getElementById('PagetypeHome').innerHTML = "Household Needs";
+        }
+        if(getdata === 'sweets'){
+            document.getElementById('Pagetype').innerHTML = "Sweets";
+            document.getElementById('PagetypeHome').innerHTML = "Sweets";
+        }
+        if(getdata === 'oils'){
+            document.getElementById('Pagetype').innerHTML = "Edible Oils";
+            document.getElementById('PagetypeHome').innerHTML = "Edible Oils";
+        }
+        if(getdata === 'dryfruits'){
+            document.getElementById('Pagetype').innerHTML = "Dry Fruits Nuts";
+            document.getElementById('PagetypeHome').innerHTML = "Dry Fruits Nuts";
+        }
+        if(getdata === 'staples'){
+            document.getElementById('Pagetype').innerHTML = "Grocery & Staples";
+            document.getElementById('PagetypeHome').innerHTML = "Grocery & Staples";
+        }
     }
 }
 
