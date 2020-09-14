@@ -8,9 +8,22 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    var getdata = data.name;
-    console.log(getdata);
-    GetApiCall(getdata);
+    if(data.name === 'brand-name')
+        BrandProductCall(data.id);
+    else {
+        var getdata = data.name;
+        console.log(getdata);
+        GetApiCall(getdata);
+    }
+}
+
+function BrandProductCall(getdata) {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getb/"+getdata;
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => CallingApi(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
 
 function GetApiCall(getdata) {
@@ -27,6 +40,7 @@ function GetApiCall(getdata) {
 function CallingApi(Api_data) {
     console.log(document.getElementById('input-limit').value);
     ApiJson = JSON.parse(Api_data);
+    console.log(ApiJson);
     GlobalApi = ApiJson;
     var Adding_Items='';
     for(var i = k; i < Math.min(GlobalApi.response.length,document.getElementById('input-limit').value) ; i++){
