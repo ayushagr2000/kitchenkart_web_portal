@@ -23,6 +23,7 @@ async function printdataval(productdata){
     document.getElementById('detail_image').src = singledata.response[0].img;
     document.getElementById('detail_image').alt = singledata.response[0].name;
     document.getElementById('Product_Name').innerHTML = singledata.response[0].name;
+    document.getElementById('productid').innerHTML = singledata.response[0].product_id;
     document.getElementById('product_Price').innerHTML = '&#8377; &nbsp'+singledata.response[0].sell_price;
     document.getElementById('product_Brand').innerHTML = singledata.response[0].brand;
     document.getElementById('product_Brand').href = 'category_page.html?name=brand-name&id='+singledata.response[0].brand;
