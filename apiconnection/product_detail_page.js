@@ -7,6 +7,7 @@ window.onload = function() {
         data[tmp[0]] = tmp[1];
     }
     getProductApi(data.id);
+    popular_brand()
 }
 async function getProductApi(data) {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -24,7 +25,7 @@ async function printdataval(productdata){
     document.getElementById('Product_Name').innerHTML = singledata.response[0].name;
     document.getElementById('product_Price').innerHTML = '&#8377; &nbsp'+singledata.response[0].sell_price;
     document.getElementById('product_Brand').innerHTML = singledata.response[0].brand;
-    document.getElementById('product_Brand').href = 'http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=brand-name&id='+singledata.response[0].brand;
+    document.getElementById('product_Brand').href = 'category_page.html?name=brand-name&id='+singledata.response[0].brand;
     if(singledata.response[0].stock_status > 0){
         document.getElementById('product_Stock').innerHTML = singledata.response[0].name;
     }
@@ -53,4 +54,29 @@ async function printdatavallimited(data) {
         featureddiv += '<div class="product-items col-6 col-sm-4 col-md-4 col-lg-3" style="height:400px;"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product_detail_page.html"> <img src="'+datainApi.response[n].img+'" style="height:200px; width:200px;" alt="'+datainApi.response[n].name+'" title="'+datainApi.response[n].name+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product_detail_page.html"> </a></div></div><div class="product-details"  style="height:180px;"><div class="caption"><h4><a href="product_detail_page.html">'+datainApi.response[n].name+'</a></h4><p class="price">&#8377; &nbsp;'+datainApi.response[n].sell_price+'<span class="price-tax">&#8377; &nbsp;</span></p><div class="product_option "><div class="form-group required "><p style="float: left;">size : '+datainApi.response[n].size+'</p><p style="float: right;"> Discount '+Math.round(100-(datainApi.response[n].sell_price/datainApi.response[n].max_price * 100))+'%</p><br><p style="float: right;"> MRP &#8377;&nbsp;'+datainApi.response[n].max_price+'</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" id="qty'+i+'" name="quantity" min="1" value="1" step="1" class="qty form-control"><button type="button" class="addtocart pull-right" id="cart'+i+'" onclick(this.id)>Add</button></div></div></div></div></div></div>';
     }
     document.getElementById('Random5relatedProduct').innerHTML = featureddiv;
+}
+async function popular_brand() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => brand(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+
+async function brand(data) {
+    var data_json = JSON.parse(data);
+    var k = "<div class='container'><div class='row'>";
+    console.log(data_json.response[0].brand_name);
+    console.log(data_json);
+
+    for(var i = 0; i < data_json.response.length; i++) {
+        console.log(i);
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        if((i+1) % 5 == 0){
+           k += "</div></div><div class='container' style><div class='row'>";
+        }
+    }
+   
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
 }

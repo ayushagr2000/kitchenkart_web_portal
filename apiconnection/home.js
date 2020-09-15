@@ -23,7 +23,7 @@ async function brand(data) {
 
     for(var i = 0; i < data_json.response.length; i++) {
         console.log(i);
-        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
         if((i+1) % 5 == 0){
            k += "</div></div><div class='container' style><div class='row'>";
         }

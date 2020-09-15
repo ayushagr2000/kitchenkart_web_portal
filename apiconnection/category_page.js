@@ -102,6 +102,6 @@ async function Category_Brand(data) {
     var jsonData = JSON.parse(data);
     var ulid = '';
     for(var i = 0; i < jsonData.response.length; i++)
-        ulid += '<li><a href="http://localhost/kitchenkart_web_portal-master/kitchenkart_web_portal/category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
+        ulid += '<li><a href="category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
     document.getElementById('topbrand_Category').innerHTML = ulid;
 }
