@@ -4,7 +4,7 @@
 
   <!-- =====  BASIC PAGE NEEDS  ===== -->
   <meta charset="utf-8">
-  <title>Bigmarket E-commerce Bootstrap Template</title>
+  <title>Kitchen Kart</title>
 
   <!-- =====  SEO MATE  ===== -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,7 +34,7 @@
   
   
   <!-- Site Api Connectio -->
-  <script src="./product_detail_page.html"></script>
+  <script src="./apiconnection/product_detail_page.js"></script>
   <script src="./apiconnection/AllApi.js"></script>
 
 
@@ -56,7 +56,7 @@
                 <ul class="nav navbar-nav">
                   <li class="collapsed" data-toggle="collapse" data-target="#GroceryampStaples"><a href="">Grocery  Staples</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="GroceryampStaples">
-                      <li class="dropdown"><a href="category_page.html">Daal  Pulses</a>
+                      <li class="dropdown"><a href="category_page.html?name=staples">Daal  Pulses</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Arhar</a></li>
                           <li><a href="category_page.html">Masoor</a></li>
@@ -65,7 +65,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -73,7 +73,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="6">Edible Oils</a>
+                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -82,7 +82,7 @@
                           <li><a href="category_page.html">Sunflower Oils</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="2">Riced cauliflower</a>
+                      <li class="dropdown"><a href="category_page.html?name=rice">Riced cauliflower</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Basmati</a></li>
                           <li><a href="category_page.html">Millet  Others</a></li>
@@ -101,19 +101,19 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
                       <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="">Household Needs</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="category_page.html?name=cleaning">Household Needs</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="HouseholdNeeds">
                       <li class="main_cat"> <a href="category_page.html">Cleaning Tools  Brushes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Home  Car Fresheners</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="">Breakfast  Dairy</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="category_page.html?name=sweets">Sweets</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="BreakfastampDairy">
                       <li class="main_cat"> <a href="category_page.html">Breakfast Cereal  Mixes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Paneer  Curd</a> </li>
@@ -147,7 +147,7 @@
             <div class="col-md-6">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 98938 54119</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login</a>
@@ -449,7 +449,8 @@
           <div class="col-12 mb-20">
             <div class="row mt_10 ">
               <div class="col-md-5">
-                <div><a class="thumbnails"> <img data-name="product_image" src="images/pro/001.jpg" alt="" /></a></div>
+                <div><a class="thumbnails"> <img data-name="product_image" src="images/pro/001.jpg"id="detail_image" alt="" /></a></div>
+              <!--
                 <div id="product-thumbnail" class="owl-carousel">
                   <div class="item">
                     <div class="image-additional"><a class="thumbnail" href="images/pro/001.jpg" data-fancybox="group1"> <img src="images/pro/001.jpg" alt="" /></a></div>
@@ -473,55 +474,34 @@
                     <div class="image-additional"><a class="thumbnail" href="images/pro/007.jpg" data-fancybox="group1"> <img src="images/pro/007.jpg" alt="" /></a></div>
                   </div>
                 </div>
+              -->
               </div>
               <div class="col-md-7 prodetail caption">
-                <h4 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Video Recording</a></h4>
+                <h4 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem" id="Product_Name">New LCDScreen and HD Video Recording</a></h4>
                   <div class="rating mt-5 mb-5"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-x"></i></span> </div>
-                <span class="price mb-20"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
+                <span class="price mb-20"><span class="amount" id="product_Price"></span>
                 </span>
                 <hr>
                 <ul class="list-unstyled product_info my-3">
                   <li>
                     <label>Brand:</label>
-                    <span> <a href="#">Apple</a></span></li>
+                    <span> <a href="#" id="product_Brand">Apple</a></span></li>
                   <li>
                     <label>Product Code:</label>
                     <span> product 20</span></li>
                   <li>
                     <label>Availability:</label>
-                    <span> In Stock</span></li>
+                    <span id="product_Stock"> In Stock</span></li>
                 </ul>
                 <hr>
-                <p class="product-desc mt-20"> More room to move. With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go. Cover Flow. Browse through your music collection by flipping..</p>
+                <p class="product-desc mt-20" id="Product_Details"> More room to move. With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go. Cover Flow. Browse through your music collection by flipping..</p>
                 <div id="product">
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="Sort-by col-lg-6 col-12 mt-20">
-                        <label>Sort by</label>
-                        <select name="product_size" id="select-by-size" class="selectpicker form-control">
-                          <option>Small</option>
-                          <option>Medium</option>
-                          <option>Large</option>
-                        </select>
-                      </div>
-                      <div class="Color col-lg-6 col-12 mt-20">
-                        <label>Color</label>
-                        <select name="product_color" id="select-by-color" class="selectpicker form-control">
-                          <option>Blue</option>
-                          <option>Green</option>
-                          <option>Orange</option>
-                          <option>White</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
                   <div class="qty mt-30 form-group">
                     <label>Qty</label>
                     <input name="product_quantity" min="1" value="1" type="number">
                   </div>
                   <div class="button-group mt-30">
                     <div class="add-to-cart" data-toggle="tooltip" title="" data-original-title="Add to cart"><a href="#"><span>Add</span></a></div>
-                    <div class="wishlist" data-toggle="tooltip" title="" data-original-title="Wish list"><a href="#"><span><i class="fa fa-heart"></i></span></a></div><div class="compare" data-toggle="tooltip" title="" data-original-title="Compare"><a href="#"><span><i class="fas fa-exchange-alt"></i></span></a></div>
                   </div>
                   <div class="prodbottominfo">
                     <ul class="list-unstyled">                    
@@ -600,8 +580,9 @@
                 <div class="heading-part text-center mb-10">
                   <h3 class="section_title mt-50">Related Products</h3>
                 </div>
-                <div class="related_pro">
-                  <div class="product-layout related-pro  owl-carousel mb-50 ">
+                <div class="section-product grid section" id="Random5relatedProduct"></div>
+                <!-- <div class="related_pro">
+                  <div class="product-layout related-pro  owl-carousel mb-50 " id="Random5relatedProduct">
                     <div class="product-grid">
                       <div class="item">
                          <div class="product-thumb transition">
@@ -763,7 +744,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
