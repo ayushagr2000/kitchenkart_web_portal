@@ -123,19 +123,21 @@ async function addproductinsearch(data) {
     APiData = JSON.parse(data);
     var mydata = "";
     for(var i = 0; i < APiData.response.length; i++){
-        // if(!searchdata.includes('<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>')){
-        //     mydata += '<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>';
-        //     searchdata.push('<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>');
-        // }
+        if(!searchdata.includes(APiData.response[i].name.toUpperCase())){
+            mydata += '<li><a href="product_detail_page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
+            searchdata.push(APiData.response[i].name.toUpperCase());
+            // searchid.push('name');
+            //console.log(APiData.response[i].name);
+        }
         if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'">'+APiData.response[i].category + '</a></li>';
+            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> '+APiData.response[i].category + '</h4></a></li>';
             searchdata.push(APiData.response[i].category.toUpperCase());
-            searchid.push('name');
+            //searchid.push('name');
         }
         if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'">'+APiData.response[i].brand + '</a></li>';
+            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
             searchdata.push(APiData.response[i].brand.toUpperCase());
-            searchid.push('brand');
+            //searchid.push('brand');
         }
     }
     document.getElementById('myUL').innerHTML = mydata;
