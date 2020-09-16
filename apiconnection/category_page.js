@@ -1,6 +1,9 @@
 var k = 0 ;
 var GlobalApi = '';
+var searchdata = [];
+var searchid = [];
 window.onload = function() {
+    GetAllProductData();
     var url = document.location.href,
             params = url.split('?')[1].split('&'),
             data = {}, tmp;
@@ -48,6 +51,7 @@ window.onload = function() {
         }
     }
     topbrand_category();
+
 }
 
 async function BrandProductCall(getdata) {
@@ -104,4 +108,79 @@ async function Category_Brand(data) {
     for(var i = 0; i < jsonData.response.length; i++)
         ulid += '<li><a href="category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
     document.getElementById('topbrand_Category').innerHTML = ulid;
+}
+
+async function GetAllProductData() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => addproductinsearch(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+
+async function addproductinsearch(data) {
+    APiData = JSON.parse(data);
+    var mydata = "";
+    for(var i = 0; i < APiData.response.length; i++){
+        // if(!searchdata.includes('<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>')){
+        //     mydata += '<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>';
+        //     searchdata.push('<li><a href="category_page.html?name='+APiData.response[i].name+'">'+APiData.response[i].name + '</a></li>');
+        // }
+        if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
+            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'">'+APiData.response[i].category + '</a></li>';
+            searchdata.push(APiData.response[i].category.toUpperCase());
+            searchid.push('name');
+        }
+        if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
+            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'">'+APiData.response[i].brand + '</a></li>';
+            searchdata.push(APiData.response[i].brand.toUpperCase());
+            searchid.push('brand');
+        }
+    }
+    document.getElementById('myUL').innerHTML = mydata;
+    searchdata.sort();
+}
+
+async function getlistdata() {
+    if(document.getElementById("search-input").value === ""){
+    	document.getElementById("myUL").style.display='none';
+    }
+    else {
+		document.getElementById("myUL").style.display='block';
+    }
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search-input");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+async function checkEnter(k) {
+    if(k === 13)
+        getdata();    
+}
+async function getdata() {
+    if(searchdata.includes(document.getElementById("search-input").value.toUpperCase())) {
+        //location.replace("");
+        var indexid = searchdata.indexOf(document.getElementById("search-input").value.toUpperCase());
+        if(searchid[indexid] === 'brand'){
+            location.replace("category_page.html?name=brand-name&id="+searchdata[indexid]);
+        }
+        else {
+            location.replace("category_page.html?name="+searchdata[indexid]);
+        }
+    }
+    else {
+        alert("Item Not Found");
+    }
 }
