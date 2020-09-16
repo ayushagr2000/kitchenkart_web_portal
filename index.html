@@ -350,13 +350,16 @@
                       <button type="submit" title="Search" class="action search" id="head-search"></button>
                   </div>
                   <div id="search" class="input-group">
-                    <input type="text" id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off">
+                    <input type="text" id="search-input" onkeypress="checkEnter(event.keyCode)" onkeyup="getlistdata()" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" list="allDetails">
+                    <ul id="myUL" style="display:none; position: absolute; background-color: burlywood; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
+                      
+                    </ul>
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-default btn-lg">Search</button>
+                      <button type="button" class="btn btn-default btn-lg" onclick="getdata()">Search</button>
                     </span>
                   </div>
                 </div>
-                <div class="header-link">
+                <div class="header-link" style="z-index: 1;">
                  <ul class="list-unstyled">
                   <li><a href="#">Bm offers</a></li>
                   <li><a href="#">Bm express</a></li>
@@ -365,7 +368,7 @@
                 </ul>
               </div>
               </div>
-              <div class="shopcart">
+              <div class="shopcart" style="z-index: 1;">
                 <div id="cart" class="btn-block mt-40 mb-30 ">
                   <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">My basket</span><span id="cart-total">Item 0</span></button>
                   <a href="cart_page.html" class="cart_responsive btn"><span id="cart-text">My basket</span><span id="cart-total-res">0</span> </a>
@@ -429,7 +432,7 @@
           </div>
         </div>
       </div>
-      <div class="header-static-block">
+      <div class="header-static-block" style="z-index: 1;">
         <div class="container">
           <div class="row">
             <div class="icon-block">
@@ -455,7 +458,7 @@
     <!-- =====  HEADER END  ===== -->
 
     <!-- =====  BANNER STRAT  ===== -->
-      <div class="banner section">
+      <div class="banner section" style="z-index: 1;">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators" id="BannerCount">
     
