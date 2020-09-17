@@ -32,10 +32,7 @@
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
-  
-  <!-- Site Api Connectio -->
-  <script src="./apiconnection/home.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
 
 </head>
 
@@ -485,10 +482,10 @@
                 <div class="social-login">
                     <h3>Also you can login with...</h3>
                     
-                    <a href="#" class="facebook-login">Login with <i class="fab fa-facebook-f"></i></a>
+                    <a href="#" onclick="" class="facebook-login">Login with <i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="twitter-login">Login with <i class="fab fa-twitter"></i></a>
-                    <a href="#" class="google-plus-login">Login with <i class="fab fa-google-plus"></i></a>
-                    
+                    <a  onclick="googleSignin()" class="google-plus-login">Login with <i class="fab fa-google-plus"></i></a>
+                    <a onclick="googleSignout()"> Sign OUt </a>
                 </div>
                 
             </div>
@@ -616,6 +613,10 @@
   <script src="js/jquery.magnific-popup.js"></script>
   <script src="js/jquery.firstVisitPopup.js"></script> 
   <script src="js/custom.js"></script>
+
+  <script src="./apiconnection/login.js"></script>
+  <script src="./apiconnection/firebaseconnection.js"></script>
+
 </body>
 
 </html>

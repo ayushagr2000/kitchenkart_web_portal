@@ -178,11 +178,14 @@ async function getdata() {
         if(searchid[indexid] === 'brand'){
             location.replace("category_page.html?name=brand-name&id="+searchdata[indexid]);
         }
-        else {
+        else if(searchdata[indexid] === 'name') {
             location.replace("category_page.html?name="+searchdata[indexid]);
+        }
+        else{
+            location.replace("product_detail_page.html?id="+searchid[indexid]);
         }
     }
     else {
-        alert("Item Not Found");
+        //alert("Item Not Found");
     }
 }
