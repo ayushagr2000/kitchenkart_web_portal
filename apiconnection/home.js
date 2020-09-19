@@ -1,6 +1,7 @@
 var searchdata = [];
 var searchid = [];
 window.onload = function() {
+    getfirebasecall();
     popular_brand()
     //brand('Avinash');
     Banner_ApiCall();
@@ -56,11 +57,11 @@ async function popular_brand() {
 async function brand(data) {
     var data_json = JSON.parse(data);
     var k = "<div class='container'><div class='row'>";
-    console.log(data_json.response[0].brand_name);
-    console.log(data_json);
+    // console.log(data_json.response[0].brand_name);
+    // console.log(data_json);
 
     for(var i = 0; i < data_json.response.length; i++) {
-        console.log(i);
+        // console.log(i);
         k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
         if((i+1) % 5 == 0){
            k += "</div></div><div class='container' style><div class='row'>";
@@ -104,7 +105,7 @@ async function Featured_ProductsApi() {
 }
 
 async function Featured(FeaturedData){
-    console.log('Featured Data')
+    // console.log('Featured Data')
     var data_json = JSON.parse(FeaturedData);
     var featureddiv = '';
     for(var i = 0; i < data_json.response.length; i++){
@@ -159,4 +160,28 @@ async function getdata() {
 async function checkEnter(k) {
     if(k === 13)
         getdata();    
+}
+
+// =============================     Firebase Call =========================================================
+async function getfirebasecall() {
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log("Enter in function");
+          if (user) {
+            console.log(user.uid);
+            document.getElementById('Logindiv_firebase').style.display = "none";
+            document.getElementById('signoutdiv_firebase').style.display = "block";
+          } else {  
+            document.getElementById('Logindiv_firebase').style.display = 'block';
+            document.getElementById('signoutdiv_firebase').style.display = 'none';
+          }
+    });
+}
+async function logout_firebase() {
+    firebase.auth().signOut().then(function() {
+        alert("Successfully Logout");
+        document.getElementById('Logindiv_firebase').style.display = 'block';
+        document.getElementById('signoutdiv_firebase').style.display = 'none';
+      }, function(error) {
+        // An error happened.
+      });
 }

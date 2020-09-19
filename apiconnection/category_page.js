@@ -3,6 +3,7 @@ var GlobalApi = '';
 var searchdata = [];
 var searchid = [];
 window.onload = function() {
+    getfirebasecall();
     GetAllProductData();
     var url = document.location.href,
             params = url.split('?')[1].split('&'),
@@ -188,4 +189,28 @@ async function getdata() {
     else {
         //alert("Item Not Found");
     }
+}
+
+// =============================     Firebase Call =========================================================
+async function getfirebasecall() {
+    firebase.auth().onAuthStateChanged((user) => {
+        console.log("Enter in function");
+          if (user) {
+            console.log(user.uid);
+            document.getElementById('Logindiv_firebase').style.display = "none";
+            document.getElementById('signoutdiv_firebase').style.display = "block";
+          } else {  
+            document.getElementById('Logindiv_firebase').style.display = 'block';
+            document.getElementById('signoutdiv_firebase').style.display = 'none';
+          }
+    });
+}
+async function logout_firebase() {
+    firebase.auth().signOut().then(function() {
+        alert("Successfully Logout");
+        document.getElementById('Logindiv_firebase').style.display = 'block';
+        document.getElementById('signoutdiv_firebase').style.display = 'none';
+      }, function(error) {
+        // An error happened.
+      });
 }

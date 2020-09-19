@@ -16,6 +16,54 @@
         <div id="loader">Loading...</div>
        <script src="./apiconnection/firebaseconnection.js"></script>
         <script src="./apiconnection/login.js"></script>
+        <!---------------------------------------------   -->
+        <div class="container">
+      <div class="row">
+        <div class="col-12 my-3">
+          <div class="row">
+            <div class="col-md-6 col-12 d-flex">
+
+                <div class="login">
+                    
+                    <h3>Login to your account</h3>                   
+                    <!-- Login Form -->
+                    <form class="my-4">
+                      <div class="form-group">
+
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="exampleInputEmail1" placeholder="Enter your username">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      </div>
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                      </div>
+                      <button type="submit" class="btn mt-10">Login</button>
+                    </form>
+
+                    <h4>Don’t have account? please click <a href="register.html">Register</a></h4>
+                    
+                </div>
+            </div>
+            
+            <!-- Login With Social -->
+            <div class="col-md-6 col-12 d-flex">
+                
+                <div class="social-login">
+                    <h3>Also you can login with...</h3>
+                    
+                    <a href="#" onclick="" class="facebook-login">Login with <i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="twitter-login">Login with <i class="fab fa-twitter"></i></a>
+                    <a  onclick="googleSignin()" class="google-plus-login">Login with <i class="fab fa-google-plus"></i></a>
+                    <a onclick="googleSignout()"> Sign OUt </a>
+                </div>
+                
+            </div>
+    </div>
+        </div>
+      </div>
+    </div>
         
     </body>
 </html>

@@ -4,7 +4,7 @@
 
   <!-- =====  BASIC PAGE NEEDS  ===== -->
   <meta charset="utf-8">
-  <title>Bigmarket E-commerce Bootstrap Template</title>
+  <title>Kitchen Kart</title>
 
   <!-- =====  SEO MATE  ===== -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,9 +34,9 @@
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
   
-  <!-- Site Api Connectio -->
-  <script src="./apiconnection/category_page.js"></script>
-  <script src="./apiconnection/AllApi.js"></script>
+  <!----- Adding Firebase ---------->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+  <!--   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script> -->
   
 
 </head>
@@ -144,7 +144,7 @@
                 </li>
               </ul> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id='Logindiv_firebase' style="display: block;">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
                   <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
@@ -154,6 +154,19 @@
                 </li>
                 <li class="register">
                   <a href="register.html">Signup</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6" id='signoutdiv_firebase' style="display: none;">
+              <ul class="header-top-right pull-right">
+                <li class="telephone">
+                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
+                </li>
+                <li class="login">
+                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
+                </li>
+                <li class="register">
+                  <a onclick="logout_firebase()">LogOut</a>
                 </li>
               </ul>
             </div>
@@ -734,6 +747,9 @@
       " - $" + $("#slider-range").slider("values", 1));
   });
   </script>
+  <!--------------  Firebase -------->
+  <script src="./apiconnection/firebaseconnection.js"></script>
+  <script src="./apiconnection/category_page.js"></script>
 </body>
 
 </html>
