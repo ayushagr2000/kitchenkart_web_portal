@@ -209,16 +209,18 @@ async function CartAddApi(productdata, Quandity) {
     console.log(productdata);
     console.log(Quandity);
     var mydata = {
-        "user_id": 'UuoPi3EAUyMNfWnRBlTq2Mx9RaI2',
-        "prod_id": productdata,
-        "prod_qty":Quandity
+        user_id: 'UuoPi3EAUyMNfWnRBlTq2Mx9RaI2',
+        prod_id: '10711',
+        prod_qty: '2'
     }
+    
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
     $.ajax({
         url : proxyurl+url,
         type : 'POST',
         data : JSON.stringify(mydata),
+        contentType: 'application/json',
         success : function(result, status) {
            console.log(result);
            console.log(productdata);
