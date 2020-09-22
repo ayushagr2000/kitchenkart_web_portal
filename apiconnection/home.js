@@ -10,6 +10,7 @@ window.onload = function() {
     Featured_ProductsApi();
     // Featured('Avinash');
     GetAllProductData();
+    BasketData();
 }
 
 async function GetAllProductData() {
@@ -75,7 +76,7 @@ async function brand(data) {
 
 async function Banner_ApiCall() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/banner/homepage1";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/banner/webhome1";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => Banner(contents))
@@ -190,45 +191,4 @@ async function logout_firebase() {
 }
 
 // ======================== Firebase Ends =================================
-
-// ======================== Add To Kart ===================================
-
-async function AddCartfunction(addcart, id) {
-    qua = document.getElementById('qty'+id).value;
-    console.log(qua)
-    console.log(addcart);
-    var k = document.getElementById('Logindiv_firebase').style.display;
-    if(k === 'block') {
-        location.replace("login.html");
-    } else {
-        CartAddApi(addcart, qua);
-    }
-}
-
-async function CartAddApi(productdata, Quandity) {
-    console.log(productdata);
-    console.log(Quandity);
-    var mydata = {
-        user_id: 'UuoPi3EAUyMNfWnRBlTq2Mx9RaI2',
-        prod_id: '10711',
-        prod_qty: '2'
-    }
-    
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
-    $.ajax({
-        url : proxyurl+url,
-        type : 'POST',
-        data : JSON.stringify(mydata),
-        contentType: 'application/json',
-        success : function(result, status) {
-           console.log(result);
-           console.log(productdata);
-        },
-        beforeSend: function(){
-            console.log("Sending...");
-        }
-    });
-}
-//=========================================================================
 

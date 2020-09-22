@@ -12,7 +12,8 @@ window.onload = function() {
         data[tmp[0]] = tmp[1];
     }
     getProductApi(data.id);
-    popular_brand()
+    popular_brand();
+    BasketData();
 }
 async function getProductApi(data) {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -25,7 +26,6 @@ async function getProductApi(data) {
 }
 async function printdataval(productdata){
     var singledata = JSON.parse(productdata);
-    document.getElementById('').innerHTML ='';
     document.getElementById('detail_image').src = singledata.response[0].img;
     document.getElementById('detail_image').alt = singledata.response[0].name;
     document.getElementById('Product_Name').innerHTML = singledata.response[0].name;

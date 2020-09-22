@@ -32,9 +32,10 @@
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
-  
-  <!-- Site Api Connectio -->
-  <script src="./apiconnection/home.js"></script>
+
+  <!----- Adding Firebase ---------->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+  <!--   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script> -->
 
 
 </head>
@@ -53,7 +54,7 @@
                 <ul class="nav navbar-nav">
                   <li class="collapsed" data-toggle="collapse" data-target="#GroceryampStaples"><a href="">Grocery  Staples</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="GroceryampStaples">
-                      <li class="dropdown"><a href="category_page.html">Daal  Pulses</a>
+                      <li class="dropdown"><a href="category_page.html?name=staples">Daal  Pulses</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Arhar</a></li>
                           <li><a href="category_page.html">Masoor</a></li>
@@ -62,7 +63,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -70,7 +71,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="6">Edible Oils</a>
+                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -79,7 +80,7 @@
                           <li><a href="category_page.html">Sunflower Oils</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="2">Riced cauliflower</a>
+                      <li class="dropdown"><a href="category_page.html?name=rice">Riced cauliflower</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Basmati</a></li>
                           <li><a href="category_page.html">Millet  Others</a></li>
@@ -98,19 +99,19 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
                       <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="">Household Needs</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="category_page.html?name=cleaning">Household Needs</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="HouseholdNeeds">
                       <li class="main_cat"> <a href="category_page.html">Cleaning Tools  Brushes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Home  Car Fresheners</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="">Breakfast  Dairy</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="category_page.html?name=sweets">Sweets</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="BreakfastampDairy">
                       <li class="main_cat"> <a href="category_page.html">Breakfast Cereal  Mixes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Paneer  Curd</a> </li>
@@ -136,26 +137,31 @@
                 <li class="language dropdown px-2"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#">English</a></li>
-                    <li><a href="#">French</a></li>
-                    <li><a href="#">German</a></li>
-                  </ul>
-                </li>
-                <li class="currency dropdown pl-2"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
-                    <li><a href="#">€ Euro</a></li>
-                    <li><a href="#">£ Pound Sterling</a></li>
-                    <li><a href="#">$ US Dollar</a></li>
+                    <li><a href="#">Hindi</a></li>
                   </ul>
                 </li>
               </ul> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id='Logindiv_firebase' style="display: block;">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login/Signup</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6" id='signoutdiv_firebase' style="display: none;">
+              <ul class="header-top-right pull-right">
+                <li class="telephone">
+                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
+                </li>
+                <li class="login">
+                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
+                </li>
+                <li class="register">
+                  <a onclick="logout_firebase()">LogOut</a>
                 </li>
               </ul>
             </div>
@@ -327,13 +333,16 @@
                       <button type="submit" title="Search" class="action search" id="head-search"></button>
                   </div>
                   <div id="search" class="input-group">
-                    <input type="text" id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off">
+                    <input type="text" id="search-input" onkeypress="checkEnter(event.keyCode)" onkeyup="getlistdata()" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" list="allDetails">
+                    <ul id="myUL" style="display:none; position: absolute; background-color: burlywood; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
+                      
+                    </ul>
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-default btn-lg">Search</button>
+                      <button type="button" class="btn btn-default btn-lg" onclick="getdata()">Search</button>
                     </span>
                   </div>
                 </div>
-                <div class="header-link">
+                <div class="header-link" style="z-index: 1;">
                  <ul class="list-unstyled">
                   <li><a href="#">Bm offers</a></li>
                   <li><a href="#">Bm express</a></li>
@@ -342,7 +351,7 @@
                 </ul>
               </div>
               </div>
-              <div class="shopcart">
+              <div class="shopcart" style="z-index: 1;">
                 <div id="cart" class="btn-block mt-40 mb-30 ">
                   <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">My basket</span><span id="cart-total">Item 0</span></button>
                   <a href="cart_page.html" class="cart_responsive btn"><span id="cart-text">My basket</span><span id="cart-total-res">0</span> </a>
@@ -351,7 +360,7 @@
                   <ul>
                     <li>
                       <table class="table table-striped">
-                        <tbody>
+                        <tbody id="carttable">
                           <tr>
                             <td class="text-center"><a href="#"><img src="images/pro/70x70_1.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
                             <td class="text-left product-name"><a href="#">MacBook Pro</a> <span class="text-left price">$20.00</span>
@@ -370,23 +379,14 @@
                       </table>
                     </li>
                     <li>
+                      <h6 id="view_option" style="text-align: center; display: none;"></h6>
+                    </li>
+                    <li>
                       <table class="table">
                         <tbody>
                           <tr>
-                            <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                            <td class="text-right">$2.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                            <td class="text-right">$20.00</td>
-                          </tr>
-                          <tr>
                             <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
+                            <td class="text-right" id="PriceToal">$2,122.00</td>
                           </tr>
                         </tbody>
                       </table>
@@ -459,7 +459,7 @@
                       <td class="text-right">Total</td>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="AllProductDisplay">
                     <tr>
                       <td class="text-center"><a href="#"><img src="images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
                       <td class="text-left"><a href="product.html">iPhone</a></td>
@@ -1086,6 +1086,11 @@
   <script src="js/jquery.magnific-popup.js"></script>
   <script src="js/jquery.firstVisitPopup.js"></script>
   <script src="js/custom.js"></script>
+
+   <!--------------  Firebase -------->
+   <script src="./apiconnection/firebaseconnection.js"></script>
+   <script src="./apiconnection/Cart_page.js"></script>
+   <script src="./apiconnection/Addcart.js"></script>
 </body>
 
 </html>

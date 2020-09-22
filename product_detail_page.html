@@ -5,6 +5,7 @@
   <!-- =====  BASIC PAGE NEEDS  ===== -->
   <meta charset="utf-8">
   <title>Kitchen Kart</title>
+  <link rel="icon" href="./images/favicon.png" type="image/x-icon">
 
   <!-- =====  SEO MATE  ===== -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -362,7 +363,7 @@
                   <ul>
                     <li>
                       <table class="table table-striped">
-                        <tbody>
+                        <tbody id="carttable">
                           <tr>
                             <td class="text-center"><a href="#"><img src="images/pro/70x70_1.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
                             <td class="text-left product-name"><a href="#">MacBook Pro</a> <span class="text-left price">$20.00</span>
@@ -381,23 +382,14 @@
                       </table>
                     </li>
                     <li>
+                      <h6 id="view_option" style="text-align: center; display: none;"></h6>
+                    </li>
+                    <li>
                       <table class="table">
                         <tbody>
                           <tr>
-                            <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                            <td class="text-right">$2.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                            <td class="text-right">$20.00</td>
-                          </tr>
-                          <tr>
                             <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
+                            <td class="text-right" id="PriceToal">$2,122.00</td>
                           </tr>
                         </tbody>
                       </table>
@@ -899,6 +891,7 @@
   <!--------------  Firebase -------->
   <script src="./apiconnection/firebaseconnection.js"></script>
   <script src="./apiconnection/product_detail_page.js"></script>
+  <script src="./apiconnection/Addcart.js"></script>
 </body>
 
 </html>
