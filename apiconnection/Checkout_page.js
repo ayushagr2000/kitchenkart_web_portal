@@ -1,11 +1,12 @@
-
 window.onload = function() {
     getfirebasecall();
     popular_brand();
     BasketData();
     GetAllProductData();
-    DisplayCartProductApi();
+    ConformOrder();
+    Billing_delivery();
 }
+
 
 async function GetAllProductData() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -88,7 +89,6 @@ async function getdata() {
     }
 }
 
-
 // =============================     Firebase Call =========================================================
 async function getfirebasecall() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -115,6 +115,33 @@ async function logout_firebase() {
 
 
 // ======================== Firebase Ends =================================
+
+//============Our Popular Brand==============================================
+async function popular_brand() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => brand(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+async function brand(data) {
+    var data_json = JSON.parse(data);
+    var k = "<div class='container'><div class='row'>";
+    // console.log(data_json.response[0].brand_name);
+    // console.log(data_json);
+
+    for(var i = 0; i < data_json.response.length; i++) {
+        // console.log(i);
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        if((i+1) % 5 == 0){
+           k += "</div></div><div class='container' style><div class='row'>";
+        }
+    }
+   
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
+}
+//=======================================================================================
 
 
 // ======================== Add To Kart ===================================
@@ -157,56 +184,83 @@ async function CartAddApi(productdata, Quandity) {
     });
 }
 //=========================================================================
-//============= Body Display ==============================================
 
-async function DisplayCartProductApi() {
+//=================== Conform Order ========================
+
+async function ConformOrder() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+User;
     fetch(proxyurl + url)
     .then(response => response.text())
-    .then(contents => DisplayCartProduct(contents))
+    .then(contents => ConformOrderApi(contents))
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
 
-async function DisplayCartProduct(data) {
-    var displaydata = JSON.parse(data);
-    var displaytable = '';
+async function ConformOrderApi(Data) {
+    var Jsondata = JSON.parse(Data);
+    document.getElementById('cart-total-res').innerText = Jsondata.response.length;
+    document.getElementById('cart-total').innerText = 'Item ' + Jsondata.response.length;
+    console.log(Jsondata.response.length);
+    console.log(document.getElementById('cart-total-res').innerText);
+    var alldata = '';
     var totalprice = 0;
-    for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="removecart(this.id)"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
-        totalprice += displaydata.response[i].sell_price;
+    for(var i = 0; i < Jsondata.response.length; i++){
+        alldata += '<tr><td class="text-left">'+Jsondata.response[i].name+'</td><td class="text-left">'+Jsondata.response[i].prod_quan+'</td><td class="text-right">&#8377;'+Jsondata.response[i].sell_price+'</td><td class="text-right">&#8377;'+(Jsondata.response[i].sell_price * Jsondata.response[i].prod_quan)+'</td></tr>';
+      totalprice += Jsondata.response[i].sell_price;
     }
-    document.getElementById('AllProductDisplay').innerHTML = displaytable;
-    document.getElementById('subtotal').innerHTML = '&#8377;'+totalprice;
-    document.getElementById('deliverycharge').innerHTML = '&#8377;30';
-    document.getElementById('totalcharge').innerHTML = '&#8377;'+(totalprice+30);
-
+    document.getElementById('connformtable').innerHTML = alldata;
+    document.getElementById('subtotal').innerHTML = '&#x20b9; &nbsp;' + totalprice;
+    document.getElementById('shipping').innerHTML = '&#x20b9; &nbsp;' + '30';
+    document.getElementById('totalval').innerHTML = '&#x20b9; &nbsp;' + (totalprice + 30);
 }
 
-//==========================================================================
-//============Our Popular Brand==============================================
-async function popular_brand() {
+
+//======= Step 1 Billing and Delivery===================
+
+async function Billing_delivery() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+User;
     fetch(proxyurl + url)
     .then(response => response.text())
-    .then(contents => brand(contents))
+    .then(contents => Billing_deliveryAddval(contents))
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
-async function brand(data) {
-    var data_json = JSON.parse(data);
-    var k = "<div class='container'><div class='row'>";
-    // console.log(data_json.response[0].brand_name);
-    // console.log(data_json);
 
-    for(var i = 0; i < data_json.response.length; i++) {
-        // console.log(i);
-        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
-        if((i+1) % 5 == 0){
-           k += "</div></div><div class='container' style><div class='row'>";
-        }
-    }
-   
-    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
+async function Billing_deliveryAddval(data) {
+    JsonData = JSON.parse(data);
+    document.getElementById('input-payment-firstname').value = User;
+    document.getElementById('input-payment-address-1').value = JsonData.response[0].add1;
+    document.getElementById('input-payment-address-2').value = JsonData.response[0].add2;
+    document.getElementById('input-payment-landmark').value = JsonData.response[0].lanmark;
+    document.getElementById('input-payment-city').value = JsonData.response[0].city;
+    document.getElementById('input-payment-postcode').value = JsonData.response[0].pincode;
+    document.getElementById('input-payment-phone').value = JsonData.response[0].phone;
 }
-//=======================================================================================
+
+//======================================================
+//====================== Put Address ===================
+async function PutAddress() {
+    var mydata = {
+        "add1": document.getElementById('input-payment-address-1').value,
+        "add2": document.getElementById('input-payment-address-2').value,
+        "pincode": document.getElementById('input-payment-landmark').value,
+        "city": document.getElementById('input-payment-postcode').value,
+        "landmark": document.getElementById('input-payment-landmark').value
+    }
+    
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+User;
+    $.ajax({
+        url : proxyurl+url,
+        type : 'PUT',
+        data : JSON.stringify(mydata),
+        contentType: 'application/json',
+        success : function(result, status) {
+           alert('Data Updated');
+        },
+        beforeSend: function(){
+            console.log("Sending...");
+        }
+    });
+}
+//======================================================

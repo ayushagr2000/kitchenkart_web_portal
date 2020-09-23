@@ -453,7 +453,6 @@
                     <tr>
                       <td class="text-center">Image</td>
                       <td class="text-left">Product Name</td>
-                      <td class="text-left">Model</td>
                       <td class="text-left">Quantity</td>
                       <td class="text-right">Unit Price</td>
                       <td class="text-right">Total</td>
@@ -536,7 +535,7 @@
                       <div class="form-group required row">
                         <label for="input-country" class="col-sm-2 control-label">Country</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="input-country" name="country_id">
+                          <!-- <select class="form-control" id="input-country" name="country_id">
                             <option value=""> --- Please Select --- </option>
                             <option value="244">Aaland Islands</option>
                             <option value="1">Afghanistan</option>
@@ -791,13 +790,13 @@
                             <option value="235">Yemen</option>
                             <option value="238">Zambia</option>
                             <option value="239">Zimbabwe</option>
-                          </select>
+                          </select> -->
                         </div>
                       </div>
                       <div class="form-group required row">
                         <label for="input-zone" class="col-sm-2 control-label">Region / State</label>
                         <div class="col-sm-10">
-                          <select class="form-control" id="input-zone" name="zone_id">
+                          <!-- <select class="form-control" id="input-zone" name="zone_id">
                             <option value=""> --- Please Select --- </option>
                             <option value="3513">Aberdeen</option>
                             <option value="3514">Aberdeenshire</option>
@@ -906,7 +905,7 @@
                             <option value="3610">Wiltshire</option>
                             <option value="3611">Worcestershire</option>
                             <option value="3612">Wrexham</option>
-                          </select>
+                          </select> -->
                         </div>
                       </div>
                       <div class="form-group required row">
@@ -928,19 +927,15 @@
                   <tbody>
                     <tr>
                       <td class="text-right"><strong>Sub-Total:</strong></td>
-                      <td class="text-right">$210.00</td>
+                      <td class="text-right"id="subtotal">&#8377;210.00</td>
                     </tr>
                     <tr>
-                      <td class="text-right"><strong>Eco Tax (-2.00):</strong></td>
-                      <td class="text-right">$2.00</td>
-                    </tr>
-                    <tr>
-                      <td class="text-right"><strong>VAT (20%):</strong></td>
-                      <td class="text-right">$42.00</td>
+                      <td class="text-right"><strong>Delivery:</strong></td>
+                      <td class="text-right" id="deliverycharge">&#8377;30.00</td>
                     </tr>
                     <tr>
                       <td class="text-right"><strong>Total:</strong></td>
-                      <td class="text-right">$254.00</td>
+                      <td class="text-right" id="totalcharge">&#8377;254.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1091,6 +1086,7 @@
    <script src="./apiconnection/firebaseconnection.js"></script>
    <script src="./apiconnection/Cart_page.js"></script>
    <script src="./apiconnection/Addcart.js"></script>
+   <script src="./apiconnection/AllApi.js"></script>
 </body>
 
 </html>

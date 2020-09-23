@@ -33,10 +33,8 @@
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
   
-  <!----- Adding Firebase ---------->
-  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
-  <!--   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script> -->
- 
+  <!-- Site Api Connectio -->
+  <script src="./apiconnection/home.js"></script>
 
 
 </head>
@@ -55,7 +53,7 @@
                 <ul class="nav navbar-nav">
                   <li class="collapsed" data-toggle="collapse" data-target="#GroceryampStaples"><a href="">Grocery  Staples</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="GroceryampStaples">
-                      <li class="dropdown"><a href="category_page.html?name=staples">Daal  Pulses</a>
+                      <li class="dropdown"><a href="category_page.html">Daal  Pulses</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Arhar</a></li>
                           <li><a href="category_page.html">Masoor</a></li>
@@ -64,7 +62,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
+                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -72,7 +70,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
+                      <li class="dropdown"><a href="6">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -81,7 +79,7 @@
                           <li><a href="category_page.html">Sunflower Oils</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="category_page.html?name=rice">Riced cauliflower</a>
+                      <li class="dropdown"><a href="2">Riced cauliflower</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Basmati</a></li>
                           <li><a href="category_page.html">Millet  Others</a></li>
@@ -100,19 +98,19 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
                       <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="category_page.html?name=cleaning">Household Needs</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="">Household Needs</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="HouseholdNeeds">
                       <li class="main_cat"> <a href="category_page.html">Cleaning Tools  Brushes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Home  Car Fresheners</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="category_page.html?name=sweets">Sweets</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="">Breakfast  Dairy</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="BreakfastampDairy">
                       <li class="main_cat"> <a href="category_page.html">Breakfast Cereal  Mixes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Paneer  Curd</a> </li>
@@ -138,31 +136,26 @@
                 <li class="language dropdown px-2"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#">English</a></li>
-                    <li><a href="#">Hindi</a></li>
+                    <li><a href="#">French</a></li>
+                    <li><a href="#">German</a></li>
+                  </ul>
+                </li>
+                <li class="currency dropdown pl-2"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
+                    <li><a href="#">€ Euro</a></li>
+                    <li><a href="#">£ Pound Sterling</a></li>
+                    <li><a href="#">$ US Dollar</a></li>
                   </ul>
                 </li>
               </ul> 
             </div>
-            <div class="col-md-6" id='Logindiv_firebase' style="display: block;">
+            <div class="col-md-6">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login/Signup</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6" id='signoutdiv_firebase' style="display: none;">
-              <ul class="header-top-right pull-right">
-                <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
-                </li>
-                <li class="login">
-                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
-                </li>
-                <li class="register">
-                  <a onclick="logout_firebase()">LogOut</a>
                 </li>
               </ul>
             </div>
@@ -334,16 +327,13 @@
                       <button type="submit" title="Search" class="action search" id="head-search"></button>
                   </div>
                   <div id="search" class="input-group">
-                    <input type="text" id="search-input" onkeypress="checkEnter(event.keyCode)" onkeyup="getlistdata()" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" list="allDetails">
-                    <ul id="myUL" style="display:none; position: absolute; background-color: burlywood; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
-                      
-                    </ul>
+                    <input type="text" id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off">
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-default btn-lg" onclick="getdata()">Search</button>
+                      <button type="button" class="btn btn-default btn-lg">Search</button>
                     </span>
                   </div>
                 </div>
-                <div class="header-link" style="z-index: 1;">
+                <div class="header-link">
                  <ul class="list-unstyled">
                   <li><a href="#">Bm offers</a></li>
                   <li><a href="#">Bm express</a></li>
@@ -352,7 +342,7 @@
                 </ul>
               </div>
               </div>
-              <div class="shopcart" style="z-index: 1;">
+              <div class="shopcart">
                 <div id="cart" class="btn-block mt-40 mb-30 ">
                   <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">My basket</span><span id="cart-total">Item 0</span></button>
                   <a href="cart_page.html" class="cart_responsive btn"><span id="cart-text">My basket</span><span id="cart-total-res">0</span> </a>
@@ -361,7 +351,7 @@
                   <ul>
                     <li>
                       <table class="table table-striped">
-                        <tbody id="carttable">
+                        <tbody>
                           <tr>
                             <td class="text-center"><a href="#"><img src="images/pro/70x70_1.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
                             <td class="text-left product-name"><a href="#">MacBook Pro</a> <span class="text-left price">$20.00</span>
@@ -380,14 +370,23 @@
                       </table>
                     </li>
                     <li>
-                      <h6 id="view_option" style="text-align: center; display: none;"></h6>
-                    </li>
-                    <li>
                       <table class="table">
                         <tbody>
                           <tr>
+                            <td class="text-right"><strong>Sub-Total</strong></td>
+                            <td class="text-right">$2,100.00</td>
+                          </tr>
+                          <tr>
+                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
+                            <td class="text-right">$2.00</td>
+                          </tr>
+                          <tr>
+                            <td class="text-right"><strong>VAT (20%)</strong></td>
+                            <td class="text-right">$20.00</td>
+                          </tr>
+                          <tr>
                             <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right" id="PriceToal">$2,122.00</td>
+                            <td class="text-right">$2,122.00</td>
                           </tr>
                         </tbody>
                       </table>
@@ -430,6 +429,7 @@
         </div>
       </div>
     </header>
+    <!-- =====  HEADER END  ===== -->
     <!-- =====  BREADCRUMB STRAT  ===== -->
     <div class="breadcrumb section pt-60 pb-60">
       <div class="container">
@@ -444,346 +444,143 @@
     <div class="page-checkout section">
       <!-- =====  CONTAINER START  ===== -->
       <div class="container">
-        <div class="row ">
-
-          <div class="col-12 my-3">
-            <div id="accordion">
-              <!-- <div class="card my-1">
-                <div class="card-header" id="headingOne">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Step 1: Checkout Options <i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <h3>New Customer</h3>
-                        <p>Checkout Options:</p>
-                        <div class="form-group">
-                        <div class="radio mb-10" >
-                          <label>
-                            <input type="radio" checked="checked" value="register" name="account"> Register Account</label>
-                        </div>
-                        <div class="radio mb-10" >
-                          <label>
-                            <input type="radio" value="guest" name="account"> Guest Checkout</label>
-                        </div>
-                        <p>By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.</p>
-                        <input type="button" class="btn mb_20" data-loading-text="Loading..." id="button-account" value="Continue">
-                      </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <h3>Returning Customer</h3>
-                        <p>I am a returning customer</p>
-                        <div class="form-group">
-                          <label for="input-email" class="control-label">E-Mail</label>
-                          <input type="text" class="form-control" id="input-email" placeholder="E-Mail" value="" name="email">
-                        </div>
-                        <div class="form-group">
-                          <label for="input-password" class="control-label">Password</label>
-                          <input type="password" class="form-control" id="input-password" placeholder="Password" value="" name="password">
-                          <input type="button" class="btn mt_20" data-loading-text="Loading..." id="button-login" value="Login">
-                          <a class="pt-30" href="#">Forgotten Password</a></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+        <div class="row">
+        <div id="content" class="col-sm-9">
+          <h2>Order History</h2>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-left" colspan="2">Order Details</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left" style="width: 50%;"> <b>Order ID:</b> #66<br>
+                <b>Date Added:</b> 15/09/2019</td>
+                <td class="text-left" style="width: 50%;"> <b>Payment Method:</b> Cash On Delivery<br>
+                <b>Shipping Method:</b> Free Shipping </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-left" style="width: 50%; vertical-align: top;">Payment Address</td>
+                <td class="text-left" style="width: 50%; vertical-align: top;">Shipping Address</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-left">demo demo<br>sdfhkj<br>adad<br>sda<br>surat 395006<br>Gujarat<br>India</td>
+                <td class="text-left">demo demo<br>sdfhkj<br>adad<br>sda<br>surat 395006<br>Gujarat<br>India</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <td class="text-left">Product Name</td>
+                  <td class="text-left">Model</td>
+                  <td class="text-right">Quantity</td>
+                  <td class="text-right">Price</td>
+                  <td class="text-right">Total</td>
+                  <td style="width: 20px;"></td>
+                </tr>
+              </thead>
+              <tbody>
               
-              <div class="card my-1">
-                <div class="card-header" id="headingTwo">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Step 1: Billing Details / Delivery Details<i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                  <div class="card-body">
-                    <form class="form-horizontal">
-                      <!-- <div class="radio mb-10" >
-                        <label>
-                          <input type="radio" checked="checked" value="existing" name="payment_address" data-id="payment-existing"> I want to use an existing address</label>
-                      </div> -->
-                      <!-- <div id="payment-existing">
-                        <select class="form-control" name="address_id">
-                          <option selected="selected" value="4">dasd, adsasd, Al Hasakah, Syrian Arab Republic</option>
-                        </select>
-                      </div> -->
-                      <div class="radio mb-10 mt-10" >
-                        <label>
-                          <input type="radio" value="new" name="payment_address" data-id="payment-new"> View address</label>
-                      </div>
-
-                      <div id="payment-new" style="display: none;">
-                        <div class="form-group row required">
-                          <label for="input-payment-firstname" class="col-sm-2 control-label">Full Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-firstname" placeholder="Full Name" value="" name="firstname">
-                          </div>
-                        </div>
-                        <!-- <div class="form-group row">
-                          <label for="input-payment-company" class="col-sm-2 control-label">Company</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-company" placeholder="Company" value="" name="company">
-                          </div>
-                        </div> -->
-                        <div class="form-group row required">
-                          <label for="input-payment-address-1" class="col-sm-2 control-label">Address 1</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-address-1" placeholder="Address 1" value="" name="address_1">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="input-payment-address-2" class="col-sm-2 control-label">Address 2</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-address-2" placeholder="Address 2" value="" name="address_2">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-payment-landmark" class="col-sm-2 control-label">Landmark</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-landmark" placeholder="Landmark" value="" name="landmark">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-payment-city" class="col-sm-2 control-label">City</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-city" placeholder="City" value="" name="city">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="input-payment-postcode" class="col-sm-2 control-label">Post Code</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-postcode" placeholder="Post Code" value="" name="postcode">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-payment-country" class="col-sm-2 control-label">Country</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-country" placeholder="India" value="India" name="country" disabled>
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-payment-phone" class="col-sm-2 control-label">Phone</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-payment-phone" placeholder="Phone Number" value="" name="phone" >
-                          </div>
-                        </div>
-                      </div>
-                      <div class="buttons clearfix">
-                        <div class="pull-right">
-                          <input type="button" class="btn" data-loading-text="Loading..." id="button-payment-address" value="Continue" onclick="PutAddress()">
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <!-- <div class="card my-1">
-                <div class="card-header" id="headingThree">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Step 2: Delivery Details <i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                  <div class="card-body">
-                    <form class="form-horizontal">
-                      <div class="radio mb-10" >
-                        <label>
-                          <input type="radio" checked="checked" value="existing" name="shipping_address"> I want to use an existing address</label>
-                      </div>
-                      <div id="shipping-existing">
-                        <select class="form-control" name="address_id">
-                          <option selected="selected" value="4">adsasd, Al Hasakah, Syrian Arab Republic</option>
-                        </select>
-                      </div>
-                      <div class="radio mb-10 mt-10" >
-                        <label>
-                          <input type="radio" value="new" name="shipping_address"> I want to use a new address</label>
-                      </div>
-
-                      <div id="shipping-new" style="display: none;">
-                        <div class="form-group row required">
-                          <label for="input-shipping-firstname" class="col-sm-2 control-label">First Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-firstname" placeholder="First Name" value="" name="firstname">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-shipping-lastname" class="col-sm-2 control-label">Last Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-lastname" placeholder="Last Name" value="" name="lastname">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="input-shipping-company" class="col-sm-2 control-label">Company</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-company" placeholder="Company" value="" name="company">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-shipping-address-1" class="col-sm-2 control-label">Address 1</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-address-1" placeholder="Address 1" value="" name="address_1">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="input-shipping-address-2" class="col-sm-2 control-label">Address 2</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-address-2" placeholder="Address 2" value="" name="address_2">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-shipping-city" class="col-sm-2 control-label">City</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-city" placeholder="City" value="" name="city">
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <label for="input-shipping-postcode" class="col-sm-2 control-label">Post Code</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="input-shipping-postcode" placeholder="Post Code" value="123456" name="postcode">
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-shipping-country" class="col-sm-2 control-label">Country</label>
-                          <div class="col-sm-10">
-                            
-                          </div>
-                        </div>
-                        <div class="form-group row required">
-                          <label for="input-shipping-zone" class="col-sm-2 control-label">Region / State</label>
-                          <div class="col-sm-10">
-                             
-                          </div>
-                        </div>
-                      </div>
-                      <div class="buttons clearfix">
-                        <div class="pull-right">
-                          <input type="button" class="btn" data-loading-text="Loading..." id="button-shipping-address" value="Continue">
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div> -->
-              <div class="card my-1">
-                <div class="card-header" id="headingFour">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Step 2: Delivery Method<i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                  <div class="card-body">
-                    <p>Please select the preferred shipping method to use on this order.</p>
-                    <p><strong>Flat Rate</strong></p>
-                    <div class="radio mb-10" >
-                      <label>
-                        <input type="radio" checked="checked" value="flat.flat" name="shipping_method"> Flat Shipping Rate - $5.00</label>
-                    </div>
-                    <p><strong>Add Comments About Your Order</strong></p>
-                    <p>
-                      <textarea class="form-control" rows="8" name="comment"></textarea>
-                    </p>
-                    <div class="buttons">
-                      <div class="pull-right">
-                        <input type="button" class="btn mt_20" data-loading-text="Loading..." id="button-shipping-method" value="Continue">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card my-1">
-                <div class="card-header" id="headingFive">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Step 3: Payment Method  <i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                  <div class="card-body">
-                    <p>Please select the preferred payment method to use on this order.</p>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
-                      <label class="form-check-label" for="exampleRadios2">
-                        PayPal
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
-                      <label class="form-check-label" for="exampleRadios1">
-                        Cash On Delivery
-                      </label>
-                    </div>
-
-   
-                    <p>Add Comments About Your Order</p>
-                    <p>
-                      <textarea class="form-control" rows="8" name="comment"></textarea>
-                    </p>
-                    <div class="buttons">
-                      <div class="pull-right">I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a>
-                        <input type="checkbox" value="1" name="agree"> &nbsp;
-                        <input type="button" class="btn" data-loading-text="Loading..." id="button-payment-method" value="Continue">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card my-1">
-                <div class="card-header" id="headingSix">
-                  <h4 class="mb-0">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Step 4: Confirm Order <i class="fa fa-caret-down"></i></a>
-                  </h4>
-                </div>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                  <div class="card-body">
-                    <div class="table-responsive">
-                      <table class="table table-bordered table-hover">
-                        <thead>
-                          <tr>
-                            <td class="text-left">Product Name</td>
-                            <td class="text-right">Quantity</td>
-                            <td class="text-right">Unit Price</td>
-                            <td class="text-right">Total</td>
-                          </tr>
-                        </thead>
-                        <tbody id="connformtable">
-                          <tr>
-                            <td class="text-left">Sony VAIO</td>
-                            <td class="text-left">Product 19</td>
-                            <td class="text-right">$1,000.00</td>
-                            <td class="text-right">$1,000.00</td>
-                          </tr>
-                        </tbody>
-                        <tfoot>
-                          <tr>
-                            <td class="text-right" colspan="3"><strong>Sub-Total:</strong></td>
-                            <td class="text-right" id="subtotal">$1,000.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right" colspan="3"><strong>Flat Shipping Rate:</strong></td>
-                            <td class="text-right" id="shipping">$5.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right" colspan="3"><strong>Total:</strong></td>
-                            <td class="text-right"id="totalval">$1,005.00</td>
-                          </tr>
-                        </tfoot>
-                      </table>
-                    </div>
-                    <div class="buttons">
-                      <div class="pull-right">
-                        <input type="button" data-loading-text="Loading..." class="btn" id="button-confirm" value="Confirm Order">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>           
-            </div>
-
+              <tr>
+                <td class="text-left">Lentilles
+                   <br>
+                  &nbsp;<small> - Packet Size: 5kg</small> </td>
+                <td class="text-left">Product 14</td>
+                <td class="text-right">9</td>
+                <td class="text-right">$9.57</td>
+                <td class="text-right">$86.13</td>
+                <td class="text-right" style="white-space: nowrap;"> <a href="#" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a>  <a href="#" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Return"><i class="fa fa-reply"></i></a></td>
+              </tr>
+              <tr>
+                <td class="text-left">pure-spice-3
+                <br>
+                  &nbsp;<small> - Packet Size: 1kg</small> 
+                </td>
+                <td class="text-left">Product 16</td>
+                <td class="text-right">15</td>
+                <td class="text-right">$7.32</td>
+                <td class="text-right">$109.84</td>
+                <td class="text-right" style="white-space: nowrap;"> <a href="#" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a>  <a href="#" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Return"><i class="fa fa-reply"></i></a></td>
+              </tr>
+            </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="3"></td>
+                  <td class="text-right"><b>Sub-Total</b></td>
+                  <td class="text-right">$188.14</td>
+                </tr>
+                <tr>
+                  <td colspan="3"></td>
+                  <td class="text-right"><b>Free Shipping</b></td>
+                  <td class="text-right">$0.00</td>
+                </tr>
+                <tr>
+                  <td colspan="3"></td>
+                  <td class="text-right"><b>GST(10%)</b></td>
+                  <td class="text-right">$7.83</td>
+                </tr>
+                <tr>
+                  <td colspan="3"></td>
+                  <td class="text-right"><b>Total</b></td>
+                  <td class="text-right">$195.97</td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
+          <h3>Order History</h3>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-left">Date Added</td>
+                <td class="text-left">Status</td>
+                <td class="text-left">Comment</td>
+              </tr>
+            </thead>
+            <tbody>
+            
+            <tr>
+              <td class="text-left">15/09/2019</td>
+              <td class="text-left">Pending</td>
+              <td class="text-left"></td>
+            </tr>
+          </tbody>
+        
+      </table>
+          <div class="buttons clearfix">
+            <div class="pull-right"><a href="#" class="btn btn-primary">Continue</a></div>
+          </div>
+          </div>              
+            <aside id="column-right" class="col-sm-3 hidden-xs">
+              <div class="section sidebar">
+                  <div class="heading-part">
+                    <h3 class="section_title">Account</h3>
+                  </div>   
+                  <div class="list-group">
+                      <a href="#" class="list-group-item">My Account</a>
+                      <a href="#" class="list-group-item">Edit Account</a> 
+                      <a href="#" class="list-group-item">Password</a>
+                      <a href="#" class="list-group-item">Address Book</a> 
+                      <a href="#" class="list-group-item">Wish List</a> 
+                      <a href="#" class="list-group-item">Order History</a>
+                      <a href="#" class="list-group-item">Downloads</a>
+                      <a href="#" class="list-group-item">Recurring payments</a> 
+                      <a href="#" class="list-group-item">Reward Points</a>
+                      <a href="#" class="list-group-item">Returns</a> 
+                      <a href="$" class="list-group-item">Transactions</a> 
+                      <a href="$" class="list-group-item">Newsletter</a>
+                      <a href="$" class="list-group-item">Logout</a>
+                  </div>
+                </div>
+            </aside>
         </div>
       <!-- =====  Brand start ===== -->
       <div id="brand_carouse" class="section text-center mt-30 pb-15">
@@ -937,12 +734,6 @@
     }
   });
   </script>
-  <!--------------  Firebase -------->
-  <script src="./apiconnection/firebaseconnection.js"></script>
-  <script src="./apiconnection/Checkout_page.js"></script>
-  <script src="./apiconnection/Addcart.js"></script>
-  <script src="./apiconnection/AllApi.js"></script>
-  
 </body>
 
 </html>

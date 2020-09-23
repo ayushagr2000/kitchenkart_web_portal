@@ -1,5 +1,4 @@
 var User = "UuoPi3EAUyMNfWnRBlTq2Mx9RaI2";
-var CartApi = "";
 // ======================== Add To Kart ===================================
 
 async function AddCartfunction(addcart, id) {
@@ -53,7 +52,6 @@ async function BasketData() {
 
 async function BasketDataDisplay(Data) {
     var Jsondata = JSON.parse(Data);
-    CartApi = Data;
     document.getElementById('cart-total-res').innerText = Jsondata.response.length;
     document.getElementById('cart-total').innerText = 'Item ' + Jsondata.response.length;
     console.log(Jsondata.response.length);

@@ -3,7 +3,7 @@ var searchid = [];
 var UserId = "null";
 window.onload = function() {
     getfirebasecall();
-    popular_brand()
+    popular_brand();
     //brand('Avinash');
     Banner_ApiCall();
     //Banner('Avinash');
