@@ -43,17 +43,21 @@ async function displayorderItems(id){
     .then(contents => ordertable(contents))
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
+
 async function ordertable(order) {
     Jsonorder = JSON.parse(order);
+    console.log(Jsonorder.response.length);
     var k = '';
     var tot = 0;
     for(var i = 0; i < Jsonorder.response.length; i++) {
         tot += Jsonorder.response[i].prod_qty * Jsonorder.response[i].prod_price;
-        k += '<tr><td class="text-left">'+Jsonorder.response[i].prod_name+'<br>&nbsp;<small> - Packet Size: '+Jsonorder.response[i].size+'</small> </td><td class="text-left">'+Jsonorder.response[i].prod_qty+'</td><td class="text-right">&#8377;'+Jsonorder.response[i].prod_price+'</td><td class="text-right">&#8377;'+(Jsonorder.response[i].prod_qty * Jsonorder.response[i].prod_price)+'</td><td class="text-right" style="white-space: nowrap;"> <a href="#" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a> <a href="#" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Return"><i class="fa fa-reply"></i></a></td></tr>'
+        k += '<tr><td class="text-left">'+Jsonorder.response[i].prod_name+'<br>&nbsp;<small> - Packet Size: '+Jsonorder.response[i].size+'</small> </td><td class="text-left">'+Jsonorder.response[i].prod_qty+'</td><td class="text-right">&#8377;'+Jsonorder.response[i].prod_price+'</td><td class="text-right">&#8377;'+(Jsonorder.response[i].prod_qty * Jsonorder.response[i].prod_price)+'</td><td class="text-right" style="white-space: nowrap;"> <a href="#" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a> <a href="#" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Return"><i class="fa fa-reply"></i></a></td></tr>';
     }
-    document.getElement1ById('productdetails').innerHTML = k;
-    document.getElement1ById('subtot').innerHTML = '&#8377; '+tot;
-    document.getElement1ById('shippingcharge').innerHTML = '&#8377; '+30;
-    document.getElement1ById('total').innerHTML = '&#8377; '+ (k+30);
+    console.log(k);
+    console.log(tot);
+    document.getElementById('productdetails').innerHTML = k;
+    document.getElementById('subtot').innerHTML = '&#8377; '+tot;
+    document.getElementById('shippingcharge').innerHTML = '&#8377; '+30;
+    document.getElementById('total').innerHTML = '&#8377; '+ (k+30);
 }
 //==============================================================
