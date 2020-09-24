@@ -243,9 +243,10 @@ async function PutAddress() {
     var mydata = {
         "add1": document.getElementById('input-payment-address-1').value,
         "add2": document.getElementById('input-payment-address-2').value,
-        "pincode": document.getElementById('input-payment-landmark').value,
-        "city": document.getElementById('input-payment-postcode').value,
-        "landmark": document.getElementById('input-payment-landmark').value
+        "pincode": document.getElementById('input-payment-postcode').value,
+        "city": document.getElementById('input-payment-city').value,
+        "landmark": document.getElementById('input-payment-landmark').value,
+        "mobile" : document.getElementById('input-payment-phone').value
     }
     
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -264,3 +265,96 @@ async function PutAddress() {
     });
 }
 //======================================================
+
+function checkTime(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+}
+
+//=================== Conform Order ====================
+async function conformOrder() {
+    var add1 = document.getElementById('input-payment-address-1').value;
+    var add2 = document.getElementById('input-payment-address-2').value;
+    var pincode = document.getElementById('input-payment-postcode').value;
+    var city = document.getElementById('input-payment-city').value;
+    var landmark = document.getElementById('input-payment-landmark').value;
+    var mobile = document.getElementById('input-payment-phone').value;
+    if(mobile == null || add1 == null || add2 == null || pincode == null || city == null || landmark == null ){
+        alert('Enter All Fields');
+        console.log(mobile + add1 + add2 + pincode + city + landmark );
+    }
+    else {
+        var mydata = {
+            "add1": add1,
+            "add2": add2,
+            "pincode": pincode,
+            "city": city,
+            "landmark": landmark
+        }
+        
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+User;
+        $.ajax({
+            url : proxyurl+url,
+            type : 'PUT',
+            data : JSON.stringify(mydata),
+            contentType: 'application/json',
+            success : function(result, status) {
+                console.log('Data Updated');
+            },
+            beforeSend: function(){
+                console.log("Sending...");
+            }
+        });
+        var id = Math.floor((Math.random() * 1000000) + 1);
+        var today = new Date(); 
+        var dd = today.getDate(); 
+        var mm = today.getMonth() + 1; 
+        var yyyy = today.getFullYear(); 
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        if (dd < 10) { 
+            dd = '0' + dd; 
+        } 
+        if (mm < 10) { 
+            mm = '0' + mm; 
+        } 
+        var today = dd + '/' + mm + '/' + yyyy; 
+        var data = {
+            "order_id": id,
+            "user_id": User,
+            "delivery": 30,
+            "timeslot": "1 day",
+            "payment_mode": "Cash",
+            "user_comment":document.getElementById('Comments').value,
+            "lat": '83.42322',
+            "long": '43.4543',
+            "add1": add1,
+            "add2": add2,
+            "landmark":landmark,
+            "pincode": pincode,
+            "mobile_no": mobile,
+            "timestamp": h + ":" + m + ":" + s,
+            "order_date": today,
+            "promocode": "No",
+            "promoline":"NO"
+        };
+        $.ajax({
+            url : proxyurl+'http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/v2/placeorder/',
+            type : 'POST',
+            data : JSON.stringify(data),
+            contentType: 'application/json',
+            success : function(result, status) {
+                window.location.href = "order-sucess-page.html?order="+id;
+            },
+            beforeSend: function(){
+                console.log("Sending...");
+            }
+        });
+    }
+}

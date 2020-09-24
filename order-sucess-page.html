@@ -33,8 +33,12 @@
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
   
-  <!-- Site Api Connectio -->
-  <script src="./apiconnection/home.js"></script>
+
+  
+  <!----- Adding Firebase ---------->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+  <!--   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script> -->
+ 
 
 
 </head>
@@ -446,7 +450,7 @@
       <div class="container">
         <div class="row">
         <div id="content" class="col-sm-9">
-          <h2>Order History</h2>
+          <h2 id="orderstatus">Order History</h2>
           <table class="table table-bordered table-hover">
             <thead>
               <tr>
@@ -734,6 +738,10 @@
     }
   });
   </script>
+    <!--------------  Firebase -------->
+    <script src="./apiconnection/firebaseconnection.js"></script>
+    <script src="./apiconnection/ordersuccess.js"></script>
+    <script src="./apiconnection/AllApi.js"></script>
 </body>
 
 </html>
