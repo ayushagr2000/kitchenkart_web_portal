@@ -44,7 +44,7 @@ async function addproductinsearch(data) {
         }
     }
     document.getElementById('myUL').innerHTML = mydata;
-    searchdata.sort();
+    BasketData();
 }
 
 async function popular_brand() {
