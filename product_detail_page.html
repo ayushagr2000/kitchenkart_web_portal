@@ -66,7 +66,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits  Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -74,7 +74,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
+                      <li class="dropdown"><a href="category_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -102,9 +102,9 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?name=snaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
-                      <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
+                      <li class="main_cat"> <a href="category_page.html?name=snaks">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
@@ -190,7 +190,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html?name=staplesl">Daal & Pulses</a>
+                              <li class="dropdown active"><a href="category_page.html?name=staples">Daal & Pulses</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -231,7 +231,7 @@
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
-                                      <li class="active"><a href="category_page.html">Groundnut & Coconut Oil</a></li>
+                                      <li class="active"><a href="category_page.html?name=oils">Groundnut & Coconut Oil</a></li>
                                       <li><a href="category_page.html">Health Oils</a></li>
                                       <li><a href="category_page.html">Mustard Oils</a></li>
                                       <li><a href="category_page.html">Soyabean Oils</a></li>
@@ -313,7 +313,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="main_cat active"> <a href="category_page.html">Breakfast Cereal & Mixes</a> </li>
+                              <li class="main_cat active"> <a href="category_page.html?name=break">Breakfast Cereal & Mixes</a> </li>
                               <li class="main_cat"> <a href="category_page.html">Paneer & Curd</a> </li>
                               
                               <!-- 2 Level Sub Categories END -->
@@ -409,7 +409,7 @@
           </div>
         </div>
       </div>
-      <div class="header-static-block">
+      <div class="header-static-block" style="z-index: 1;">
         <div class="container">
           <div class="row">
             <div class="icon-block">
@@ -497,16 +497,19 @@
                   <li>
                     <label>Availability:</label>
                     <span id="product_Stock"> In Stock</span></li>
+                    <li>
+                      <label>Size:</label>
+                      <span id="product_Size"> 300gm</span></li>
                 </ul>
                 <hr>
                 <p class="product-desc mt-20" id="Product_Details"> More room to move. With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go. Cover Flow. Browse through your music collection by flipping..</p>
                 <div id="product">
                   <div class="qty mt-30 form-group">
                     <label>Qty</label>
-                    <input name="product_quantity" min="1" value="1" type="number">
+                    <input name="product_quantity" id ="qua" min="1" value="1" type="number">
                   </div>
                   <div class="button-group mt-30">
-                    <div class="add-to-cart" data-toggle="tooltip" title="" data-original-title="Add to cart"><a href="#" id="addcarta"><span>Add</span></a></div>
+                    <div class="add-to-cart" data-toggle="tooltip" title="" data-original-title="Add to cart"><a href=""></a><span onclick="MainCartAdd()">Add</span></a></div>
                   </div>
                   <div class="prodbottominfo">
                     <ul class="list-unstyled">                    

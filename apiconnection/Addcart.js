@@ -1,4 +1,5 @@
 var User = "UuoPi3EAUyMNfWnRBlTq2Mx9RaI2";
+
 // ======================== Add To Kart ===================================
 
 async function AddCartfunction(addcart, id) {
@@ -31,13 +32,15 @@ async function CartAddApi(productdata, Quandity) {
         contentType: 'application/json',
         success : function(result, status) {
            console.log(result);
-           console.log(productdata);
+           BasketData();
         },
         beforeSend: function(){
             console.log("Sending...");
         }
     });
+    
 }
+
 //=========================================================================
 //=================== Basket Data ========================
 
@@ -51,6 +54,7 @@ async function BasketData() {
 }
 
 async function BasketDataDisplay(Data) {
+    console.log("basket Data");
     var Jsondata = JSON.parse(Data);
     document.getElementById('cart-total-res').innerText = Jsondata.response.length;
     document.getElementById('cart-total').innerText = 'Item ' + Jsondata.response.length;
@@ -70,3 +74,114 @@ async function BasketDataDisplay(Data) {
         document.getElementById('view_option').style.display = "block";
     }
 }
+
+//======================= Search Bar ============================
+
+async function getlistdata() {
+    if(document.getElementById("search-input").value === ""){
+    	document.getElementById("myUL").style.display='none';
+    }
+    else {
+		document.getElementById("myUL").style.display='block';
+    }
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("search-input");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+async function getdata() {
+    if(searchdata.includes(document.getElementById("search-input").value.toUpperCase())) {
+        //location.replace("");
+        var indexid = searchdata.indexOf(document.getElementById("search-input").value.toUpperCase());
+        if(searchid[indexid] === 'brand'){
+            location.replace("category_page.html?name=brand-name&id="+searchdata[indexid]);
+        }
+        else if(searchdata[indexid] === 'name') {
+            location.replace("category_page.html?name="+searchdata[indexid]);
+        }
+        else{
+            location.replace("product_detail_page.html?id="+searchid[indexid]);
+        }
+    }
+    else {
+        //alert("Item Not Found");
+    }
+}
+async function checkEnter(k) {
+    if(k === 13)
+        getdata();    
+}
+
+async function GetAllProductData() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => addproductinsearch(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+
+async function addproductinsearch(data) {
+    APiData = JSON.parse(data);
+    var mydata = "";
+    for(var i = 0; i < APiData.response.length; i++){
+        if(!searchdata.includes(APiData.response[i].name.toUpperCase())){
+            mydata += '<li><a href="product_detail_page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
+            searchdata.push(APiData.response[i].name.toUpperCase());
+            // searchid.push('name');
+            //console.log(APiData.response[i].name);
+        }
+        if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
+            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> '+APiData.response[i].category + '</h4></a></li>';
+            searchdata.push(APiData.response[i].category.toUpperCase());
+            //searchid.push('name');
+        }
+        if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
+            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
+            searchdata.push(APiData.response[i].brand.toUpperCase());
+            //searchid.push('brand');
+        }
+    }
+    document.getElementById('myUL').innerHTML = mydata;
+
+}
+
+//===============================================================
+//================= POPULAR BRAND================================
+async function popular_brand() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    fetch(proxyurl + url)
+    .then(response => response.text())
+    .then(contents => brand(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+
+async function brand(data) {
+    var data_json = JSON.parse(data);
+    var k = "<div class='container'><div class='row'>";
+    // console.log(data_json.response[0].brand_name);
+    // console.log(data_json);
+
+    for(var i = 0; i < data_json.response.length; i++) {
+        // console.log(i);
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        if((i+1) % 5 == 0){
+           k += "</div></div><div class='container' style><div class='row'>";
+        }
+    }
+   
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
+}
+//===============================================================

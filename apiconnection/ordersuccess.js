@@ -1,4 +1,7 @@
 window.onload = function() {
+    popular_brand();
+    BasketData();
+    GetAllProductData();
     try {
         var url = document.location.href,
             params = url.split('?')[1].split('&'),
@@ -53,11 +56,9 @@ async function ordertable(order) {
         tot += Jsonorder.response[i].prod_qty * Jsonorder.response[i].prod_price;
         k += '<tr><td class="text-left">'+Jsonorder.response[i].prod_name+'<br>&nbsp;<small> - Packet Size: '+Jsonorder.response[i].size+'</small> </td><td class="text-left">'+Jsonorder.response[i].prod_qty+'</td><td class="text-right">&#8377;'+Jsonorder.response[i].prod_price+'</td><td class="text-right">&#8377;'+(Jsonorder.response[i].prod_qty * Jsonorder.response[i].prod_price)+'</td><td class="text-right" style="white-space: nowrap;"> <a href="#" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Reorder"><i class="fa fa-shopping-cart"></i></a> <a href="#" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Return"><i class="fa fa-reply"></i></a></td></tr>';
     }
-    console.log(k);
-    console.log(tot);
     document.getElementById('productdetails').innerHTML = k;
     document.getElementById('subtot').innerHTML = '&#8377; '+tot;
     document.getElementById('shippingcharge').innerHTML = '&#8377; '+30;
-    document.getElementById('total').innerHTML = '&#8377; '+ (k+30);
+    document.getElementById('total').innerHTML = '&#8377; '+ (tot+30);
 }
 //==============================================================
