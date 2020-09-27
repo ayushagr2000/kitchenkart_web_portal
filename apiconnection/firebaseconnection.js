@@ -1,13 +1,14 @@
 var app_firebase = {};
 (function() {
   const firebaseConfig = {
-    apiKey: "AIzaSyAf6-E9vT-sv3D-KDzve6M2A_3bUrMAJvw",
-    authDomain: "knowclassbunk-48992.firebaseapp.com",
-    databaseURL: "https://knowclassbunk-48992.firebaseio.com",
-    projectId: "knowclassbunk-48992",
-    storageBucket: "knowclassbunk-48992.appspot.com",
-    messagingSenderId: "996452078378",
-    appId: "1:996452078378:web:8b2f1b8b5cd028eae1c453"
+    apiKey: "AIzaSyC71v9v_cjBqO6f39JSGFvU4abI4UrhspI",
+    authDomain: "kitchenkart-3b889.firebaseapp.com",
+    databaseURL: "https://kitchenkart-3b889.firebaseio.com",
+    projectId: "kitchenkart-3b889",
+    storageBucket: "kitchenkart-3b889.appspot.com",
+    messagingSenderId: "499113722476",
+    appId: "1:499113722476:web:21ca3899a12582aa6d0e49",
+    measurementId: "G-QTLHQ9Z0Q9"
   };
 
   firebase.initializeApp(firebaseConfig);

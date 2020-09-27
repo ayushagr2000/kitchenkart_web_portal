@@ -1,4 +1,4 @@
-var User = "UuoPi3EAUyMNfWnRBlTq2Mx9RaI2";
+var User = "null";
 
 // ======================== Add To Kart ===================================
 
@@ -7,11 +7,11 @@ async function AddCartfunction(addcart, id) {
     console.log(qua)
     console.log(addcart);
     var k = document.getElementById('Logindiv_firebase').style.display;
-    //if(k === 'block') {
-      //  location.replace("login.html");
-    //} else {
+    if(k === 'block' && User === 'null') {
+       location.replace("login.html");
+    } else {
         CartAddApi(addcart, qua);
-    //}
+    }
 }
 
 async function CartAddApi(productdata, Quandity) {
