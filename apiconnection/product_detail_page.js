@@ -4,6 +4,7 @@ var searchid = [];
 window.onload = function() {
     getfirebasecall();
     GetAllProductData();
+    GetUserId();
     var url = document.location.href,
             params = url.split('?')[1].split('&'),
             data = {}, tmp;

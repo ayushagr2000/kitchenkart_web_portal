@@ -1,6 +1,6 @@
 window.onload = function() {
-    GetUserId();
     popular_brand();
+    GetUserId();
     BasketData();
     GetAllProductData();
     try {
@@ -15,7 +15,8 @@ window.onload = function() {
         displayorder(data.order);
         displayorderItems(data.order);
     } catch (e) {
-        window.location.replace("index.html");
+        console.log(e);
+        //window.location.replace("index.html");
     }
 }
 //========================= Display Data =====================
@@ -30,6 +31,7 @@ async function displayorder(data) {
 
 async function printorder(details){
     details = JSON.parse(details);
+    console.log(details);
     document.getElementById('orderid_date').innerHTML = '<b>Order ID:</b> #'+details.response[0].order_id+'<br><b>Date Added:</b>'+details.response[0].order_date;
     document.getElementById('shipp_payment').innerHTML = ' <b>Payment Method:</b> '+details.response[0].mode_of_payment+'<br><b>Shipping Charge:&nbsp;</b>&#8377;'+details.response[0].delivery_charge;
     document.getElementById('order_shipping').innerHTML = details.response[0].add1+'<br>'+details.response[0].add2+'<br>'+details.response[0].landmark+'<br>'+details.response[0].pincode+'<br>'+details.response[0].mobile_number;

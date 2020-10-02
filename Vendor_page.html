@@ -4,7 +4,7 @@
 
   <!-- =====  BASIC PAGE NEEDS  ===== -->
   <meta charset="utf-8">
-  <title>Kitchen kart</title>
+  <title>Kitchen Kart</title>
 
   <!-- =====  SEO MATE  ===== -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,15 +27,17 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
   <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
   <link rel="shortcut icon" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   
   
-  <!-- Site Api Connectio -->
-  <script src="./apiconnection/home.js"></script>
-
+  <!----- Adding Firebase ---------->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
+  <!--   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script> -->
+  
 
 </head>
 
@@ -43,6 +45,7 @@
   <!-- =====  LODER  ===== -->
   <div class="loder"></div>
   <div class="wrapper">
+
     <!-- =====  Nav START  ===== -->
     <nav id="top">
       <div class="container">
@@ -53,7 +56,7 @@
                 <ul class="nav navbar-nav">
                   <li class="collapsed" data-toggle="collapse" data-target="#GroceryampStaples"><a href="">Grocery  Staples</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="GroceryampStaples">
-                      <li class="dropdown"><a href="category_page.html">Daal  Pulses</a>
+                      <li class="dropdown"><a href="category_page.html?name=staples">Daal  Pulses</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Arhar</a></li>
                           <li><a href="category_page.html">Masoor</a></li>
@@ -62,7 +65,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="5">Dry Fruits  Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -70,7 +73,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="6">Edible Oils</a>
+                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -79,7 +82,7 @@
                           <li><a href="category_page.html">Sunflower Oils</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="2">Riced cauliflower</a>
+                      <li class="dropdown"><a href="category_page.html?name=rice">Riced cauliflower</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Basmati</a></li>
                           <li><a href="category_page.html">Millet  Others</a></li>
@@ -98,19 +101,19 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
                       <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="">Household Needs</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#HouseholdNeeds"><a href="category_page.html?name=cleaning">Household Needs</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="HouseholdNeeds">
                       <li class="main_cat"> <a href="category_page.html">Cleaning Tools  Brushes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Home  Car Fresheners</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="">Breakfast  Dairy</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#BreakfastampDairy"><a href="category_page.html?name=sweets">Sweets</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="BreakfastampDairy">
                       <li class="main_cat"> <a href="category_page.html">Breakfast Cereal  Mixes</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Paneer  Curd</a> </li>
@@ -136,26 +139,31 @@
                 <li class="language dropdown px-2"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#">English</a></li>
-                    <li><a href="#">French</a></li>
-                    <li><a href="#">German</a></li>
-                  </ul>
-                </li>
-                <li class="currency dropdown pl-2"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
-                    <li><a href="#">€ Euro</a></li>
-                    <li><a href="#">£ Pound Sterling</a></li>
-                    <li><a href="#">$ US Dollar</a></li>
+                    <li><a href="#">Hindi</a></li>
                   </ul>
                 </li>
               </ul> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" id='Logindiv_firebase' style="display: block;">
               <ul class="header-top-right pull-right">
                 <li class="telephone">
-                  <a href="#"><i class="fa fa-phone"></i> +91 987-654-321</a> 
+                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
                 </li>
                 <li class="login">
                   <a href="login.html"><i class="fa fa-user"></i>Login/Signup</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6" id='signoutdiv_firebase' style="display: none;">
+              <ul class="header-top-right pull-right">
+                <li class="telephone">
+                  <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
+                </li>
+                <li class="login">
+                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
+                </li>
+                <li class="register">
+                  <a onclick="logout_firebase()">LogOut</a>
                 </li>
               </ul>
             </div>
@@ -175,13 +183,13 @@
                 <nav id="menu" class="navbar">
                   <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav main-navigation">
-                      <li class="main_cat dropdown active"> <a href="category_page.html">Grocery & Staples</a>
+                      <li class="main_cat dropdown active"> <a style="cursor: context-menu;">Grocery & Staples</a>
                         <div class="dropdown-menu megamenu column4">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Daal & Pulses</a>
+                              <li class="dropdown active"><a href="category_page.html?name=staplesl">Daal & Pulses</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -200,7 +208,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Dry Fruits & Nuts</a>
+                              <li class="dropdown active"><a href="category_page.html?name=dryfruits">Dry Fruits & Nuts</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -218,7 +226,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="">Edible Oils</a>
+                              <li class="dropdown active"><a href="category_page.html?name=oils">Edible Oils</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -237,7 +245,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html">Riced cauliflower</a>
+                              <li class="dropdown active"><a href="category_page.html?name=rice">Riced cauliflower</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -256,7 +264,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Personal Care</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=beverages">Beverages</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -270,7 +278,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Biscuits, Snacks & Chocolates</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=snacks">Biscuits, Snacks & Chocolates</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -284,7 +292,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Household Needs</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=cleaning">Household Needs</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -298,7 +306,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat dropdown"> <a href="category_page.html">Breakfast & Dairy</a>
+                      <li class="main_cat dropdown"> <a href="category_page.html?name=sweets">Sweets</a>
                         <div class="dropdown-menu megamenu column1">
                           <div class="dropdown-inner">
                             <ul class="list-unstyled childs_1">
@@ -312,7 +320,7 @@
                           </div>
                         </div>
                       </li>
-                      <li class="main_cat thumb"> <a href="category_page.html">Fruits store </a>
+                      <li class="main_cat thumb"> <a style="cursor: context-menu;">Health Care </a>
                         <div class="dropdown-menu">
                           <div class="dropdown-inner"> <img src="#" alt="" title="" class="img-thumbnail"> </div>
                         </div>
@@ -327,13 +335,16 @@
                       <button type="submit" title="Search" class="action search" id="head-search"></button>
                   </div>
                   <div id="search" class="input-group">
-                    <input type="text" id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off">
+                    <input type="text" id="search-input" onkeypress="checkEnter(event.keyCode)" onkeyup="getlistdata()" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" list="allDetails">
+                    <ul id="myUL" style="display:none; position: absolute; background-color: burlywood; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
+                      
+                    </ul>
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-default btn-lg">Search</button>
+                      <button type="button" class="btn btn-default btn-lg" onclick="getdata()">Search</button>
                     </span>
                   </div>
                 </div>
-                <div class="header-link">
+                <div class="header-link" style="z-index: 1;">
                  <ul class="list-unstyled">
                   <li><a href="#">Bm offers</a></li>
                   <li><a href="#">Bm express</a></li>
@@ -342,7 +353,7 @@
                 </ul>
               </div>
               </div>
-              <div class="shopcart">
+              <div class="shopcart" style="z-index: 1;">
                 <div id="cart" class="btn-block mt-40 mb-30 ">
                   <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">My basket</span><span id="cart-total">Item 0</span></button>
                   <a href="cart_page.html" class="cart_responsive btn"><span id="cart-text">My basket</span><span id="cart-total-res">0</span> </a>
@@ -351,7 +362,7 @@
                   <ul>
                     <li>
                       <table class="table table-striped">
-                        <tbody>
+                        <tbody id="carttable">
                           <tr>
                             <td class="text-center"><a href="#"><img src="images/pro/70x70_1.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
                             <td class="text-left product-name"><a href="#">MacBook Pro</a> <span class="text-left price">$20.00</span>
@@ -370,23 +381,14 @@
                       </table>
                     </li>
                     <li>
+                      <h6 id="view_option" style="text-align: center; display: none;"></h6>
+                    </li>
+                    <li>
                       <table class="table">
                         <tbody>
                           <tr>
-                            <td class="text-right"><strong>Sub-Total</strong></td>
-                            <td class="text-right">$2,100.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                            <td class="text-right">$2.00</td>
-                          </tr>
-                          <tr>
-                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                            <td class="text-right">$20.00</td>
-                          </tr>
-                          <tr>
                             <td class="text-right"><strong>Total</strong></td>
-                            <td class="text-right">$2,122.00</td>
+                            <td class="text-right" id="PriceToal">$2,122.00</td>
                           </tr>
                         </tbody>
                       </table>
@@ -433,108 +435,174 @@
     <!-- =====  BREADCRUMB STRAT  ===== -->
     <div class="breadcrumb section pt-60 pb-60">
       <div class="container">
-        <h1 class="uppercase">Contact</h1>
+        <h1 class="uppercase" id="Pagetype">Grocery & Staples2</h1>
         <ul>
           <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-          <li class="active">Contact</li>
+          <li class="active" id="PagetypeHome">Grocery & Staples3</li>
         </ul>
       </div>
     </div>
     <!-- =====  BREADCRUMB END===== -->
-    <div class="page-contact section">
+    <div class="product-section section mt-30">
     <!-- =====  CONTAINER START  ===== -->
     <div class="container">
-      <div class="row ">
-        <div id="column-left" class="col-lg-4 col-xl-3">
-          <div id="category-menu" class="mb-30">
+      <div class="row">
+        <div id="column-left" class="col-lg-3 col-xl-3 col-sm-4">
+          <div id="category-menu" class="mb-30 mt-10">
             <div class="nav-responsive">
               <div class="heading-part">
                 <h3 class="section_title">Top category</h3>
               </div>
               <ul>
-                <li><a href="#">Appliances</a></li>
-                <li><a href="#">Mobile Phones</a></li>
-                <li><a href="#">Tablet PC & Accessories</a></li>
-                <li><a href="#">Consumer Electronics</a></li>
-                <li><a href="#">Computers & Networking</a></li>
-                <li><a href="#">Electrical & Tools</a></li>
-                <li><a href="#">Apparel</a></li>
-                <li><a href="#">Bags & Shoes</a></li>
-                <li><a href="#">Toys & Hobbies</a></li>
-                <li><a href="#">Watches & Jewelry</a></li>
-                <li><a href="#">Home & Garden</a></li>
-                <li><a href="#">Health & Beauty</a></li>
-                <li><a href="#">Outdoors & Sports</a></li>
+                <li><a href="category_page.html?name=staples">Grocery & Staples</a></li>
+                <li><a href="category_page.html?name=beverages">Beverages</a></li>
+                <li><a href="category_page.html?name=snacks">Biscuits, Snacks & Chocolates</a></li>
+                <li><a href="category_page.html?name=cleaning">Household Needs</a></li>
+                <li><a href="category_page.html?name=sweets">Sweets</a></li>
+                <li><a href="#">Health Care</a></li>
               </ul>
             </div>
           </div>
-
+          <div id="category-menu" class="mb-30 mt-10">
+            <div class="nav-responsive">
+              <div class="heading-part">
+                <h3 class="section_title">Top Brands</h3>
+              </div>
+              <ul id="topbrand_Category">
+                <li><a href="category_page.html?name=brand-name&id=">Grocery & Staples</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="filter left-sidebar-widget mb-50">
+            <div class="heading-part my-3 ">
+              <h3 class="section_title">Refine Search</h3>
+            </div>
+            <div class="filter-block">
+              <p>
+                <label for="amount">Price range:</label>
+                <input type="text" id="amount" readonly>
+              </p>
+              <div id="slider-range" class="my-3"></div>
+              <div class="list-group">
+                <div class="list-group-item mb-10">
+                  
+                </div>
+                <div class="list-group-item mb-10">
+                  <label>Manufacturers</label>
+                  <div id="filter-group3">
+                    <div class="checkbox">
+                      <label>
+                        <input value="" type="checkbox"> Apple (5) </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input value="" type="checkbox"> Canon (0) </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input value="" type="checkbox"> Hewlett-Packard (0) </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input value="" type="checkbox">  HTC (0) </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="left_banner left-sidebar-widget mb-50"> <a href="#"><img src="images/left1.jpg" alt="Left Banner" class="img-responsive" /></a> </div>
         </div>
-        <div class="col-lg-8 col-xl-9">
-          <!-- contact  -->
-          <div class="row">
-            <div class="col-md-4 col-xs-12 contact">
-              <div class="location mb-50">
-                <h4 class="capitalize mb-20"><strong>Our Location</strong></h4>
-                <div class="address">Office address
-                  <br> 124,Lorem Ipsum has been
-                  <br> text ever since the 1500</div>
-                <div class="call mt-10"><i class="fas fa-mobile-alt"></i> +91-9987-654-321</div>
-              </div>
-              <div class="Career mb-50">
-                <h4 class="capitalize mb-20"><strong>Careers</strong></h4>
-                <div class="address">dummy text ever since the 1500s, simply dummy text of the typesetting industry. </div>
-                <div class="email mt-10"><i class="far fa-envelope"></i> <a href="mailto:careers@yourdomain.com" target="_top"> careers@yourdomain.com</a></div>
-              </div>
-              <div class="Hello mb-50">
-                <h4 class="capitalize mb-20"><strong>Say Hello</strong></h4>
-                <div class="address">simply dummy text of the printing and typesetting industry.</div>
-                <div class="email mt-10"><i class="far fa-envelope"></i> <a href="mailto:info@yourdomailname.com" target="_top"> info@yourdomailname.com</a></div>
+        <div class="col-lg-9 col-xl-9 col-sm-8">
+          <div class="category-page-wrapper mb-15 pb-10">
+            <div class="row">
+            <div class="col list-grid-wrapper Order-1">
+              <div class="btn-group btn-list-grid">
+                <button type="button" id="grid-view" class="btn btn-default grid-view active"></button>
+                <button type="button" id="list-view" class="btn btn-default list-view"></button>
               </div>
             </div>
-            <div class="col-md-8 col-xs-12 contact-form mb_50">
-              <!-- Contact FORM -->
-              <div id="contact_form">
-              <form id="contact_body" method="post" action="contact_me.php">
-                <div class="form-group required">
-                  <input type="text" name="name" class="form-control" id="exampleInputName" data-required="true" placeholder="Enter Name">
-                </div>
-                <div class="form-group required mt-30">
-                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" data-required="true" aria-describedby="exampleInputEmail1" placeholder="Email Address">
-                </div>
-                <div class="form-group required mt-30">
-                  <input type="text" name="phone1" class="form-control" id="exampleInputPhone" data-required="true" aria-describedby="exampleInputPhone" placeholder="Phone number">
-                </div>
-                <div class="form-group required mt-30">
-                  <input type="text" name="subject" class="form-control" id="exampleInputSubject" data-required="true" placeholder="Subject">
-                </div>
-                <div class="form-group required mt-30">
-                  <textarea class="form-control"  name="message" placeholder="Message" data-required="true"></textarea>
-                </div>
-                
-                <button type="submit" class="btn mt-30 mb-20">Send Message</button>
-              </form>
-
-
-                <div id="contact_results"></div>
+            <div class="col-md-auto page-wrapper order-12">
+              <label class="control-label" for="input-limit">Show :</label>
+              <div class="limit">
+                <select id="input-limit" class="form-control" onclick="GetSorted()">
+                  <option value="8">08</option>
+                  <option value="25">25</option>
+                  <option value="50" selected="selected">50</option>
+                  <option value="75">75</option>
+                  <option value="100">100</option>
+                </select>
               </div>
-              <!-- END Contact FORM -->
+            </div>
+            <div class="col-md-auto sort-wrapper order-11">
+              <label class="control-label" for="input-sort">Sort By :</label>
+              <div class="sort-inner">
+                <select id="input-sort" class="form-control">
+                  <option value="ASC" selected="selected">Default</option>
+                  <option value="ASC">Name (A - Z)</option>
+                  <option value="DESC">Name (Z - A)</option>
+                  <option value="ASC">Price (Low &gt; High)</option>
+                  <option value="DESC">Price (High &gt; Low)</option>
+                  <option value="DESC">Rating (Highest)</option>
+                  <option value="ASC">Rating (Lowest)</option>
+                  <option value="ASC">Model (A - Z)</option>
+                  <option value="DESC">Model (Z - A)</option>
+                </select>
+              </div>
             </div>
           </div>
-          <!--Google map-->
-          <div id="map-container-google-1" class="z-depth-1-half map-container mb-40">
-            <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+          </div>
+          <div class="row" id="AddAllItemsAsPerApi">
+            <div class="product-layout  product-grid col-lg-3 col-6 ">
+              <div class="item">
+               <div class="product-thumb transition">
+                  <div class="image">
+                    <div class="first_image"> <a href="product_detail_page.html"> <img src="images/pro/014.jpg" alt="pure-spice-3" title="pure-spice-3" class="img-responsive"> </a> </div>
+                    <div class="swap_image"> <a href="product_detail_page.html"> <img src="images/pro/015.jpg" alt="pure-spice-3" title="pure-spice-3" class="img-responsive"> </a></div>
+                  </div>
+                  <div class="product-details">
+                    <div class="caption">
+                      <h4><a href="product_detail_page.html">pure-spice-3</a></h4>
+                      <p class="price">&#8377; 7.25<span class="price-tax">Ex Tax: &#8377; 7.25</span></p>
+                      <p class="desc">freshly picked for you.Store them in a cool, dry place away from direct sunlight...</p>
+                      <div class="product_option">
+                        <div class="form-group required " style="padding-top: 10px; padding-bottom: 10px;">
+                          <p class="price" style="float: left;">Left</p>
+                          <p class="price" style="float: right;">Right</p>
+                        </div>
+                        <div class="input-group button-group">
+                          <label class="control-label">Qty</label>
+                          <input type="number" name="quantity" min="1" value="1"  step="1" class="qty form-control">
+                          <button type="button" class="addtocart pull-right">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+            </div>
+            
+
           </div>
 
-          <!--Google Maps-->
-
+          <!-- <div class="pagination-nav text-center mt-50">
+            <ul>
+              <li><a href="#"><i class="fas fa-angle-double-left"></i></a></li>
+              <li><a href="#"><i class="fas fa-angle-left"></i></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#"><i class="fas fa-angle-right"></i></a></li>
+              <li><a href="#"><i class="fas fa-angle-double-right"></i></a></li>
+            </ul>
+          </div> -->
         </div>
       </div>
+      
     </div>
-  </div>
-  <!-- =====  CONTAINER END  ===== -->
-</div>
+    <!-- =====  CONTAINER END  ===== -->
+
+    </div>
     <!-- =====  FOOTER START  ===== -->
     <div class="footer section pt-40">
       <div class="container">
@@ -616,7 +684,7 @@
               <div class="section_title">download app</div>
               <div class="app-download text-center">
                 <ul class="app-icon">
-                  <li><a href="#" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
+                  <li><a href="https://play.google.com/store/apps/details?id=com.kart.kitchen" target="_blank" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
                   <li><a href="#" title="appstore"><img src="images/app-store.png" alt="appstore" class="img-responsive"></a></li>
                 </ul>
               </div>
@@ -641,6 +709,7 @@
       </div>
     </div>
     <!-- =====  FOOTER END  ===== -->
+  </div>
   <a id="scrollup"></a>
   <script src="js/modernizr.js"></script>
   <script src="js/jQuery_v3.1.1.min.js"></script>
@@ -648,11 +717,27 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.magnific-popup.js"></script>
-  <script src="js/jquery.firstVisitPopup.js"></script>
+  <script src="js/jquery.firstVisitPopup.js"></script>  
   <script src="js/custom.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT3mI0RI16q19Oxv93gSxN0cF0wfxWN6w">
+  <script src="js/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $("#slider-range").slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [75, 300],
+      slide: function(event, ui) {
+        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      }
+    });
+    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+      " - $" + $("#slider-range").slider("values", 1));
+  });
   </script>
-  <script src="js/mail.js"></script>
+  <!--------------  Firebase -------->
+  <script src="./apiconnection/firebaseconnection.js"></script>
+  <script src="./apiconnection/Vendor_page.js"></script>
   <script src="./apiconnection/Addcart.js"></script>
   <script src="./apiconnection/AllApi.js"></script>
 </body>

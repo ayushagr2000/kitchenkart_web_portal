@@ -2,6 +2,7 @@ var searchdata = [];
 var searchid = [];
 var UserId = "null";
 window.onload = function() {
+    GetUserId();
     getfirebasecall();
     popular_brand();
     //brand('Avinash');
@@ -27,7 +28,7 @@ async function Banner_ApiCall() {
 
 async function Banner(Data) {
     var data_json = JSON.parse(Data);
-    var bannercount = '<div class="carousel-item active"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'" style="height: 350px;"><a class="carousel-control-prev" style="width: 100%;"></a></div>'; 
+    var bannercount = '<div class="carousel-item active"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'><a class="carousel-control-prev" style="width: 100%;"></a></div>'; 
     var BannerImage = '<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color: red;"></li>';
 
     for(var i = 1; i < data_json.response.length; i++) {

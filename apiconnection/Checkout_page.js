@@ -1,4 +1,5 @@
 window.onload = function() {
+    GetUserId();
     getfirebasecall();
     popular_brand();
     BasketData();

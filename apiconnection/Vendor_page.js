@@ -14,60 +14,17 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    if(data.name === 'brand-name'){
-        BrandProductCall(data.id);
-        document.getElementById('Pagetype').innerHTML = data.id;
-        document.title += ' | ' + data.id;
-        document.getElementById('PagetypeHome').innerHTML = data.id;
-    }
-    else {
-        var getdata = data.name;
-        console.log(getdata);
-        GetApiCall(getdata);
-        if(getdata === 'snacks' ){
-            document.title += ' | Biscuits, Snacks & Chocolates';
-            document.getElementById('Pagetype').innerHTML = "Biscuits, Snacks & Chocolates";
-            document.getElementById('PagetypeHome').innerHTML = "Biscuits, Snacks & Chocolates";
-        }
-
-        if(getdata === 'beverages'){
-            document.title += ' | Beverages';
-            document.getElementById('Pagetype').innerHTML = "Beverages";
-            document.getElementById('PagetypeHome').innerHTML = "Beverages";
-        }
-        if(getdata === 'cleaning'){
-            document.title += ' | Household Needs';
-            document.getElementById('Pagetype').innerHTML = "Household Needs";
-            document.getElementById('PagetypeHome').innerHTML = "Household Needs";
-        }
-        if(getdata === 'sweets'){
-            document.title += ' | Sweets';
-            document.getElementById('Pagetype').innerHTML = "Sweets";
-            document.getElementById('PagetypeHome').innerHTML = "Sweets";
-        }
-        if(getdata === 'oils'){
-            document.title += ' | Edible Oils';
-            document.getElementById('Pagetype').innerHTML = "Edible Oils";
-            document.getElementById('PagetypeHome').innerHTML = "Edible Oils";
-        }
-        if(getdata === 'dryfruits'){
-            document.title += ' | Dry Fruits Nuts';
-            document.getElementById('Pagetype').innerHTML = "Dry Fruits Nuts";
-            document.getElementById('PagetypeHome').innerHTML = "Dry Fruits Nuts";
-        }
-        if(getdata === 'staples'){
-            document.title += ' | Grocery & Staples';
-            document.getElementById('Pagetype').innerHTML = "Grocery & Staples";
-            document.getElementById('PagetypeHome').innerHTML = "Grocery & Staples";
-        }
-    }
+    BrandProductCall(data.id);
+    document.getElementById('Pagetype').innerHTML = data.id;
+    document.title += ' | ' + data.id;
+    document.getElementById('PagetypeHome').innerHTML = data.id;
     topbrand_category();
 
 }
 
 async function BrandProductCall(getdata) {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getb/"+getdata;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getv/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => CallingApi(contents))

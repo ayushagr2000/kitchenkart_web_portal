@@ -1,13 +1,34 @@
 var User = "null";
+var UserName = "null";
+var UserNumber = "null";
+// ====================Get User Name==============================
+async function GetUserId() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // User logged in already or has just logged in.
+            console.log(user.uid);
+            User = user.uid;
+            UserNumber = user.phoneNumber;
+            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.id;
+            fetch(proxyurl + url)
+            .then(response => response.text())
+            .then(contents => UserName = contents.name)
+            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+        } else {
+          // User not logged in or has just logged out.
+        }
+      });
+}
+// =====================================================
 
 // ======================== Add To Kart ===================================
 
 async function AddCartfunction(addcart, id) {
     qua = document.getElementById('qty'+id).value;
-    console.log(qua)
-    console.log(addcart);
+    
     var k = document.getElementById('Logindiv_firebase').style.display;
-    if(k === 'block' && User === 'null') {
+    if(k === 'block' || User === 'null') {
        location.replace("login.html");
     } else {
         CartAddApi(addcart, qua);
@@ -15,8 +36,6 @@ async function AddCartfunction(addcart, id) {
 }
 
 async function CartAddApi(productdata, Quandity) {
-    console.log(productdata);
-    console.log(Quandity);
     var mydata = {
         user_id: User,
         prod_id: productdata,
@@ -154,7 +173,6 @@ async function addproductinsearch(data) {
         }
     }
     document.getElementById('myUL').innerHTML = mydata;
-
 }
 
 //===============================================================

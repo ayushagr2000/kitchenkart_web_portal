@@ -37,3 +37,13 @@ async function addproductinsearch(data) {
     }
     document.getElementById('myUL').innerHTML = mydata;
 }
+
+async function logout_firebase() {
+    firebase.auth().signOut().then(function() {
+        alert("Successfully Logout");
+        document.getElementById('Logindiv_firebase').style.display = 'block';
+        document.getElementById('signoutdiv_firebase').style.display = 'none';
+      }, function(error) {
+        // An error happened.
+      });
+}
