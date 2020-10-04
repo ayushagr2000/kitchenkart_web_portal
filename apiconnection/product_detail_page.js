@@ -2,9 +2,37 @@ var searchdata = [];
 var searchid = [];
 
 window.onload = function() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            localStorage.setItem("UserId", user.uid);
+            localStorage.setItem("UserNumber", user.phoneNumber);
+            UserNumber = user.phoneNumber;
+            console.log(user.uid);
+            const proxyurl = "";
+            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            fetch(proxyurl + url)
+            .then(response => response.text())
+            .then(contents => {
+                k = JSON.parse(contents);
+                console.log(k);
+                if(localStorage.getItem('UserId') && localStorage.getItem('UserName')){
+                    localStorage.setItem("UserName",k.response[0].name);
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                }
+                else {
+                    console.log('redirect');
+                    location.replace('login.html');
+                }
+            })
+            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            
+        } else {
+          // User not logged in or has just logged out.
+        }
+    });
+    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
     getfirebasecall();
     GetAllProductData();
-    GetUserId();
     var url = document.location.href,
             params = url.split('?')[1].split('&'),
             data = {}, tmp;
@@ -15,9 +43,42 @@ window.onload = function() {
     getProductApi(data.id);
     popular_brand();
     BasketData();
+    getuserdetails();
 }
+//===============================================
+
+function getuserdetails(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem("UserId", user.uid);
+      localStorage.setItem("UserNumber", user.phoneNumber);
+    }
+  });
+  const proxyurl = "";
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  fetch(proxyurl + url)
+  .then(response => response.text())
+  .then(contents => checkuser(contents))
+  .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+function checkuser(ApiData) {
+  jsonApi = JSON.parse(ApiData);
+  if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
+    AddData();
+  else {
+    window.location.replace("login.html");
+  }
+}
+function AddData() {
+  document.getElementById('loginform').style.display ='none';
+  document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
+  document.getElementById('addDataform').style.display ='block';
+}
+//================================================
+
+
 async function getProductApi(data) {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/"+data;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -51,7 +112,7 @@ async function printdataval(productdata){
 }
 
 async function getRelatedProduct(category){
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getc/"+category;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -103,11 +164,11 @@ async function MainCartAdd() {
     console.log(addcart)
     console.log(qua);
     var k = document.getElementById('Logindiv_firebase').style.display;
-    //if(k === 'block') {
-      //  location.replace("login.html");
-    //} else {
-        MainCartAddApi(addcart,qua);
-    //}
+    if(localStorage.getItem('UserId') || localStorage.getItem('UserName')) {
+        CartAddApi(addcart, qua);
+    } else {
+        location.replace("login.html");
+    }
 }
 
 async function MainCartAddApi(productdata, Quandity) {
@@ -119,7 +180,7 @@ async function MainCartAddApi(productdata, Quandity) {
         prod_qty: Quandity
     }
     
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
     $.ajax({
         url : proxyurl+url,

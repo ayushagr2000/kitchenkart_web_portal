@@ -5,7 +5,7 @@ var dataGlobal="";
 var call = false;
 async function GetAllProductData() {
     call = true;
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -25,7 +25,7 @@ async function addproductinsearch(data) {
             //console.log(APiData.response[i].name);
         }
         if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> '+APiData.response[i].category + '</h4></a></li>';
+            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> See all '+APiData.response[i].category + '</h4></a></li>';
             searchdata.push(APiData.response[i].category.toUpperCase());
             searchid.push('name');
         }
@@ -40,9 +40,11 @@ async function addproductinsearch(data) {
 
 async function logout_firebase() {
     firebase.auth().signOut().then(function() {
+        localStorage.clear();
         alert("Successfully Logout");
         document.getElementById('Logindiv_firebase').style.display = 'block';
         document.getElementById('signoutdiv_firebase').style.display = 'none';
+        location.reload();
       }, function(error) {
         // An error happened.
       });

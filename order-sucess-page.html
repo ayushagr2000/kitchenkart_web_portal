@@ -40,9 +40,39 @@
 </head>
 
 <body>
+  
   <!-- =====  LODER  ===== -->
   <div class="loder"></div>
   <div class="wrapper">
+
+    <!-- Modal -->
+    <div id="subscribe-me-" class="modal animated" role="dialog" data-keyboard="true" tabindex="-1">
+      <div class="newsletter-popup row align-items-center py-4  px-2"> 
+        <img src="./images/product/logo.png" alt="offer" class="offer col d-none d-sm-block">
+        <div class="col-auto newsletter-popup-static newsletter-popup-top">
+          <div class="popup-text">
+            <div class="popup-title">50% <span>off</span></div>
+            <div class="popup-desc mb-30">
+              <div>Sign up and get 50% off your next Order</div>
+            </div>
+          </div>
+          <form onsubmit="return  validatpopupemail();" method="post">
+            <div class="form-group required">
+              <input type="email" name="email-popup" id="email-popup" placeholder="Enter Your Email" class="form-control input-lg" required="">
+            </div>
+            <div class="form-group required">
+              <button type="submit" class="btn" id="email-popup-submit">Subscribe</button>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="checkme">
+              <label class="form-check-label" for="checkme">Dont show again</label>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal End -->
+
     <!-- =====  Nav START  ===== -->
     <nav id="top">
       <div class="container">
@@ -62,7 +92,7 @@
                           <li><a href="category_page.html">Urad</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits Nuts</a>
+                      <li class="dropdown"><a href="category_page.html?name=dryfruits">Dry Fruits  Nuts</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Akhrot  Figs</a></li>
                           <li><a href="category_page.html">Almonds  Cashews</a></li>
@@ -70,7 +100,7 @@
                           <li><a href="category_page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="ategory_page?name=oils">Edible Oils</a>
+                      <li class="dropdown"><a href="category_page?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category_page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category_page.html">Health Oils</a></li>
@@ -98,9 +128,9 @@
                       <li class="main_cat"> <a href="category_page.html">Hair Care</a> </li>
                     </ul>
                   </li>
-                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?namesnaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
+                  <li class="collapsed" data-toggle="collapse" data-target="#Biscuits,SnacksampChocolates"><a href="category_page.html?name=snaks">Biscuits, Snacks  Chocolates</a> <span><i class="fa fa-plus"></i></span>
                     <ul class="menu-dropdown collapse" id="Biscuits,SnacksampChocolates">
-                      <li class="main_cat"> <a href="category_page.html">Biscuits  Cookies</a> </li>
+                      <li class="main_cat"> <a href="category_page.html?name=snaks">Biscuits  Cookies</a> </li>
                       <li class="main_cat"> <a href="category_page.html">Chips  Crisps</a> </li>
                     </ul>
                   </li>
@@ -124,7 +154,6 @@
         </div>
       </div>
     </nav>
-    
     <!-- =====  Nav END  ===== -->
 
     <!-- =====  HEADER START  ===== -->
@@ -158,7 +187,7 @@
                   <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
                 </li>
                 <li class="login">
-                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
+                  <a id="name"><i class="fa fa-user"></i>Kitchen Kart</a>
                 </li>
                 <li class="register">
                   <a onclick="logout_firebase()">LogOut</a>
@@ -171,7 +200,7 @@
       <div class="header section pt-15 pb-15">
         <div class="container">
           <div class="row">
-            <div class="navbar-header col-2 header-bottom-left"> <a class="navbar-brand" href="index.html"> <img alt="Bigmarket" src="images/logo.png"> </a> </div>
+            <div class="navbar-header col-2 header-bottom-left"> <a class="navbar-brand" href="http://kitchenkartapp.in/"> <img alt="Bigmarket" src="images/logo.png"> </a> </div>
             <div class="col-10 header-bottom-right">
               <div class="header-menu">
                 <div class="responsive-menubar-block">
@@ -187,7 +216,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="dropdown active"><a href="category_page.html?name=staplesl">Daal & Pulses</a>
+                              <li class="dropdown active"><a href="category_page.html?name=staples">Daal & Pulses</a>
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
@@ -228,7 +257,7 @@
                                 <div class="dropdown-menu">
                                   <div class="dropdown-inner">
                                     <ul class="list-unstyled childs_2">
-                                      <li class="active"><a href="category_page.html">Groundnut & Coconut Oil</a></li>
+                                      <li class="active"><a href="category_page.html?name=oils">Groundnut & Coconut Oil</a></li>
                                       <li><a href="category_page.html">Health Oils</a></li>
                                       <li><a href="category_page.html">Mustard Oils</a></li>
                                       <li><a href="category_page.html">Soyabean Oils</a></li>
@@ -310,7 +339,7 @@
                             <ul class="list-unstyled childs_1">
                               
                               <!-- 2 Level Sub Categories START -->
-                              <li class="main_cat active"> <a href="category_page.html">Breakfast Cereal & Mixes</a> </li>
+                              <li class="main_cat active"> <a href="category_page.html?name=break">Breakfast Cereal & Mixes</a> </li>
                               <li class="main_cat"> <a href="category_page.html">Paneer & Curd</a> </li>
                               
                               <!-- 2 Level Sub Categories END -->
@@ -334,7 +363,7 @@
                   </div>
                   <div id="search" class="input-group">
                     <input type="text" id="search-input" onkeypress="checkEnter(event.keyCode)" onkeyup="getlistdata()" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" list="allDetails">
-                    <ul id="myUL" style="display:none; position: absolute; background-color: burlywood; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
+                    <ul id="myUL" style="display:none; position: absolute; background-color: white; top: 40px; width: 100%; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-left: 15px; z-index: 100;">
                       
                     </ul>
                     <span class="input-group-btn">
@@ -406,12 +435,12 @@
           </div>
         </div>
       </div>
-      <div class="header-static-block">
+      <div class="header-static-block" style="z-index: 1;">
         <div class="container">
           <div class="row">
             <div class="icon-block">
               <div class="home_icon">
-              <a href="index.html"><i class="fa fa-home"></i>Home</a>
+              <a href="./http://kitchenkartapp.in/"><i class="fa fa-home"></i>Home</a>
               </div>
               <div class="search_icon">
               <a href="#"><i class="fa fa-search"></i>Search</a>
@@ -435,7 +464,7 @@
       <div class="container">
         <h1 class="uppercase" id="Pagetype">Check Out</h1>
         <ul>
-          <li><a href="index.html"><i class="fa fa-home"></i></a></li>
+          <li><a href="http://kitchenkartapp.in/"><i class="fa fa-home"></i></a></li>
           <li class="active" id="PagetypeHome">Check Out</li>
         </ul>
       </div>
@@ -572,7 +601,7 @@
               <li><a href="#">Site Map</a></li>
               <li><a href="#">Wish List</a></li>
               <li><a href="#">My Account</a></li>
-              <li><a href="#">Order History</a></li>
+              <li><a href="order-history.html">Order History</a></li>
             </ul>
           </div>
           <div class="col-lg-3 footer-block">

@@ -1,34 +1,11 @@
-var User = "null";
-var UserName = "null";
-var UserNumber = "null";
-// ====================Get User Name==============================
-async function GetUserId() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // User logged in already or has just logged in.
-            console.log(user.uid);
-            User = user.uid;
-            UserNumber = user.phoneNumber;
-            const proxyurl = "https://cors-anywhere.herokuapp.com/";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.id;
-            fetch(proxyurl + url)
-            .then(response => response.text())
-            .then(contents => UserName = contents.name)
-            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-        } else {
-          // User not logged in or has just logged out.
-        }
-      });
-}
-// =====================================================
-
 // ======================== Add To Kart ===================================
 
 async function AddCartfunction(addcart, id) {
     qua = document.getElementById('qty'+id).value;
     
     var k = document.getElementById('Logindiv_firebase').style.display;
-    if(k === 'block' || User === 'null') {
+    if(localStorage.getItem('UserName') === null || localStorage.getItem('UserId') === null ) {
+        console.log('sadsfsd');
        location.replace("login.html");
     } else {
         CartAddApi(addcart, qua);
@@ -37,12 +14,12 @@ async function AddCartfunction(addcart, id) {
 
 async function CartAddApi(productdata, Quandity) {
     var mydata = {
-        user_id: User,
+        user_id: localStorage.getItem('UserId'),
         prod_id: productdata,
         prod_qty: Quandity
     }
     
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
     $.ajax({
         url : proxyurl+url,
@@ -61,11 +38,32 @@ async function CartAddApi(productdata, Quandity) {
 }
 
 //=========================================================================
+
+//================= Delete Basket Items ==================================
+
+const deleteBasketItem = async (id) => {
+    var url = 'http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/'+id;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const myJson = await response.json();
+    console.log(myJson);
+    location.reload();
+    
+}
+
+//========================================================================
+
+
 //=================== Basket Data ========================
 
 async function BasketData() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+User;
+    console.log('basket');
+    const proxyurl = "";
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => BasketDataDisplay(contents))
@@ -73,23 +71,20 @@ async function BasketData() {
 }
 
 async function BasketDataDisplay(Data) {
-    console.log("basket Data");
     var Jsondata = JSON.parse(Data);
     document.getElementById('cart-total-res').innerText = Jsondata.response.length;
     document.getElementById('cart-total').innerText = 'Item ' + Jsondata.response.length;
-    console.log(Jsondata.response.length);
-    console.log(document.getElementById('cart-total-res').innerText);
     var alldata = '';
     var totalprice = 0;
     for(var i = 0; i < Jsondata.response.length; i++)
         totalprice += Jsondata.response[i].sell_price;
     for(var i = 0; i < Math.min(5,Jsondata.response.length); i++){
-        alldata += '<tr><td class="text-center"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number"></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deletecartItem(this.id)"><i class="fa fa-times-circle"></i></a></td></tr>';
+        alldata += '<tr><td class="text-center"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number"></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deleteBasketItem('+Jsondata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></a></td></tr>';
     }
     document.getElementById('carttable').innerHTML = alldata;
     document.getElementById('PriceToal').innerHTML = '&#x20b9; &nbsp;' + totalprice;
     if(Jsondata.response.length > 5){
-        document.getElementById('view_option').innerHTML = '<a href="cart_page.html?id='+User+'">View All Products</a>';
+        document.getElementById('view_option').innerHTML = '<a href="cart_page.html?id='+localStorage.getItem('UserId')+'">View All Products</a>';
         document.getElementById('view_option').style.display = "block";
     }
 }
@@ -143,7 +138,7 @@ async function checkEnter(k) {
 }
 
 async function GetAllProductData() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -167,7 +162,7 @@ async function addproductinsearch(data) {
             //searchid.push('name');
         }
         if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
+            mydata += '<li><a href="brand_page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
             searchdata.push(APiData.response[i].brand.toUpperCase());
             //searchid.push('brand');
         }
@@ -178,7 +173,7 @@ async function addproductinsearch(data) {
 //===============================================================
 //================= POPULAR BRAND================================
 async function popular_brand() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -194,7 +189,7 @@ async function brand(data) {
 
     for(var i = 0; i < data_json.response.length; i++) {
         // console.log(i);
-        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='category_page.html?name=brand-name&id="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='brand_page.html?name="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
         if((i+1) % 5 == 0){
            k += "</div></div><div class='container' style><div class='row'>";
         }

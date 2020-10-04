@@ -1,8 +1,34 @@
 
 window.onload = function() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            localStorage.setItem("UserId", user.uid);
+            localStorage.setItem("UserNumber", user.phoneNumber);
+            UserNumber = user.phoneNumber;
+            console.log(user.uid);
+            const proxyurl = "";
+            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            fetch(proxyurl + url)
+            .then(response => response.text())
+            .then(contents => {
+                k = JSON.parse(contents);
+                console.log(k);
+                if(k.response.length === 0)
+                    location.replace('login.html');
+                else {
+                    localStorage.setItem("UserName",k.response[0].name);
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                }
+            })
+            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            
+        } else {
+          // User not logged in or has just logged out.
+        }
+    });
+    
     getfirebasecall();
     BasketData();
-    GetUserId();
     GetAllProductData();
     DisplayCartProductApi();
     topbrand_category();
@@ -16,6 +42,36 @@ window.onload = function() {
 //     GetAllProductData();
 //     DisplayCartProductApi();
 // }
+
+
+
+function getuserdetails(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem("UserId", user.uid);
+      localStorage.setItem("UserNumber", user.phoneNumber);
+    }
+  });
+  const proxyurl = "";
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  fetch(proxyurl + url)
+  .then(response => response.text())
+  .then(contents => checkuser(contents))
+  .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+function checkuser(ApiData) {
+  jsonApi = JSON.parse(ApiData);
+  if(jsonApi.response.length === 0)
+    AddData();
+  else {
+    window.location.replace("http://kitchenkartapp.in/");
+  }
+}
+function AddData() {
+    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
+  document.getElementById('signoutdiv_firebase').style.display ='block';
+  document.getElementById('Logindiv_firebase').style.display ='none';
+}
 
 
 // =============================     Firebase Call =========================================================
@@ -49,7 +105,7 @@ async function logout_firebase() {
 
 async function DisplayCartProductApi() {
     
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+User;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
     fetch( url)
     .then(response => response.text())
     .then(contents => DisplayCartProduct(contents))
@@ -61,13 +117,46 @@ async function DisplayCartProduct(data) {
     var displaytable = '';
     var totalprice = 0;
     for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="removecart(this.id)"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
+        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
         totalprice += displaydata.response[i].sell_price;
     }
     document.getElementById('AllProductDisplay').innerHTML = displaytable;
+    var slab='';
+    if (totalprice > 5000) {
+        slab = "5000";
+      } else if (totalprice > 3000) {
+        slab = "3000";
+      } else if (totalprice > 2500) {
+        slab = "2500";
+      } else if (totalprice > 2000) {
+        slab = "2000";
+      } else if (totalprice > 1800) {
+        slab = "1800";
+      } else if (totalprice > 1500) {
+        slab = "1500";
+      } else if (totalprice > 1200) {
+        slab = "1200";
+      } else if (totalprice > 800) {
+        slab = "800";
+      } else if (totalprice > 500) {
+        slab = "500";
+      } else if (totalprice > 300) {
+        slab = "300";
+      } else {
+        slab = "0";
+      }
     document.getElementById('subtotal').innerHTML = '&#8377;'+totalprice;
-    document.getElementById('deliverycharge').innerHTML = '&#8377;30';
-    document.getElementById('totalcharge').innerHTML = '&#8377;'+(totalprice+30);
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/delivery/"+slab;
+    var k;
+    fetch(url)
+    .then(response => response.text())
+    .then(contents => {
+        k = JSON.parse(contents);
+        document.getElementById('deliverycharge').innerHTML = '&#8377;'+k.response[0].charge;
+        document.getElementById('totalcharge').innerHTML = '&#8377;'+(totalprice+k.response[0].charge);
+    })
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+    
 
 }
 
@@ -203,7 +292,7 @@ async function getfirebasecall() {
 
 async function DisplayCartProductApi() {
     
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+User;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
     fetch(url)
     .then(response => response.text())
     .then(contents => DisplayCartProduct(contents))
@@ -215,7 +304,7 @@ async function DisplayCartProduct(data) {
     var displaytable = '';
     var totalprice = 0;
     for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="removecart(this.id)"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
+        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
         totalprice += displaydata.response[i].sell_price;
     }
     document.getElementById('AllProductDisplay').innerHTML = displaytable;

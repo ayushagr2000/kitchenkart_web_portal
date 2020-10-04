@@ -41,10 +41,10 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    BrandProductCall(data.id);
-    document.getElementById('Pagetype').innerHTML = data.id;
-    document.title += ' | ' + data.id;
-    document.getElementById('PagetypeHome').innerHTML = data.id;
+    BrandProductCall(data.name);
+    document.getElementById('Pagetype').innerHTML = data.name;
+    document.title += ' | ' + data.name;
+    document.getElementById('PagetypeHome').innerHTML = data.name;
     topbrand_category();
 }
 
@@ -69,7 +69,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
     AddData();
     else{
-    window.location.replace("http://kitchenkartapp.in/");
+    window.location.replace("index.html");
   }
 }
 function AddData() {
@@ -82,7 +82,7 @@ function AddData() {
 
 async function BrandProductCall(getdata) {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getv/"+getdata;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/tag/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => CallingApi(contents))

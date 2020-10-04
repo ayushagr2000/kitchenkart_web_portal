@@ -3,7 +3,32 @@ var GlobalApi = '';
 var searchdata = [];
 var searchid = [];
 window.onload = function() {
-    GetUserId();
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            localStorage.setItem("UserId", user.uid);
+            localStorage.setItem("UserNumber", user.phoneNumber);
+            UserNumber = user.phoneNumber;
+            console.log(user.uid);
+            const proxyurl = "";
+            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            fetch(proxyurl + url)
+            .then(response => response.text())
+            .then(contents => {
+                k = JSON.parse(contents);
+                console.log(k);
+                if(k.response.length === 0)
+                    location.replace('login.html');
+                else {
+                    localStorage.setItem("UserName",k.response[0].name);
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                }
+            })
+            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            
+        } else {
+          // User not logged in or has just logged out.
+        }
+    });
     getfirebasecall();
     BasketData();
     GetAllProductData();
@@ -65,8 +90,39 @@ window.onload = function() {
 
 }
 
+//===============================================
+
+function getuserdetails(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem("UserId", user.uid);
+      localStorage.setItem("UserNumber", user.phoneNumber);
+    }
+  });
+  const proxyurl = "";
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  fetch(proxyurl + url)
+  .then(response => response.text())
+  .then(contents => checkuser(contents))
+  .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+function checkuser(ApiData) {
+  jsonApi = JSON.parse(ApiData);
+  if(jsonApi.response.length === 0)
+    AddData();
+  else {
+    window.location.replace("http://kitchenkartapp.in/");
+  }
+}
+function AddData() {
+  document.getElementById('loginform').style.display ='none';
+  document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
+  document.getElementById('addDataform').style.display ='block';
+}
+//================================================
+
 async function BrandProductCall(getdata) {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getb/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -76,7 +132,7 @@ async function BrandProductCall(getdata) {
 
 async function GetApiCall(getdata) {
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getc/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -87,7 +143,7 @@ async function GetApiCall(getdata) {
 
 async function GetApiCall(getdata) {
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getc/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -118,7 +174,7 @@ async function CallingApi(Api_data) {
 // }
 
 async function topbrand_category(){
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -129,7 +185,7 @@ async function Category_Brand(data) {
     var jsonData = JSON.parse(data);
     var ulid = '';
     for(var i = 0; i < jsonData.response.length; i++)
-        ulid += '<li><a href="category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
+        ulid += '<li><a href="brand_page.html?name='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
     document.getElementById('topbrand_Category').innerHTML = ulid;
 }
 
@@ -185,7 +241,7 @@ async function CartAddApi(productdata, Quandity) {
         prod_qty: Quandity
     }
     
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
     $.ajax({
         url : proxyurl+url,

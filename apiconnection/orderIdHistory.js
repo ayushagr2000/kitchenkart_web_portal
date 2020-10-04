@@ -1,7 +1,34 @@
 window.onload = function() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            localStorage.setItem("UserId", user.uid);
+            localStorage.setItem("UserNumber", user.phoneNumber);
+            UserNumber = user.phoneNumber;
+            console.log(user.uid);
+            const proxyurl = "";
+            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            fetch(proxyurl + url)
+            .then(response => response.text())
+            .then(contents => {
+                k = JSON.parse(contents);
+                console.log(k);
+                if(k.response.length === 0)
+                    location.replace('login.html');
+                else {
+                    localStorage.setItem("UserName",k.response[0].name);
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                }
+            })
+            .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+            
+        } else {
+          // User not logged in or has just logged out.
+        }
+    });
+    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
     popular_brand();
-    GetUserId();
     BasketData();
+    getuserdetails();
     GetAllProductData();
     try {
         var url = document.location.href,
@@ -16,12 +43,44 @@ window.onload = function() {
         displayorderItems(data.order);
     } catch (e) {
         console.log(e);
-        //window.location.replace("index.html");
+        //window.location.replace("http://kitchenkartapp.in/");
     }
 }
+
+//===============================================
+
+function getuserdetails(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem("UserId", user.uid);
+      localStorage.setItem("UserNumber", user.phoneNumber);
+    }
+  });
+  const proxyurl = "";
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  fetch(proxyurl + url)
+  .then(response => response.text())
+  .then(contents => checkuser(contents))
+  .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+function checkuser(ApiData) {
+  jsonApi = JSON.parse(ApiData);
+  if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
+    AddData();
+  else {
+    window.location.replace("http://kitchenkartapp.in/");
+  }
+}
+function AddData() {
+  document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
+  document.getElementById('Logindiv_firebase').style.display ='none';
+  document.getElementById('signoutdiv_firebase').style.display ='block';
+}
+//================================================
+
 //========================= Display Data =====================
 async function displayorder(data) {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/id/"+data;
     fetch(proxyurl + url)
     .then(response => response.text())
@@ -42,7 +101,7 @@ async function printorder(details){
 
 //==================Order Table ================================
 async function displayorderItems(id){
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/items/"+id;
     fetch(proxyurl + url)
     .then(response => response.text())

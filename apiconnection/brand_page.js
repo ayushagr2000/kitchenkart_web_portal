@@ -16,13 +16,11 @@ window.onload = function() {
             .then(contents => {
                 k = JSON.parse(contents);
                 console.log(k);
-                if(localStorage.getItem('UserId')){
+                if(k.response.length === 0)
+                    location.replace('login.html');
+                else {
                     localStorage.setItem("UserName",k.response[0].name);
                     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
-                }
-                else {
-                    console.log('redirect');
-                    location.replace('login.html');
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
@@ -41,11 +39,12 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    BrandProductCall(data.id);
-    document.getElementById('Pagetype').innerHTML = data.id;
-    document.title += ' | ' + data.id;
-    document.getElementById('PagetypeHome').innerHTML = data.id;
+        BrandProductCall(data.name);
+        document.getElementById('Pagetype').innerHTML = data.name;
+        document.title += ' | Brand';
+        document.getElementById('PagetypeHome').innerHTML = data.name;
     topbrand_category();
+
 }
 
 //===============================================
@@ -66,9 +65,9 @@ function getuserdetails(){
 }
 function checkuser(ApiData) {
   jsonApi = JSON.parse(ApiData);
-  if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
+  if(jsonApi.response.length === 0)
     AddData();
-    else{
+  else {
     window.location.replace("http://kitchenkartapp.in/");
   }
 }
@@ -79,10 +78,9 @@ function AddData() {
 }
 //================================================
 
-
 async function BrandProductCall(getdata) {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getv/"+getdata;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getb/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => CallingApi(contents))
@@ -144,7 +142,7 @@ async function Category_Brand(data) {
     var jsonData = JSON.parse(data);
     var ulid = '';
     for(var i = 0; i < jsonData.response.length; i++)
-        ulid += '<li><a href="category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
+        ulid += '<li><a href="brand_page.html?name='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
     document.getElementById('topbrand_Category').innerHTML = ulid;
 }
 
@@ -184,10 +182,10 @@ async function AddCartfunction(addcart, id) {
     console.log(qua)
     console.log(addcart);
     var k = document.getElementById('Logindiv_firebase').style.display;
-    if(localStorage.getItem('UserId') || localStorage.getItem('UserName')) {
-        CartAddApi(addcart, qua);
-    } else {
+    if(k === 'block') {
         location.replace("login.html");
+    } else {
+        CartAddApi(addcart, qua);
     }
 }
 

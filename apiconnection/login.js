@@ -1,19 +1,21 @@
 window.onload = function() {
     BasketData();
     GetAllProductData();
-    GetUserId();
     firebase.auth().onAuthStateChanged((user) => {
           if (user) {
             // User logged in already or has just logged in.
             document.getElementById('loader').style.display = 'none';
             console.log(user.uid);
-            getuserdetails(user.uid);
-            //window.location.replace("index.html");
+            localStorage.setItem("UserId", user.uid);
+            localStorage.setItem("UserNumber", user.phoneNumber);
+            getuserdetails();
+            //window.location.replace("http://kitchenkartapp.in/");
           } else {
             var ui = new firebaseui.auth.AuthUI(firebase.auth());
             var uiConfig = {
                 callbacks: {
                   signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                    getuserdetails();
                     // User successfully signed in.
                     // Return type determines whether we continue the redirect automatically
                     // or whether we leave that to developer to handle.
@@ -27,7 +29,7 @@ window.onload = function() {
                 },
                 // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
                 signInFlow: 'popup',
-                signInSuccessUrl: 'login.html',
+                signInSuccessUrl: '',
                 signInOptions: [
                   // Leave the lines as is for the providers you want to offer your users.
                   //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -50,26 +52,32 @@ window.onload = function() {
     // Initialize the FirebaseUI Widget using Firebase.
 }
 
-function getuserdetails(id){
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+id;
+
+function getuserdetails(){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      localStorage.setItem("UserId", user.uid);
+      localStorage.setItem("UserNumber", user.phoneNumber);
+    }
+  });
+  const proxyurl = "";
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
-  .then(contents => checkuser(contents, id))
+  .then(contents => checkuser(contents))
   .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
-function checkuser(ApiData, id) {
+function checkuser(ApiData) {
   jsonApi = JSON.parse(ApiData);
   console.log(jsonApi);
   if(jsonApi.response.length === 0)
-    AddData(id);
+    AddData();
   else {
-    alert('else');
-    //window.location.replace("index.html");
+    window.location.replace("http://kitchenkartapp.in/");
   }
 }
-function AddData(id) {
-  console.log(UserNumber);
+function AddData() {
+    
   document.getElementById('loginform').style.display ='none';
   document.getElementById('addDataform').style.display ='block';
 }
@@ -77,17 +85,17 @@ function AddDataToDatabase() {
   var name = document.getElementById('username').value;
   var email = document.getElementById('useremail').value;
   var reffer = document.getElementById('userreffer').value;
-  if(!name || !email || !reffer)
-    alert('sdfdsf');
+  if(!name || !email)
+    alert('Name or Email is not valid');
   else {
     var mydata = {
-      name: UserName,
+      name: document.getElementById('username').value,
       email: email,
-      phone: UserNumber,
-      auth_id : User,
-      reffer : reffer
+      phone: localStorage.getItem('UserNumber'),
+      auth_id : localStorage.getItem('UserId'),
+      reffer : reffer|null
     }
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "";
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/";
     $.ajax({
       url : proxyurl+url,
@@ -95,7 +103,7 @@ function AddDataToDatabase() {
       data : JSON.stringify(mydata),
       contentType: 'application/json',
       success : function(result, status) {
-         alert('Success');
+         location.replace('http://kitchenkartapp.in/');
       },
       beforeSend: function(){
           console.log("Sending...");
