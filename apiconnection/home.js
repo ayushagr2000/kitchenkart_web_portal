@@ -53,16 +53,41 @@ async function Banner_ApiCall() {
 
 async function Banner(Data) {
     var data_json = JSON.parse(Data);
-    var bannercount = '<div class="carousel-item active"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'"><a class="carousel-control-prev" style="width: 100%;"></a></div>'; 
+    var bannercount = '';//<div class="carousel-item active"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'"><a class="carousel-control-prev" style="width: 100%;"></a></div>'; 
+    if(data_json.response[0].banner_type === 'PRODUCT_CLICK')
+        bannercount+= '<div class="carousel-item active"><a href="product_detail_page.html?id='+data_json.response[0].meta_data+'"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+    else if(data_json.response[0].banner_type === 'BRAND_Click')
+        bannercount+= '<div class="carousel-item active"><a href="brand_page.html?name='+data_json.response[0].meta_data+'"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+    else if(data_json.response[0].banner_type === 'VENDOR_CLICK')
+        bannercount+= '<div class="carousel-item active"><a href="Vendor_page.html?id='+data_json.response[0].meta_data+'"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+    else if(data_json.response[0].banner_type === 'TAG_CLICK')
+        bannercount+= '<div class="carousel-item active"><a href="tagpage.html?name='+data_json.response[0].meta_data+'"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+    else if(data_json.response[0].banner_type === 'CATEGORY_CLICK')
+        bannercount+= '<div class="carousel-item active"><a href="category_page.html?name='+data_json.response[0].meta_data+'"><img class="d-block w-100" src="'+data_json.response[0].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+    else 
+        bannercount+= '<div class="carousel-item "><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></div>';
     var BannerImage = '<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color: red;"></li>';
 
     for(var i = 1; i < data_json.response.length; i++) {
         BannerImage += '<li data-target="#carouselExampleIndicators" data-slide-to="'+(i)+'"style="background-color: red;"></li>';
-        bannercount+= '<div class="carousel-item "><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></div>';
+    
+        if(data_json.response[i].banner_type === 'PRODUCT_CLICK')
+            bannercount+= '<div class="carousel-item "><a href="product_detail_page.html?id='+data_json.response[i].meta_data+'"><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+        else if(data_json.response[i].banner_type === 'BRAND_Click')
+            bannercount+= '<div class="carousel-item "><a href="brand_page.html?name='+data_json.response[i].meta_data+'"><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+        else if(data_json.response[i].banner_type === 'VENDOR_CLICK')
+            bannercount+= '<div class="carousel-item "><a href="Vendor_page.html?id='+data_json.response[i].meta_data+'"><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+        else if(data_json.response[i].banner_type === 'TAG_CLICK')
+            bannercount+= '<div class="carousel-item "><a href="tagpage.html?name='+data_json.response[i].meta_data+'"><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+        else if(data_json.response[i].banner_type === 'CATEGORY_CLICK')
+            bannercount+= '<div class="carousel-item "><a href="category_page.html?name='+data_json.response[i].meta_data+'"><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></a></div>';
+        else 
+            bannercount+= '<div class="carousel-item "><img class="d-block w-100" src="'+data_json.response[i].banner_url+'";"><a class="carousel-control-prev" style="width: 100%;"></a></div>';
     }
    
     document.getElementById('BannerImage').innerHTML = bannercount;
     document.getElementById('BannerCount').innerHTML = BannerImage;
+    
 }
 
 async function Featured_ProductsApi() {

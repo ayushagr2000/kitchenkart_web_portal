@@ -30,7 +30,7 @@ async function addproductinsearch(data) {
             searchid.push('name');
         }
         if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name=brand-name&id='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
+            mydata += '<li><a href="brand_page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
             searchdata.push(APiData.response[i].brand.toUpperCase());
             searchid.push('brand');
         }
