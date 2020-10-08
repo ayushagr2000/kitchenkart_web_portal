@@ -758,15 +758,9 @@
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                   <div class="card-body">
-                    <p>Please select the preferred shipping method to use on this order.</p>
-                    <p><strong>Flat Rate</strong></p>
-                    <div class="radio mb-10" >
-                      <label>
-                        <input type="radio" checked="checked" value="flat.flat" name="shipping_method"> Flat Shipping Rate - $5.00</label>
-                    </div>
                     <p><strong>Add Comments About Your Order</strong></p>
                     <p>
-                      <textarea id = "Comments" class="form-control" rows="8" name="comment"></textarea>
+                      <textarea id="usesrComments" class="form-control" rows="8" name="comment"></textarea>
                     </p>
                     <div class="buttons">
                       <div class="pull-right">
@@ -787,28 +781,28 @@
                     <p>Please select the preferred payment method to use on this order.</p>
 
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                      <input class="form-check-input" type="radio" name="pay" id="exampleRadios1" value="Paytm" checked>
                       <label class="form-check-label" for="exampleRadios2">
-                        PayPal
+                        Paytm
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                      <input class="form-check-input" type="radio" name="pay" id="exampleRadios2" value="Google Pay">
+                      <label class="form-check-label" for="exampleRadios2">
+                        Google Pay
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pay" id="exampleRadios3" value="PhonePe">
+                      <label class="form-check-label" for="exampleRadios2">
+                        PhonePe
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pay" id="exampleRadios4" value="Cash On Delivery" >
                       <label class="form-check-label" for="exampleRadios1">
                         Cash On Delivery
                       </label>
-                    </div>
-
-   
-                    <p>Add Comments About Your Order</p>
-                    <p>
-                      <textarea class="form-control" rows="8" name="comment"></textarea>
-                    </p>
-                    <div class="buttons">
-                      <div class="pull-right">I have read and agree to the <a class="agree" href="#"><b>Terms &amp; Conditions</b></a>
-                        <input type="checkbox" value="1" name="agree"> &nbsp;
-                        <input type="button" class="btn" data-loading-text="Loading..." id="button-payment-method" value="Continue">
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -868,6 +862,7 @@
           </div>
         </div>
       <!-- =====  Brand start ===== -->
+      <!--
       <div id="brand_carouse" class="section text-center mt-30 pb-15">
         <div class="row">
           <div class="col-12">
@@ -875,10 +870,11 @@
           </div>
           <div class="col-sm-12" id ="Popular_brand_div">
             <!-- <div class="brand owl-carousel">
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
+      -->
       <!-- =====  Brand end ===== -->
       </div>
       <!-- =====  CONTAINER END  ===== -->
