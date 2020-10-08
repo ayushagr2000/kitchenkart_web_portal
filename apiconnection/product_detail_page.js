@@ -62,12 +62,15 @@ function getuserdetails(){
   .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
 function checkuser(ApiData) {
-  jsonApi = JSON.parse(ApiData);
-  if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
-    AddData();
-  else {
-    window.location.replace("login.html");
-  }
+    jsonApi = JSON.parse(ApiData);
+    if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
+        AddData();
+    else if(localStorage.getItem('UserId') == null && localStorage.getItem('UserName') == null){
+        console.log("No Data Insertion");
+    }
+    else {
+        window.location.replace("login.html");
+    }
 }
 function AddData() {
   document.getElementById('loginform').style.display ='none';

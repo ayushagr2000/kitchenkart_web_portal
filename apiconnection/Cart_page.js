@@ -33,6 +33,7 @@ window.onload = function() {
     DisplayCartProductApi();
     topbrand_category();
     popular_brand();
+    getuserdetails();
 }
 
 // window.onload = function() {
@@ -61,10 +62,10 @@ function getuserdetails(){
 }
 function checkuser(ApiData) {
   jsonApi = JSON.parse(ApiData);
-  if(jsonApi.response.length === 0)
+  if(localStorage.getItem('UserName') && localStorage.getItem('UserId'))
     AddData();
   else {
-    window.location.replace("http://kitchenkartapp.in/");
+    window.location.replace("http://kitchenkartapp.in/login.html");
   }
 }
 function AddData() {
