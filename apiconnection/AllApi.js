@@ -19,18 +19,18 @@ async function addproductinsearch(data) {
     var mydata = "";
     for(var i = 0; i < APiData.response.length; i++){
         if(!searchdata.includes(APiData.response[i].name.toUpperCase())){
-            mydata += '<li><a href="product_detail_page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
+            mydata += '<li><a href="product-detail-page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
             searchdata.push(APiData.response[i].name.toUpperCase());
             searchid.push(APiData.response[i].product_id);
             //console.log(APiData.response[i].name);
         }
         if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> See all '+APiData.response[i].category + '</h4></a></li>';
+            mydata += '<li><a href="category-page.html?name='+APiData.response[i].category+'"><h4> See all '+APiData.response[i].category + '</h4></a></li>';
             searchdata.push(APiData.response[i].category.toUpperCase());
             searchid.push('name');
         }
         if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
-            mydata += '<li><a href="brand_page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
+            mydata += '<li><a href="brand-page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
             searchdata.push(APiData.response[i].brand.toUpperCase());
             searchid.push('brand');
         }

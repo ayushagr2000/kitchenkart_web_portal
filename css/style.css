@@ -6922,3 +6922,10 @@ body{
   color: #808080;
   margin: 0 5px;
 }
+
+/*  Adding Search Image Size*/
+.vertical-menu {
+    width: 200px;
+    height: 150px;
+    overflow-y: auto;
+}

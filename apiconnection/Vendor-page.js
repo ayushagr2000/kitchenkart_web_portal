@@ -41,10 +41,10 @@ window.onload = function() {
             tmp = params[i].split('=');
             data[tmp[0]] = tmp[1];
         }
-    BrandProductCall(data.name);
-    document.getElementById('Pagetype').innerHTML = data.name;
-    document.title += ' | ' + data.name;
-    document.getElementById('PagetypeHome').innerHTML = data.name;
+    BrandProductCall(data.id);
+    document.getElementById('Pagetype').innerHTML = data.id;
+    document.title += ' | ' + data.id;
+    document.getElementById('PagetypeHome').innerHTML = data.id;
     topbrand_category();
 }
 
@@ -69,7 +69,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))
     AddData();
     else{
-    window.location.replace("index.html");
+    window.location.replace("http://kitchenkartapp.in/");
   }
 }
 function AddData() {
@@ -82,7 +82,7 @@ function AddData() {
 
 async function BrandProductCall(getdata) {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/tag/"+getdata;
+    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getv/"+getdata;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => CallingApi(contents))
@@ -119,7 +119,7 @@ async function CallingApi(Api_data) {
     GlobalApi = ApiJson;
     var Adding_Items='';
     for(var i = k; i < Math.min(GlobalApi.response.length,document.getElementById('input-limit').value) ; i++){
-        Adding_Items +=  '<div class="product-layout product-grid col-lg-3 col-6 "><div class="item"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="'+GlobalApi.response[i].title+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'"" title="pure-spice-3" class="img-responsive"> </a></div></div><div class="product-details"><div class="caption"><h4><a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> '+GlobalApi.response[i].name+'"</a></h4><p class="price">&#8377; &nbsp; '+GlobalApi.response[i].sell_price+'<span class="price-tax">Ex Tax: &#8377; 7.25</span></p><p class="desc">'+ApiJson.response[i].descp+'</p><div class="product_option"><div class="form-group required " style="padding-top: 10px; padding-bottom: 10px;"><p class="price" style="float: left;">Size : '+ApiJson.response[i].size+'</p><p class="price" style="float: right;"> Discount '+Math.round(100-(ApiJson.response[i].sell_price/ApiJson.response[i].max_price * 100))+'%</p><br><p class="price" style="text-align: center;">MRP &#8377; &nbsp; '+ApiJson.response[i].max_price+'</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" name="quantity" id="qty'+i+'" min="1" value="1"  step="1" class="qty form-control"><button type="button" class="addtocart pull-right"id="cart'+i+'" onclick="AddCartfunction('+ApiJson.response[i].product_id+', '+i+')" >Add</button></div></div></div></div></div></div></div>';
+        Adding_Items +=  '<div class="product-layout product-grid col-lg-3 col-6 "><div class="item"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="'+GlobalApi.response[i].title+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'"" title="pure-spice-3" class="img-responsive"> </a></div></div><div class="product-details"><div class="caption"><h4><a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> '+GlobalApi.response[i].name+'"</a></h4><p class="price">&#8377; &nbsp; '+GlobalApi.response[i].sell_price+'<span class="price-tax">Ex Tax: &#8377; 7.25</span></p><p class="desc">'+ApiJson.response[i].descp+'</p><div class="product_option"><div class="form-group required " style="padding-top: 10px; padding-bottom: 10px;"><p class="price" style="float: left;">Size : '+ApiJson.response[i].size+'</p><p class="price" style="float: right;"> Discount '+Math.round(100-(ApiJson.response[i].sell_price/ApiJson.response[i].max_price * 100))+'%</p><br><p class="price" style="text-align: center;">MRP &#8377; &nbsp; '+ApiJson.response[i].max_price+'</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" name="quantity" id="qty'+i+'" min="1" value="1"  step="1" class="qty form-control"><button type="button" class="addtocart pull-right"id="cart'+i+'" onclick="AddCartfunction('+ApiJson.response[i].product_id+', '+i+')" >Add</button></div></div></div></div></div></div></div>';
     }
     document.getElementById('AddAllItemsAsPerApi').innerHTML = Adding_Items;
 }
@@ -127,7 +127,7 @@ async function CallingApi(Api_data) {
 async function GetSorted(){
     var Adding_Items='';
     for(var i = k; i < Math.min(GlobalApi.response.length,document.getElementById('input-limit').value) ; i++){
-        Adding_Items +=  '<div class="product-layout product-grid col-lg-3 col-6 "><div class="item"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="'+GlobalApi.response[i].title+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="pure-spice-3" class="img-responsive"> </a></div></div><div class="product-details"><div class="caption"><h4><a href="product_detail_page.html?id='+GlobalApi.response[i].product_id+'"> '+GlobalApi.response[i].name+'"</a></h4><p class="price">&#8377; &nbsp 7.25<span class="price-tax">Ex Tax: &#8377; 7.25</span></p><p class="desc">'+ApiJson.response[i].descp+'</p><div class="product_option"><div class="form-group required " style="padding-top: 10px; padding-bottom: 10px;"><p class="price" style="float: left;">Left</p><p class="price" style="float: right;">Right</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" id="qty'+i+'" name="quantity" min="1" value="1"  step="1" class="qty form-control"><button type="button" id="cart'+i+'" onclick="AddCartfunction('+ApiJson.response[i].product_id+')" class="addtocart pull-right">Add</button></div></div></div></div></div></div></div>';
+        Adding_Items +=  '<div class="product-layout product-grid col-lg-3 col-6 "><div class="item"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="'+GlobalApi.response[i].title+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> <img src="'+GlobalApi.response[i].img+'" style="height:280px;" alt="'+GlobalApi.response[i].name+'" title="pure-spice-3" class="img-responsive"> </a></div></div><div class="product-details"><div class="caption"><h4><a href="product-detail-page.html?id='+GlobalApi.response[i].product_id+'"> '+GlobalApi.response[i].name+'"</a></h4><p class="price">&#8377; &nbsp 7.25<span class="price-tax">Ex Tax: &#8377; 7.25</span></p><p class="desc">'+ApiJson.response[i].descp+'</p><div class="product_option"><div class="form-group required " style="padding-top: 10px; padding-bottom: 10px;"><p class="price" style="float: left;">Left</p><p class="price" style="float: right;">Right</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" id="qty'+i+'" name="quantity" min="1" value="1"  step="1" class="qty form-control"><button type="button" id="cart'+i+'" onclick="AddCartfunction('+ApiJson.response[i].product_id+')" class="addtocart pull-right">Add</button></div></div></div></div></div></div></div>';
     }
     document.getElementById('AddAllItemsAsPerApi').innerHTML = Adding_Items;
 }
@@ -144,7 +144,7 @@ async function Category_Brand(data) {
     var jsonData = JSON.parse(data);
     var ulid = '';
     for(var i = 0; i < jsonData.response.length; i++)
-        ulid += '<li><a href="category_page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
+        ulid += '<li><a href="category-page.html?name=brand-name&id='+jsonData.response[i].brand_tag+'">'+jsonData.response[i].brand_name+'</a></li>';
     document.getElementById('topbrand_Category').innerHTML = ulid;
 }
 

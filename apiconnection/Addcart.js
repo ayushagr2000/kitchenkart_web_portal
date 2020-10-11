@@ -79,12 +79,12 @@ async function BasketDataDisplay(Data) {
     for(var i = 0; i < Jsondata.response.length; i++)
         totalprice += Jsondata.response[i].sell_price;
     for(var i = 0; i < Math.min(5,Jsondata.response.length); i++){
-        alldata += '<tr><td class="text-center"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product_detail_page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number"></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deleteBasketItem('+Jsondata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></a></td></tr>';
+        alldata += '<tr><td class="text-center"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number"></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deleteBasketItem('+Jsondata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></a></td></tr>';
     }
     document.getElementById('carttable').innerHTML = alldata;
     document.getElementById('PriceToal').innerHTML = '&#x20b9; &nbsp;' + totalprice;
     if(Jsondata.response.length > 5){
-        document.getElementById('view_option').innerHTML = '<a href="cart_page.html?id='+localStorage.getItem('UserId')+'">View All Products</a>';
+        document.getElementById('view_option').innerHTML = '<a href="cart-page.html?id='+localStorage.getItem('UserId')+'">View All Products</a>';
         document.getElementById('view_option').style.display = "block";
     }
 }
@@ -119,13 +119,13 @@ async function getdata() {
         //location.replace("");
         var indexid = searchdata.indexOf(document.getElementById("search-input").value.toUpperCase());
         if(searchid[indexid] === 'brand'){
-            location.replace("category_page.html?name=brand-name&id="+searchdata[indexid]);
+            location.replace("category-page.html?name=brand-name&id="+searchdata[indexid]);
         }
         else if(searchdata[indexid] === 'name') {
-            location.replace("category_page.html?name="+searchdata[indexid]);
+            location.replace("category-page.html?name="+searchdata[indexid]);
         }
         else{
-            location.replace("product_detail_page.html?id="+searchid[indexid]);
+            location.replace("product-detail-page.html?id="+searchid[indexid]);
         }
     }
     else {
@@ -151,18 +151,18 @@ async function addproductinsearch(data) {
     var mydata = "";
     for(var i = 0; i < APiData.response.length; i++){
         if(!searchdata.includes(APiData.response[i].name.toUpperCase())){
-            mydata += '<li><a href="product_detail_page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
+            mydata += '<li><a href="product-detail-page.html?id='+APiData.response[i].product_id+'"><h5>'+APiData.response[i].name + '</h5></a></li>';
             searchdata.push(APiData.response[i].name.toUpperCase());
             // searchid.push('name');
             //console.log(APiData.response[i].name);
         }
         if(!searchdata.includes(APiData.response[i].category.toUpperCase())){
-            mydata += '<li><a href="category_page.html?name='+APiData.response[i].category+'"><h4> '+APiData.response[i].category + '</h4></a></li>';
+            mydata += '<li><a href="category-page.html?name='+APiData.response[i].category+'"><h4> '+APiData.response[i].category + '</h4></a></li>';
             searchdata.push(APiData.response[i].category.toUpperCase());
             //searchid.push('name');
         }
         if(!searchdata.includes(APiData.response[i].brand.toUpperCase())){
-            mydata += '<li><a href="brand_page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
+            mydata += '<li><a href="brand-page.html?name='+APiData.response[i].brand+'"><h4>'+APiData.response[i].brand + '</h4></a></li>';
             searchdata.push(APiData.response[i].brand.toUpperCase());
             //searchid.push('brand');
         }
@@ -189,8 +189,8 @@ async function brand(data) {
 
     for(var i = 0; i < data_json.response.length; i++) {
         // console.log(i);
-        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='brand_page.html?name="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
-        if((i+1) % 5 == 0){
+        k += "<div class='rounded col-sm img-fluid' style='padding: 35px; margin:5px;'> <a href='brand-page.html?name="+data_json.response[i].brand_tag+"'><img src='"+data_json.response[i].brand_img+"'alt='"+data_json.response[i].brand_name+"' style='margin: auto;'/></a> </div>";
+        if((i+1) % 6 == 0){
            k += "</div></div><div class='container' style><div class='row'>";
         }
     }
