@@ -44,6 +44,7 @@ async function logout_firebase() {
         alert("Successfully Logout");
         document.getElementById('Logindiv_firebase').style.display = 'block';
         document.getElementById('signoutdiv_firebase').style.display = 'none';
+        document.getElementById('mobileLogin').innerHTML = '<a href="login.html"><i class="fa fa-user"></i>Login</a>';
         location.reload();
       }, function(error) {
         // An error happened.
