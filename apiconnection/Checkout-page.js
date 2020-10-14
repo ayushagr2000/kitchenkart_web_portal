@@ -296,7 +296,7 @@ async function conformOrder() {
                 "mobile_no": mobile,
                 "timestamp": h + ":" + m + ":" + s,
                 "order_date": today,
-                "promocode": "No",
+                "promocode": document.getElementById('input-coupon').value,
                 "promoline":"NO"
             };
             $.ajax({

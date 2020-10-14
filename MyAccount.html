@@ -98,6 +98,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
   <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+  
 </head>
 
 <body>
@@ -132,7 +133,7 @@
                           <li><a href="category-page.html">Other Dry Fruits</a></li>
                         </ul>
                       </li>
-                      <li class="dropdown"><a href="ategory-page?name=oils">Edible Oils</a>
+                      <li class="dropdown"><a href="category-page.html?name=oils">Edible Oils</a>
                         <ul class="list-unstyled childs_2">
                           <li><a href="category-page.html">Groundnut  Coconut Oil</a></li>
                           <li><a href="category-page.html">Health Oils</a></li>
@@ -219,7 +220,7 @@
                   <a href="#"><i class="fa fa-phone"></i> +91 99893 854119</a> 
                 </li>
                 <li class="login">
-                  <a><i class="fa fa-user"></i>Kitchen Kart</a>
+                  <a id="name"><i class="fa fa-user"></i>Kitchen Kart</a>
                 </li>
                 <li class="register">
                   <a onclick="logout_firebase()">LogOut</a>
@@ -479,7 +480,7 @@
               </div>
               <div class="cart_icon">
               </div>
-              <div class="login_icon" id="mobileLogin">
+              <div class="login_icon">
                 <a href="login.html"><i class="fa fa-user"></i>Login</a>
               </div>
               <div class="telephone_icon">
@@ -497,12 +498,12 @@
         <h1 class="uppercase" id="Pagetype">My Account</h1>
         <ul>
           <li><a href="http://kitchenkartapp.in/"><i class="fa fa-home"></i></a></li>
-          <li class="active"><a onclick="logout_firebase()">LogOut</a></li>
+          <li class="active" onclick="logout_firebase()">Log Out</li>
         </ul>
       </div>
     </div>
     <!-- =====  BREADCRUMB END===== -->
-    <div class="product-section section mt-30" id="loginform">
+    <div class="product-section section mt-30">
     <!-- =====  CONTAINER START  ===== -->
       
     </div>
@@ -561,10 +562,10 @@
           <div class="col-lg-3 footer-block">
             <h4 class="footer-title py-2">Contacts</h4>
             <ul>
-              <li class="add">Kitchenkart Head Office Chobey colony Chhatrapur(471002) Madhya Pradesh</li>
-              <li class="phone">+91 94249 22610
-                <br> </li>
-              <li class="email">Contactus@kitchenkart.com</li>
+              <li class="add">Warehouse & Offices, 12345 Street name, California USA</li>
+              <li class="phone">(+123) 456 789
+                <br> (+024) 666 888</li>
+              <li class="email">Contact@yourcompany.com</li>
             </ul>
           </div>
         </div>
@@ -621,7 +622,10 @@
               </div>
             </div>
             <div class="col-12 ">
-              <div class="copyright-part text-center pt-10 pb-10 mt-30">@ 2019 All Rights Reserved Bigmarket</div>
+              <div class="copyright-part text-center pt-10 pb-10 mt-30" id="year">@ 2019 All Rights Reserved Bigmarket</div>
+              <script>
+                  document.getElementById("year").innerHTML = "@ "+new Date().getFullYear()+" All Rights Reserved Bigmarket";
+              </script>
             </div>
           </div>
         </div>
@@ -640,7 +644,7 @@
   <!--------------  Firebase -------->
   <script src="./apiconnection/firebaseconnection.js"></script>
   <script src="./apiconnection/Addcart.js"></script>
-  <<script src="./apiconnection/AllApi.js"></script>
+  <script src="./apiconnection/AllApi.js"></script>
   <script src="./apiconnection/myaccount.js"></script>
   
 

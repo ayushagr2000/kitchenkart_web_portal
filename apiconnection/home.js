@@ -1,6 +1,11 @@
 var searchdata = [];
 var searchid = [];
 var UserId = "null";
+
+function res(){
+    console.log("Your screen resolution is: " + screen.width);
+}
+
 window.onload = function() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -19,7 +24,7 @@ window.onload = function() {
                     location.replace('login.html');
                 else {
                     localStorage.setItem("UserName",k.response[0].name);
-                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i><a href ="MyAccount.html">'+k.response[0].name+'</a>';
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
@@ -130,7 +135,6 @@ async function logout_firebase() {
         alert("Successfully Logout");
         document.getElementById('Logindiv_firebase').style.display = 'block';
         document.getElementById('signoutdiv_firebase').style.display = 'none';
-        document.getElementById('mobileLogin').innerHTML = '<a href="login.html"><i class="fa fa-user"></i>Login</a>';
       }, function(error) {
         // An error happened.
       });

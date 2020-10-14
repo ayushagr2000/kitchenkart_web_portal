@@ -625,7 +625,10 @@
               </div>
             </div>
             <div class="col-12 ">
-              <div class="copyright-part text-center pt-10 pb-10 mt-30">@ 2019 All Rights Reserved Bigmarket</div>
+              <div class="copyright-part text-center pt-10 pb-10 mt-30" id="year">@ 2019 All Rights Reserved Bigmarket</div>
+              <script>
+                  document.getElementById("year").innerHTML = "@ "+new Date().getFullYear()+" All Rights Reserved Bigmarket";
+              </script>
             </div>
           </div>
         </div>

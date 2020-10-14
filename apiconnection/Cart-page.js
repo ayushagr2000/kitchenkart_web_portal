@@ -18,6 +18,7 @@ window.onload = function() {
                 else {
                     localStorage.setItem("UserName",k.response[0].name);
                     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    DisplayCartProductApi();
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
@@ -30,19 +31,11 @@ window.onload = function() {
     getfirebasecall();
     BasketData();
     GetAllProductData();
-    DisplayCartProductApi();
+    
     topbrand_category();
     popular_brand();
     getuserdetails();
 }
-
-// window.onload = function() {
-//     getfirebasecall();
-//     popular_brand();
-//     BasketData();
-//     GetAllProductData();
-//     DisplayCartProductApi();
-// }
 
 
 
@@ -105,7 +98,6 @@ async function logout_firebase() {
 //============= Body Display ==============================================
 
 async function DisplayCartProductApi() {
-    
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
     fetch( url)
     .then(response => response.text())
@@ -123,6 +115,7 @@ async function DisplayCartProduct(data) {
     }
     document.getElementById('AllProductDisplay').innerHTML = displaytable;
     var slab='';
+    console.log("display");
     if (totalprice > 5000) {
         slab = "5000";
       } else if (totalprice > 3000) {
@@ -274,9 +267,7 @@ async function getdata() {
 // =============================     Firebase Call =========================================================
 async function getfirebasecall() {
     firebase.auth().onAuthStateChanged((user) => {
-        console.log("Enter in function");
           if (user) {
-            console.log(user.uid);
             document.getElementById('Logindiv_firebase').style.display = "none";
             document.getElementById('signoutdiv_firebase').style.display = "block";
           } else {  
@@ -288,33 +279,6 @@ async function getfirebasecall() {
 
 
 // ======================== Firebase Ends =================================
-
-//============= Body Display ==============================================
-
-async function DisplayCartProductApi() {
-    
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
-    fetch(url)
-    .then(response => response.text())
-    .then(contents => DisplayCartProduct(contents))
-    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-}
-
-async function DisplayCartProduct(data) {
-    var displaydata = JSON.parse(data);
-    var displaytable = '';
-    var totalprice = 0;
-    for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
-        totalprice += displaydata.response[i].sell_price;
-    }
-    document.getElementById('AllProductDisplay').innerHTML = displaytable;
-    document.getElementById('subtotal').innerHTML = '&#8377;'+totalprice;
-    document.getElementById('deliverycharge').innerHTML = '&#8377;30';
-    document.getElementById('totalcharge').innerHTML = '&#8377;'+(totalprice+30);
-}
-
-//==========================================================================
 //========================= TOP BRAND CATEGORY =============================
 async function topbrand_category(){
     const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";

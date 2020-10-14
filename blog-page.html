@@ -727,11 +727,13 @@
               <div class="section_title">payment option </div>
               <div class="payment-icon text-center">
                 <ul>
-                  <li><i class="fab fa-cc-paypal"></i></li>
-                  <li><i class="fab fa-cc-visa"></i></li>
-                  <li><i class="fab fa-cc-discover"></i></li>
-                  <li><i class="fab fa-cc-mastercard"></i></li>
-                  <li><i class="fab fa-cc-amex"></i></li>
+                  <li><a><img src="images/payment/Googlepay.PNG" style="height:30px; width:100px;" class="img-responsive"></a></li>
+                  <li><a><img src="images/payment/paytm.PNG" style="height:30px; width:100px;" class="img-responsive"></a></li>
+                  <li><a><img src="images/payment/phonepay.PNG" style="height:30px; width:100px;" class="img-responsive"></a></li>
+                  <!--<li><i class="fab fa-cc-visa"></i></li>-->
+                  <!--<li><i class="fab fa-cc-discover"></i></li>-->
+                  <!--<li><i class="fab fa-cc-mastercard"></i></li>-->
+                  <!--<li><i class="fab fa-cc-amex"></i></li>-->
                 </ul>
               </div>
             </div>
@@ -740,8 +742,7 @@
               <div class="section_title">download app</div>
               <div class="app-download text-center">
                 <ul class="app-icon">
-                  <li><a href="#" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
-                  <li><a href="#" title="appstore"><img src="images/app-store.png" alt="appstore" class="img-responsive"></a></li>
+                  <li><a href="https://play.google.com/store/apps/details?id=com.kart.kitchen" target="_blank" title="playstore"><img src="images/play-store.png" alt="playstore" class="img-responsive"></a></li>
                 </ul>
               </div>
             </div>
@@ -749,16 +750,16 @@
               <div class="section_title">Social media</div>
               <div class="social_icon text-center">
                 <ul>
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                  <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fas fa-rss"></i></a></li>
+                  <li><a href="https://www.instagram.com/kitchenkart_app/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="https://www.facebook.com/kitchenkartapp" target="_blank"><i class="fab fa-instagram"></i></a></li>
                 </ul>
               </div>
             </div>
             <div class="col-12 ">
-              <div class="copyright-part text-center pt-10 pb-10 mt-30">@ 2019 All Rights Reserved Bigmarket</div>
+              <div class="copyright-part text-center pt-10 pb-10 mt-30" id="year">@ 2019 All Rights Reserved Bigmarket</div>
+              <script>
+                  document.getElementById("year").innerHTML = "@ "+new Date().getFullYear()+" All Rights Reserved Bigmarket";
+              </script>
             </div>
           </div>
         </div>

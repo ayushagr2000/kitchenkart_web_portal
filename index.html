@@ -1064,8 +1064,7 @@
 
     </div>
     <!-- =====  CONTAINER END  ===== -->
-    <!-- =====  FOOTER START  ===== -->
-    <div class="footer section pt-40">
+    <!-- =====  FOOTER START  ===== --><div class="footer section pt-40">
       <div class="container">
         <div class="row">
           <div class="col-lg-4 footer-block">
@@ -1075,7 +1074,7 @@
               <li><a href="#">Delivery Information</a></li>
               <li><a href="#">Privacy Policy</a></li>
               <li><a href="#">Terms & Conditions</a></li>
-              <li><a href="about.html">Contact Us</a></li>
+              <li><a href="contact-us.html">Contact Us</a></li>
             </ul>
           </div>
           <div class="col-lg-4 footer-block">
@@ -1151,7 +1150,10 @@
               </div>
             </div>
             <div class="col-12 ">
-              <div class="copyright-part text-center pt-10 pb-10 mt-30">@ 2019 All Rights Reserved Bigmarket</div>
+              <div class="copyright-part text-center pt-10 pb-10 mt-30" id="year">@ 2019 All Rights Reserved Bigmarket</div>
+              <script>
+                  document.getElementById("year").innerHTML = "@ "+new Date().getFullYear()+" All Rights Reserved Bigmarket";
+              </script>
             </div>
           </div>
         </div>
