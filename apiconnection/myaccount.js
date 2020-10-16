@@ -17,6 +17,7 @@ window.onload = function() {
                 else {
                     localStorage.setItem("UserName",k.response[0].name);
                     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    document.getElementById('customName').innerHTML = "Welcome "+k.response[0].name;
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))

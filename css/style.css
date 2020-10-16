@@ -3868,6 +3868,7 @@ img.mfp-img {
 }
 
 @media only screen and (max-width: 767px) {
+  
   .header-bottom-left, .header-bottom-right {
     max-width: 50%;
     flex: 50%;

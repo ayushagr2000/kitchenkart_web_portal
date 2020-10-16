@@ -43,7 +43,7 @@ window.onload = function() {
         displayorder(data.order);
         displayorderItems(data.order);
     } catch (e) {
-        window.location.replace("http://kitchenkartapp.in/");
+        window.location.replace("index.html");
     }
 }
 
@@ -68,7 +68,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserId') && localStorage.getItem('UserName'))//585230
     AddData();
   else {
-    window.location.replace("http://kitchenkartapp.in/");
+    window.location.replace("index.html");
   }
 }
 function AddData() {

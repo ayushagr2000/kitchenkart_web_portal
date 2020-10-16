@@ -9,7 +9,7 @@ window.onload = function() {
             localStorage.setItem("UserId", user.uid);
             localStorage.setItem("UserNumber", user.phoneNumber);
             getuserdetails();
-            //window.location.replace("http://kitchenkartapp.in/");
+            //window.location.replace("index.html");
           } else {
             var ui = new firebaseui.auth.AuthUI(firebase.auth());
             var uiConfig = {
@@ -74,7 +74,7 @@ function checkuser(ApiData) {
   if(jsonApi.response.length === 0)
     AddData();
   else {
-    window.location.replace("http://kitchenkartapp.in/");
+    window.location.replace("index.html");
   }
 }
 function AddData() {
@@ -104,7 +104,7 @@ function AddDataToDatabase() {
       data : JSON.stringify(mydata),
       contentType: 'application/json',
       success : function(result, status) {
-         location.replace('http://kitchenkartapp.in/');
+         location.replace('index.html');
       },
       beforeSend: function(){
           console.log("Sending...");

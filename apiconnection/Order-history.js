@@ -58,7 +58,7 @@ function checkuser(ApiData) {
     AddData();
   }
   else {
-    window.location.replace("http://kitchenkartapp.in/login.html");
+    window.location.replace("index.htmllogin.html");
   }
 }
 function AddData() {

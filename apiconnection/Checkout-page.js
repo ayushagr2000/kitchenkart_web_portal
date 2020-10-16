@@ -55,7 +55,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserName') && localStorage.getItem('UserId'))
     AddData();
   else {
-    window.location.replace("http://kitchenkartapp.in/login.html");
+    window.location.replace("index.htmllogin.html");
   }
 }
 function AddData() {

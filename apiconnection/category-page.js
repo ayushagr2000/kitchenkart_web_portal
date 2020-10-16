@@ -3,6 +3,9 @@ var GlobalApi = '';
 var searchdata = [];
 var searchid = [];
 window.onload = function() {
+    if(screen.width < 765){
+        document.getElementById('column-left').style.display = "none";
+    }
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             localStorage.setItem("UserId", user.uid);
@@ -111,7 +114,7 @@ function checkuser(ApiData) {
   if(jsonApi.response.length === 0)
     AddData();
   else {
-    window.location.replace("http://kitchenkartapp.in/");
+    window.location.replace("index.html");
   }
 }
 function AddData() {
