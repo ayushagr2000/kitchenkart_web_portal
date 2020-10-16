@@ -17,7 +17,9 @@ window.onload = function() {
                     location.replace('login.html');
                 else {
                     localStorage.setItem("UserName",k.response[0].name);
-                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    // document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i><a href ="MyAccount.html">'+k.response[0].name+'</a>';
+                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;
                     DisplayCartProductApi();
                 }
             })
