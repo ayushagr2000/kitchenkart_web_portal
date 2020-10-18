@@ -3,6 +3,9 @@ var GlobalApi = '';
 var searchdata = [];
 var searchid = [];
 window.onload = function() {
+    if(screen.width < 765){
+        document.getElementById('column-left').style.display = "none";
+    }
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             localStorage.setItem("UserId", user.uid);
@@ -18,7 +21,9 @@ window.onload = function() {
                 console.log(k);
                 if(localStorage.getItem('UserId')){
                     localStorage.setItem("UserName",k.response[0].name);
-                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    // document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
+                    document.getElementById('name').innerHTML = '<i class="fa fa-user"></i><a href ="MyAccount.html">'+k.response[0].name+'</a>';
+                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;
                 }
                 else {
                     console.log('redirect');

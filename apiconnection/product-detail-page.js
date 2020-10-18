@@ -2,6 +2,7 @@ var searchdata = [];
 var searchid = [];
 
 window.onload = function() {
+ 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             localStorage.setItem("UserId", user.uid);
