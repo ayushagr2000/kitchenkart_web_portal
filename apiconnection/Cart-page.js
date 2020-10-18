@@ -19,8 +19,7 @@ window.onload = function() {
                     localStorage.setItem("UserName",k.response[0].name);
                     // document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
                     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i><a href ="MyAccount.html">'+k.response[0].name+'</a>';
-                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;
-                    DisplayCartProductApi();
+                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;    
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
@@ -33,7 +32,7 @@ window.onload = function() {
     getfirebasecall();
     BasketData();
     GetAllProductData();
-    
+    DisplayCartProductApi();
     topbrand_category();
     popular_brand();
     getuserdetails();
@@ -109,11 +108,12 @@ async function DisplayCartProductApi() {
 
 async function DisplayCartProduct(data) {
     var displaydata = JSON.parse(data);
+    console.log(displaydata);
     var displaytable = '';
     var totalprice = 0;
     for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity"><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
-        totalprice += displaydata.response[i].sell_price;
+        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity" disabled><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
+        totalprice += (displaydata.response[i].sell_price * displaydata.response[i].prod_quan);
     }
     document.getElementById('AllProductDisplay').innerHTML = displaytable;
     var slab='';

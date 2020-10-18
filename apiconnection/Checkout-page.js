@@ -116,7 +116,7 @@ async function ConformOrderApi(Data) {
     var totalprice = 0;
     for(var i = 0; i < Jsondata.response.length; i++){
         alldata += '<tr><td class="text-left">'+Jsondata.response[i].name+'</td><td class="text-left">'+Jsondata.response[i].prod_quan+'</td><td class="text-right">&#8377;'+Jsondata.response[i].sell_price+'</td><td class="text-right">&#8377;'+(Jsondata.response[i].sell_price * Jsondata.response[i].prod_quan)+'</td></tr>';
-        totalprice += Jsondata.response[i].sell_price;
+        totalprice += (Jsondata.response[i].sell_price * Jsondata.response[i].prod_quan);
     }
     document.getElementById('connformtable').innerHTML = alldata;
     var slab='';

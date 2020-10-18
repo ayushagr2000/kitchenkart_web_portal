@@ -77,9 +77,9 @@ async function BasketDataDisplay(Data) {
     var alldata = '';
     var totalprice = 0;
     for(var i = 0; i < Jsondata.response.length; i++)
-        totalprice += Jsondata.response[i].sell_price;
+        totalprice += Jsondata.response[i].sell_price*Jsondata.response[i].prod_quan;
     for(var i = 0; i < Math.min(5,Jsondata.response.length); i++){
-        alldata += '<tr><td class="text-center"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number"></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deleteBasketItem('+Jsondata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></a></td></tr>';
+        alldata += '<tr><td class="text-center"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'"><img src="'+Jsondata.response[i].img+'" alt="'+Jsondata.response[i].name+'" title="'+Jsondata.response[i].name+'" style="width: 75px; height: 75px;"></a></td><td class="text-left product-name"><a href="product-detail-page.html?id='+Jsondata.response[i].prod_id+'">'+Jsondata.response[i].name+'</a> <span class="text-left price"> &#x20b9; &nbsp;'+Jsondata.response[i].sell_price+'</span><input class="cart-qty" name="product_quantity" min="1" value="'+Jsondata.response[i].prod_quan+'" type="number" disabled></td><td class="text-center"><a class="close-cart" id="DeleteId" onclick="deleteBasketItem('+Jsondata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></a></td></tr>';
     }
     document.getElementById('carttable').innerHTML = alldata;
     document.getElementById('PriceToal').innerHTML = '&#x20b9; &nbsp;' + totalprice;
