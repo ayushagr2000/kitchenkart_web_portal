@@ -60,7 +60,7 @@ function checkuser(ApiData) {
     AddData();
   }
   else {
-    window.location.replace("index.htmllogin.html");
+    window.location.replace("login.html");
   }
 }
 function AddData() {

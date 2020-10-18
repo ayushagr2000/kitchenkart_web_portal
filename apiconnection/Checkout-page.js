@@ -57,7 +57,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserName') && localStorage.getItem('UserId'))
     AddData();
   else {
-    window.location.replace("index.htmllogin.html");
+    window.location.replace("login.html");
   }
 }
 function AddData() {
@@ -307,7 +307,7 @@ async function conformOrder() {
                 data : JSON.stringify(data),
                 contentType: 'application/json',
                 success : function(result, status) {
-                    window.location.href = "order-sucess-page.html?order="+id;
+                    window.location.href = "order-sucess-page.html?order="+id+"&status=conform";
                 },
                 beforeSend: function(){
                     console.log("Sending...");

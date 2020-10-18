@@ -59,7 +59,7 @@ function checkuser(ApiData) {
   if(localStorage.getItem('UserName') && localStorage.getItem('UserId'))
     AddData();
   else {
-    window.location.replace("index.htmllogin.html");
+    window.location.replace("login.html");
   }
 }
 function AddData() {
