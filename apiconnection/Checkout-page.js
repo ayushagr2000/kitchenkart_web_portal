@@ -316,3 +316,20 @@ async function conformOrder() {
         }
     }
 }
+//========================================
+async function ApplyCoupon() {
+  var i = document.getElementById('input-coupon').value;
+  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/promocode/"+i;
+    var k;
+    fetch(url)
+    .then(response => response.text())
+    .then(contents => PrintPromocode(contents))
+    .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
+}
+async function PrintPromocode(data) {
+  var k = JSON.parse(data)
+  if(k.response.length === 0)
+    alert("In Valid Promocode");
+  else
+    alert(k.response[0].data);
+}
