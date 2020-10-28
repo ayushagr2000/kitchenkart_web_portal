@@ -6,7 +6,7 @@ var call = false;
 async function GetAllProductData() {
     call = true;
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
+    const url = "https://api.kitchenkartapp.in/api/product";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => addproductinsearch(contents))

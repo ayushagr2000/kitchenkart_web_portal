@@ -6,7 +6,7 @@ window.onload = function() {
             UserNumber = user.phoneNumber;
             console.log(user.uid);
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            const url = "https://api.kitchenkartapp.in/api/users/"+user.uid;
             fetch(proxyurl + url)
             .then(response => response.text())
             .then(contents => {
@@ -59,7 +59,7 @@ function getuserdetails(){
     }
   });
   const proxyurl = "";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  const url = "https://api.kitchenkartapp.in/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
   .then(contents => checkuser(contents))
@@ -83,7 +83,7 @@ function AddData() {
 //========================= Display Data =====================
 async function displayorder(data) {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/id/"+data;
+    const url = "https://api.kitchenkartapp.in/api/order/id/"+data;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => printorder(contents))
@@ -104,7 +104,7 @@ async function printorder(details){
 //==================Order Table ================================
 async function displayorderItems(id){
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/items/"+id;
+    const url = "https://api.kitchenkartapp.in/api/order/items/"+id;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => ordertable(contents))

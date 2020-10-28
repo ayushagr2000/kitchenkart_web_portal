@@ -4,7 +4,7 @@ window.onload = function() {
 }
 const userAction = async () => {
     console.log('=========');
-    const response = await fetch('http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/sub/10483', {
+    const response = await fetch('https://api.kitchenkartapp.in/api/cart/sub/10483', {
       method: 'POST',
       //body: myBody, // string or object
       headers: {

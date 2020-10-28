@@ -14,7 +14,7 @@ window.onload = function() {
             UserNumber = user.phoneNumber;
             console.log(user.uid);
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            const url = "https://api.kitchenkartapp.in/api/users/"+user.uid;
             fetch(proxyurl + url)
             .then(response => response.text())
             .then(contents => {
@@ -50,7 +50,7 @@ window.onload = function() {
 
 async function Banner_ApiCall() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/banner/webhome1";
+    const url = "https://api.kitchenkartapp.in/api/banner/webhome1";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => Banner(contents))
@@ -98,7 +98,7 @@ async function Banner(Data) {
 
 async function Featured_ProductsApi() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/tag/new";
+    const url = "https://api.kitchenkartapp.in/api/product/tag/new";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => Featured(contents))

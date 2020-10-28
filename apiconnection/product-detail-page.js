@@ -10,7 +10,7 @@ window.onload = function() {
             UserNumber = user.phoneNumber;
             console.log(user.uid);
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            const url = "https://api.kitchenkartapp.in/api/users/"+user.uid;
             fetch(proxyurl + url)
             .then(response => response.text())
             .then(contents => {
@@ -57,7 +57,7 @@ function getuserdetails(){
     }
   });
   const proxyurl = "";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  const url = "https://api.kitchenkartapp.in/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
   .then(contents => checkuser(contents))
@@ -84,7 +84,7 @@ function AddData() {
 
 async function getProductApi(data) {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/"+data;
+    const url = "https://api.kitchenkartapp.in/api/product/"+data;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => printdataval(contents))
@@ -118,7 +118,7 @@ async function printdataval(productdata){
 
 async function getRelatedProduct(category){
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product/getc/"+category;
+    const url = "https://api.kitchenkartapp.in/api/product/getc/"+category;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => printdatavallimited(contents))
@@ -186,7 +186,7 @@ async function MainCartAddApi(productdata, Quandity) {
     }
     
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
+    const url = "https://api.kitchenkartapp.in/api/cart";
     $.ajax({
         url : proxyurl+url,
         type : 'POST',

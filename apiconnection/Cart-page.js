@@ -7,7 +7,7 @@ window.onload = function() {
             UserNumber = user.phoneNumber;
             console.log(user.uid);
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            const url = "https://api.kitchenkartapp.in/api/users/"+user.uid;
             fetch(proxyurl + url)
             .then(response => response.text())
             .then(contents => {
@@ -48,7 +48,7 @@ function getuserdetails(){
     }
   });
   const proxyurl = "";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  const url = "https://api.kitchenkartapp.in/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
   .then(contents => checkuser(contents))
@@ -99,7 +99,7 @@ async function logout_firebase() {
 //============= Body Display ==============================================
 
 async function DisplayCartProductApi() {
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
+    const url = "https://api.kitchenkartapp.in/api/cart/"+localStorage.getItem('UserId');
     fetch( url)
     .then(response => response.text())
     .then(contents => DisplayCartProduct(contents))
@@ -142,7 +142,7 @@ async function DisplayCartProduct(data) {
         slab = "0";
       }
     document.getElementById('subtotal').innerHTML = '&#8377;'+totalprice;
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/delivery/"+slab;
+    const url = "https://api.kitchenkartapp.in/api/order/delivery/"+slab;
     var k;
     fetch(url)
     .then(response => response.text())
@@ -160,7 +160,7 @@ async function DisplayCartProduct(data) {
 //============Our Popular Brand==============================================
 async function popular_brand() {
     
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    const url = "https://api.kitchenkartapp.in/api/brand";
     fetch(url)
     .then(response => response.text())
     .then(contents => brand(contents))
@@ -187,7 +187,7 @@ async function brand(data) {
 
 async function GetAllProductData() {
 
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
+    const url = "https://api.kitchenkartapp.in/api/product";
     fetch(url)
     .then(response => response.text())
     .then(contents => addproductinsearch(contents))
@@ -283,7 +283,7 @@ async function getfirebasecall() {
 // ======================== Firebase Ends =================================
 //========================= TOP BRAND CATEGORY =============================
 async function topbrand_category(){
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    const url = "https://api.kitchenkartapp.in/api/brand";
     fetch( url)
     .then(response => response.text())
     .then(contents => Category_Brand(contents))
@@ -299,7 +299,7 @@ async function Category_Brand(data) {
 //==========================================================================
 //============Our Popular Brand==============================================
 async function popular_brand() {
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    const url = "https://api.kitchenkartapp.in/api/brand";
     fetch(url)
     .then(response => response.text())
     .then(contents => brand(contents))

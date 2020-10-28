@@ -20,7 +20,7 @@ async function CartAddApi(productdata, Quandity) {
     }
     
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart";
+    const url = "https://api.kitchenkartapp.in/api/cart";
     $.ajax({
         url : proxyurl+url,
         type : 'POST',
@@ -42,7 +42,7 @@ async function CartAddApi(productdata, Quandity) {
 //================= Delete Basket Items ==================================
 
 const deleteBasketItem = async (id) => {
-    var url = 'http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/'+id;
+    var url = 'https://api.kitchenkartapp.in/api/cart/'+id;
     const response = await fetch(url, {
       method: 'DELETE',
       headers: {
@@ -63,7 +63,7 @@ const deleteBasketItem = async (id) => {
 async function BasketData() {
     console.log('basket');
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
+    const url = "https://api.kitchenkartapp.in/api/cart/"+localStorage.getItem('UserId');
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => BasketDataDisplay(contents))
@@ -139,7 +139,7 @@ async function checkEnter(k) {
 
 async function GetAllProductData() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/product";
+    const url = "https://api.kitchenkartapp.in/api/product";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => addproductinsearch(contents))
@@ -174,7 +174,7 @@ async function addproductinsearch(data) {
 //================= POPULAR BRAND================================
 async function popular_brand() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/brand";
+    const url = "https://api.kitchenkartapp.in/api/brand";
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => brand(contents))

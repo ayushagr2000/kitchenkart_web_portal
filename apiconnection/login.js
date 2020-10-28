@@ -63,7 +63,7 @@ function getuserdetails(){
     }
   });
   const proxyurl = "";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  const url = "https://api.kitchenkartapp.in/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
   .then(contents => checkuser(contents))
@@ -98,7 +98,7 @@ function AddDataToDatabase() {
       reffer : reffer|null
     }
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/";
+    const url = "https://api.kitchenkartapp.in/api/users/";
     $.ajax({
       url : proxyurl+url,
       type : 'POST',

@@ -7,7 +7,7 @@ window.onload = function() {
             UserNumber = user.phoneNumber;
             console.log(user.uid);
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+user.uid;
+            const url = "https://api.kitchenkartapp.in/api/users/"+user.uid;
             fetch(proxyurl + url)
             .then(response => response.text())
             .then(contents => {
@@ -46,7 +46,7 @@ function getuserdetails(){
     }
   });
   const proxyurl = "";
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/"+localStorage.getItem('UserId');
+  const url = "https://api.kitchenkartapp.in/api/users/"+localStorage.getItem('UserId');
   fetch(proxyurl + url)
   .then(response => response.text())
   .then(contents => checkuser(contents))
@@ -99,7 +99,7 @@ async function logout_firebase() {
 
 async function ConformOrder() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/cart/"+localStorage.getItem('UserId');
+    const url = "https://api.kitchenkartapp.in/api/cart/"+localStorage.getItem('UserId');
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => ConformOrderApi(contents))
@@ -144,7 +144,7 @@ async function ConformOrderApi(Data) {
         slab = "0";
       }
     document.getElementById('subtotal').innerHTML = '&#x20b9; &nbsp;' + totalprice;
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/order/delivery/"+slab;
+    const url = "https://api.kitchenkartapp.in/api/order/delivery/"+slab;
     var k;
     fetch(url)
     .then(response => response.text())
@@ -164,7 +164,7 @@ async function ConformOrderApi(Data) {
 
 async function Billing_delivery() {
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+localStorage.getItem('UserId');
+    const url = "https://api.kitchenkartapp.in/api/users/address/"+localStorage.getItem('UserId');
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => Billing_deliveryAddval(contents))
@@ -195,7 +195,7 @@ async function PutAddress() {
     }
     
     const proxyurl = "";
-    const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+localStorage.getItem('UserId');
+    const url = "https://api.kitchenkartapp.in/api/users/address/"+localStorage.getItem('UserId');
     $.ajax({
         url : proxyurl+url,
         type : 'PUT',
@@ -243,7 +243,7 @@ async function conformOrder() {
             }
             
             const proxyurl = "";
-            const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/users/address/"+localStorage.getItem('UserId');
+            const url = "https://api.kitchenkartapp.in/api/users/address/"+localStorage.getItem('UserId');
             $.ajax({
                 url : proxyurl+url,
                 type : 'PUT',
@@ -302,7 +302,7 @@ async function conformOrder() {
                 "promoline":"NO"
             };
             $.ajax({
-                url : proxyurl+'http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/v2/placeorder/',
+                url : proxyurl+'https://api.kitchenkartapp.in/api/v2/placeorder/',
                 type : 'POST',
                 data : JSON.stringify(data),
                 contentType: 'application/json',
@@ -319,7 +319,7 @@ async function conformOrder() {
 //========================================
 async function ApplyCoupon() {
   var i = document.getElementById('input-coupon').value;
-  const url = "http://ec2-13-232-236-5.ap-south-1.compute.amazonaws.com:3000/api/promocode/"+i;
+  const url = "https://api.kitchenkartapp.in/api/promocode/"+i;
     var k;
     fetch(url)
     .then(response => response.text())
