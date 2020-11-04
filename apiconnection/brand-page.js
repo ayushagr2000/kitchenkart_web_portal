@@ -213,10 +213,12 @@ async function CartAddApi(productdata, Quandity) {
         success : function(result, status) {
            console.log(result);
            console.log(productdata);
+        
+
         },
         beforeSend: function(){
             console.log("Sending...");
         }
-    });
+    })
 }
 //=========================================================================

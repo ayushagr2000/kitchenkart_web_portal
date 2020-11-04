@@ -289,7 +289,7 @@ async function conformOrder() {
                 "timeslot": "1 day",
                 "payment_mode": paymethod,
                 "user_comment":document.getElementById('usesrComments').value || null,
-                "lat": '83.42322',
+                "lat": 'Website',
                 "long": '43.4543',
                 "add1": add1,
                 "add2": add2,
