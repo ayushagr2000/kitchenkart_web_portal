@@ -2,7 +2,7 @@ var searchdata = [];
 var searchid = [];
 
 window.onload = function() {
- 
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             localStorage.setItem("UserId", user.uid);
@@ -27,7 +27,7 @@ window.onload = function() {
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-            
+
         } else {
           // User not logged in or has just logged out.
         }
@@ -35,14 +35,21 @@ window.onload = function() {
     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+localStorage.getItem('UserName');
     getfirebasecall();
     GetAllProductData();
+    // var url = document.location.href,
+    //         params = url.split('?')[1].split('&'),
+    //         data = {}, tmp;
+    // for (var i = 0, l = params.length; i < l; i++) {
+    //     tmp = params[i].split('=');
+    //     data[tmp[0]] = tmp[1];
+    // }
+
     var url = document.location.href,
-            params = url.split('?')[1].split('&'),
-            data = {}, tmp;
-    for (var i = 0, l = params.length; i < l; i++) {
-        tmp = params[i].split('=');
-        data[tmp[0]] = tmp[1];
-    }
-    getProductApi(data.id);
+          params = url.split('/product/')[1],
+          data = {}, tmp;
+
+          data = params;
+          console.log("NEW URL :" + data);
+    getProductApi(data);
     popular_brand();
     BasketData();
     getuserdetails();
@@ -84,12 +91,11 @@ function AddData() {
 
 async function getProductApi(data) {
     const proxyurl = "";
-    const url = "https://api.kitchenkartapp.in/api/product/"+data;
+    const url = "https://api.kitchenkartapp.in/api/product/slug/"+data;
     fetch(proxyurl + url)
     .then(response => response.text())
     .then(contents => printdataval(contents))
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-
 }
 async function printdataval(productdata){
     var singledata = JSON.parse(productdata);
@@ -127,10 +133,10 @@ async function getRelatedProduct(category){
 async function printdatavallimited(data) {
     datainApi = JSON.parse(data);
     var featureddiv = '';
-    var randomgen = Math.floor(Math.random() * datainApi.response.length); 
+    var randomgen = Math.floor(Math.random() * datainApi.response.length);
     for(var i = 0; i < 5; i++){
         var n = (randomgen+i) % datainApi.response.length;
-        featureddiv += '<div class="product-items col-6 col-sm-4 col-md-4 col-lg-3" style="height:400px;"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="product-detail-page.html?id='+datainApi.response[n].product_id+'"> <img src="'+datainApi.response[n].img+'" style="height:200px; width:200px;" alt="'+datainApi.response[n].name+'" title="'+datainApi.response[n].name+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product-detail-page.html?id='+datainApi.response[n].product_id+'"> </a></div></div><div class="product-details"  style="height:180px;"><div class="caption"><h4><a href="product-detail-page.html?id='+datainApi.response[n].product_id+'">'+datainApi.response[n].name+'</a></h4><p class="price">&#8377; &nbsp;'+datainApi.response[n].sell_price+'<span class="price-tax">&#8377; &nbsp;</span></p><div class="product_option "><div class="form-group required "><p style="float: left;">size : '+datainApi.response[n].size+'</p><p style="float: right;"> Discount '+Math.round(100-(datainApi.response[n].sell_price/datainApi.response[n].max_price * 100))+'%</p><br><p style="float: right;"> MRP &#8377;&nbsp;'+datainApi.response[n].max_price+'</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" id="qty'+i+'" name="quantity" min="1" value="1" step="1" class="qty form-control"><button type="button" class="addtocart pull-right" id="cart'+i+'" onclick="AddCartfunction('+datainApi.response[n].product_id+', '+i+')">Add</button></div></div></div></div></div></div>';
+        featureddiv += '<div class="product-items col-6 col-sm-4 col-md-4 col-lg-3" style="height:400px;"><div class="product-thumb transition"><div class="image"><div class="first_image"> <a href="http://localhost/kitchenkart_web_portal/product/'+datainApi.response[n].product_slug+'"> <img src="'+datainApi.response[n].img+'" style="height:200px; width:200px;" alt="'+datainApi.response[n].name+'" title="'+datainApi.response[n].name+'" class="img-responsive"> </a> </div><div class="swap_image"> <a href="product-detail-page.html?id='+datainApi.response[n].product_id+'"> </a></div></div><div class="product-details"  style="height:180px;"><div class="caption"><h4><a href="http://localhost/kitchenkart_web_portal/product/'+datainApi.response[n].product_slug+'">'+datainApi.response[n].name+'</a></h4><p class="price">&#8377; &nbsp;'+datainApi.response[n].sell_price+'<span class="price-tax">&#8377; &nbsp;</span></p><div class="product_option "><div class="form-group required "><p style="float: left;">size : '+datainApi.response[n].size+'</p><p style="float: right;"> Discount '+Math.round(100-(datainApi.response[n].sell_price/datainApi.response[n].max_price * 100))+'%</p><br><p style="float: right;"> MRP &#8377;&nbsp;'+datainApi.response[n].max_price+'</p></div><div class="input-group button-group"><label class="control-label">Qty</label><input type="number" id="qty'+i+'" name="quantity" min="1" value="1" step="1" class="qty form-control"><button type="button" class="addtocart pull-right" id="cart'+i+'" onclick="AddCartfunction('+datainApi.response[n].product_id+', '+i+')">Add</button></div></div></div></div></div></div>';
     }
     document.getElementById('Random5relatedProduct').innerHTML = featureddiv;
 }
@@ -143,7 +149,7 @@ async function getfirebasecall() {
             console.log(user.uid);
             document.getElementById('Logindiv_firebase').style.display = "none";
             document.getElementById('signoutdiv_firebase').style.display = "block";
-          } else {  
+          } else {
             document.getElementById('Logindiv_firebase').style.display = 'block';
             document.getElementById('signoutdiv_firebase').style.display = 'none';
           }
@@ -184,7 +190,7 @@ async function MainCartAddApi(productdata, Quandity) {
         prod_id: productdata,
         prod_qty: Quandity
     }
-    
+
     const proxyurl = "";
     const url = "https://api.kitchenkartapp.in/api/cart";
     $.ajax({
@@ -200,6 +206,6 @@ async function MainCartAddApi(productdata, Quandity) {
             console.log("Sending...");
         }
     });
-    
+
 }
 //=========================================================================

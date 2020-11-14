@@ -19,16 +19,16 @@ window.onload = function() {
                     localStorage.setItem("UserName",k.response[0].name);
                     // document.getElementById('name').innerHTML = '<i class="fa fa-user"></i>'+k.response[0].name;
                     document.getElementById('name').innerHTML = '<i class="fa fa-user"></i><a href ="MyAccount.html">'+k.response[0].name+'</a>';
-                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;    
+                    document.getElementById('mobileLogin').innerHTML = '<i class="fa fa-user-circle-o"></i>'+k.response[0].name;
                 }
             })
             .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-            
+
         } else {
           // User not logged in or has just logged out.
         }
     });
-    
+
     getfirebasecall();
     BasketData();
     GetAllProductData();
@@ -77,7 +77,7 @@ async function getfirebasecall() {
             console.log(user.uid);
             document.getElementById('Logindiv_firebase').style.display = "none";
             document.getElementById('signoutdiv_firebase').style.display = "block";
-          } else {  
+          } else {
             document.getElementById('Logindiv_firebase').style.display = 'block';
             document.getElementById('signoutdiv_firebase').style.display = 'none';
           }
@@ -106,13 +106,40 @@ async function DisplayCartProductApi() {
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
 }
 
+// INCREASE COUNT
+function addItemCounter(counter){
+  console.log("111");
+// /api/cart/add/{cartid}
+  const url = "https://api.kitchenkartapp.in/api/cart/add/"+ counter;
+  console.log("counter : "  + url);
+
+  fetch( url)
+  .then(response => response.text())
+  .then(contents => DisplayCartProduct(contents))
+  .catch(() => console.log("Error :  " + url + " response. Blocked by browser?"))
+}
+
+// DECREASE COUNT
+function minusItemCounter(counter){
+  // /api/cart/sub/{cartid}
+  const url = "https://api.kitchenkartapp.in/api/cart/sub/"+ counter;
+  console.log("counter : "  + url);
+
+  fetch( url)
+  .then(response => response.text())
+  .then(contents => DisplayCartProduct(contents))
+  .catch(() => console.log("Error :  " + url + " response. Blocked by browser?"))
+}
+
 async function DisplayCartProduct(data) {
+    console.log("inside display");
     var displaydata = JSON.parse(data);
-    console.log(displaydata);
+
     var displaytable = '';
     var totalprice = 0;
     for(var i = 0; i < displaydata.response.length; i++) {
-        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 200px;" class="input-group btn-block"><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity" disabled><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
+      // console.log("NEW : " + displaydata.response[i].cart_id);
+        displaytable += '<tr><td class="text-center"><img src="'+displaydata.response[i].img+'" alt="'+displaydata.response[i].name+'" title="'+displaydata.response[i].name+'" style="height: 50px; width: 50px;"></td><td class="text-left"><a>'+displaydata.response[i].name+'</a></td><td class="text-left"><div style="max-width: 275px;" class="input-group btn-block">  <span class="input-group-btn"><button id="'+ displaydata.response[i].product_id +'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="ADD" onclick="addItemCounter(' +displaydata.response[i].cart_id +  ');"><i class="fa fa-plus"></i></button></span><input type="text" class="form-control quantity" size="1" value="'+displaydata.response[i].prod_quan+'" name="quantity" disabled><span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Subtract" onclick="minusItemCounter(' +displaydata.response[i].cart_id +  ');"><i class="fa fa-minus"></i></button></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="input-group-btn"><button id="'+displaydata.response[i].product_id+'" class="btn btn-danger" title="" data-toggle="tooltip" type="button" data-original-title="Remove" onclick="deleteBasketItem('+displaydata.response[i].cart_id+')"><i class="fa fa-times-circle"></i></button></span></div></td><td class="text-right">&#x20b9; &nbsp;'+displaydata.response[i].sell_price+'</td><td class="text-right">&#x20b9; &nbsp;'+(displaydata.response[i].sell_price * displaydata.response[i].prod_quan)+'</td></tr>';
         totalprice += (displaydata.response[i].sell_price * displaydata.response[i].prod_quan);
     }
     document.getElementById('AllProductDisplay').innerHTML = displaytable;
@@ -152,14 +179,14 @@ async function DisplayCartProduct(data) {
         document.getElementById('totalcharge').innerHTML = '&#8377;'+(totalprice+k.response[0].charge);
     })
     .catch(() => console.log("Can’t access " + url + " response. Blocked by browser?"))
-    
+
 
 }
 
 //==========================================================================
 //============Our Popular Brand==============================================
 async function popular_brand() {
-    
+
     const url = "https://api.kitchenkartapp.in/api/brand";
     fetch(url)
     .then(response => response.text())
@@ -179,8 +206,8 @@ async function brand(data) {
            k += "</div></div><div class='container' style><div class='row'>";
         }
     }
-   
-    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
+
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';
 }
 //=======================================================================================
 
@@ -243,7 +270,7 @@ async function getlistdata() {
 
 async function checkEnter(k) {
     if(k === 13)
-        getdata();    
+        getdata();
 }
 
 async function getdata() {
@@ -272,7 +299,7 @@ async function getfirebasecall() {
           if (user) {
             document.getElementById('Logindiv_firebase').style.display = "none";
             document.getElementById('signoutdiv_firebase').style.display = "block";
-          } else {  
+          } else {
             document.getElementById('Logindiv_firebase').style.display = 'block';
             document.getElementById('signoutdiv_firebase').style.display = 'none';
           }
@@ -318,9 +345,8 @@ async function brand(data) {
            k += "</div></div><div class='container' style><div class='row'>";
         }
     }
-   
-    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';  
-    
+
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';
+
 }
 //=============================================================================
-

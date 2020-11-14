@@ -2,13 +2,14 @@
 
 async function AddCartfunction(addcart, id) {
     qua = document.getElementById('qty'+id).value;
-    
+
     var k = document.getElementById('Logindiv_firebase').style.display;
     if(localStorage.getItem('UserName') === null || localStorage.getItem('UserId') === null ) {
         console.log('sadsfsd');
        location.replace("login.html");
     } else {
         CartAddApi(addcart, qua);
+        // alert("Item Added into cart3");
     }
 }
 
@@ -18,7 +19,7 @@ async function CartAddApi(productdata, Quandity) {
         prod_id: productdata,
         prod_qty: Quandity
     }
-    
+
     const proxyurl = "";
     const url = "https://api.kitchenkartapp.in/api/cart";
     $.ajax({
@@ -27,16 +28,25 @@ async function CartAddApi(productdata, Quandity) {
         data : JSON.stringify(mydata),
         contentType: 'application/json',
         success : function(result, status) {
+          // alert("Item Added into cart2");
            console.log(result);
            BasketData();
         },
         beforeSend: function(){
+            myFunction();
             console.log("Sending...");
+            // alert("Item Added into cart");
         }
     });
-    
+
 }
 
+
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 //=========================================================================
 
 //================= Delete Basket Items ==================================
@@ -52,7 +62,7 @@ const deleteBasketItem = async (id) => {
     const myJson = await response.json();
     console.log(myJson);
     location.reload();
-    
+
 }
 
 //========================================================================
@@ -71,6 +81,7 @@ async function BasketData() {
 }
 
 async function BasketDataDisplay(Data) {
+    console.log("inside display2");
     var Jsondata = JSON.parse(Data);
     document.getElementById('cart-total-res').innerText = Jsondata.response.length;
     document.getElementById('cart-total').innerText = 'Item ' + Jsondata.response.length;
@@ -134,7 +145,7 @@ async function getdata() {
 }
 async function checkEnter(k) {
     if(k === 13)
-        getdata();    
+        getdata();
 }
 
 async function GetAllProductData() {
@@ -194,7 +205,7 @@ async function brand(data) {
            k += "</div></div><div class='container' style><div class='row'>";
         }
     }
-   
-    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';   
+
+    document.getElementById("Popular_brand_div").innerHTML = k + '</div></div>';
 }
 //===============================================================
